@@ -5,14 +5,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	
 	<!--  각각의  interceptr-url, form-login,logout 은  내부적으로 Filter를 만들어 사용한다.  그래서 web.xml에서 이 모든걸 엮어줄 FilterChaing을 따로 설정해준다. -->
 	<!-- web.xml에서 사용하는 FilterChain의 대한 설정부분이다. -->
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/cars/add/**" access="hasAuthority('USER_MANAGER')" />
 		<security:intercept-url pattern="/**" access="permitAll" />
-		<security:intercept-url pattern="/boards/board/**" access="hasAuthority('USER_MANAGER')" />
+		<security:intercept-url pattern="/user/myEdit" access="hasAuthority('ROLE_USER')" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 			
 		         <security:form-login login-page="/login" 
@@ -23,7 +22,7 @@
         <security:csrf />
         <security:logout logout-success-url="/logout"/>
         
-      	</security:http>	
+      	</security:http>
 	<!-- form-login은 기본 로그인 폼 양식을 보여준다.logout은 로그아웃처리를.. -->
 
 	

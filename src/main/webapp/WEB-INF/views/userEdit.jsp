@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<form action="/userEdit?${_csrf.parameterName}=${_csrf.token}" method="POST">
+	<form action="/user/userEdit?${_csrf.parameterName}=${_csrf.token}" method="POST">
 		<input type="text" name="uname" id="uname" placeholder="이름" required><br>
 		<input type="text" name="username" id="username"  placeholder="이메일" required><br>
 		<input type="password" id="password" name="password" placeholder="비밀번호" required><br>

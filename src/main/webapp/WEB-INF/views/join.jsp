@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +8,20 @@
 
 </head>
 <body>
-	<form action="/join?${_csrf.parameterName}=${_csrf.token}" method="POST">
-		<input type="text" name="uname" id="uname" placeholder="이름" required><br>
-		<input type="text" name="username" id="username"  placeholder="이메일" required><br>
-		<input type="password" id="password" name="password" placeholder="비밀번호" required><br>
-		<input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호 확인" required><br>
+	<form:form  action="${ pageContext.servletContext.contextPath }/user/join?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
+		이름 : <form:input path="uname" />
+         <form:errors path="uname" />
+
+	         이메일 : <form:input path="username" />
+         <form:errors path="username" />
+	
+	         비밀번호 : <form:password path="password" />
+         <form:errors path="password" />
+         
+	         비밀번호 확인 : <form:password path="passwordCheck" />
+         <form:errors path="passwordCheck" />
 		
 		<input type="submit" value="회원가입하기">
-	</form>
+	</form:form >
 </body>
 </html>

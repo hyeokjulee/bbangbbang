@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-	<insert id="insert" parameterType="com.spring.user.Member">
+	<insert id="insert" parameterType="com.spring.user.User">
 		<![CDATA[
-			INSERT INTO member
-			(username, password, authority, enabled, mname, mnickname, mphone)
+			INSERT INTO user
+			(username, password, enabled, authority, uname)
 			VALUES
-			(#{username}, #{password}, "ROLE_USER", 1, #{mname}, #{mnickname}, #{mphone})
+			(#{username}, #{password}, 1, "ROLE_USER", #{uname})
 		]]>
 	</insert>
-	<select id="select" resultType="com.spring.user.Member">
+	<select id="select" resultType="com.spring.user.User">
 		<![CDATA[
-			SELECT * FROM member WHERE username=#{username}
+			SELECT * FROM user WHERE username=#{username}
 		]]>
 
 	</select>
 	
-	<select id="select_list" resultType="com.spring.user.Member">
+	<select id="select_list" resultType="com.spring.user.User">
 		<![CDATA[
-			SELECT * FROM member ORDER BY mid DESC
+			SELECT * FROM user ORDER BY udate DESC
 		]]>
 
 	</select>
 
-	<update id="update" parameterType="com.spring.user.Member">
+	<update id="update" parameterType="hashMap">
 		<![CDATA[
-			UPDATE member
+			UPDATE user
 			SET
-			mname = #{mname},
-			mnickname = #{mnickname},
-			mphone = #{mphone}
-			WHERE username = #{username}
+			uname = #{uname},
+			username = #{username},
+			password = #{password}
+			WHERE uid = #{uid}
 		]]>
 	</update>
 
 	<delete id="delete" parameterType="String">
 		<![CDATA[
-			DELETE FROM members
+			DELETE FROM user
 			WHERE username = #{username}
 		]]>
 	</delete>
