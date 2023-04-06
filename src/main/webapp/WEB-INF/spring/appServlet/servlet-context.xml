@@ -38,18 +38,12 @@
 	<!-- 일반 파일 업로드 경로 -->
 	<!-- <resources mapping="\images\**" location="\resources\images\" /> -->
 	
-	
-	
-	
-	
-	
 	<beans:bean id="tilesViewResolver"
 	             class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <beans:property name="viewClass" 
                  value="org.springframework.web.servlet.view.tiles3.TilesView"/>
         <beans:property name="order" value="1"/>
     </beans:bean>
-	
 	
 	<beans:bean id="tilesConfigurer" 
                 class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -63,6 +57,5 @@
    	<beans:property name="username" value="asd"/>
    	<beans:property name="password" value="1111"/>
     
-   	
     </beans:bean>
 </beans:beans>

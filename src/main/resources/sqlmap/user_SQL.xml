@@ -9,18 +9,17 @@
 			(#{username}, #{password}, 1, "ROLE_USER", #{uname})
 		]]>
 	</insert>
+	
 	<select id="select" resultType="com.spring.user.User">
 		<![CDATA[
 			SELECT * FROM user WHERE username=#{username}
 		]]>
-
 	</select>
 	
 	<select id="select_list" resultType="com.spring.user.User">
 		<![CDATA[
 			SELECT * FROM user ORDER BY udate DESC
 		]]>
-
 	</select>
 
 	<update id="update" parameterType="hashMap">

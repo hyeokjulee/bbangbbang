@@ -9,17 +9,17 @@
 </head>
 <body>
 	<form:form  action="${ pageContext.servletContext.contextPath }/user/join?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
-		이름 : <form:input path="uname" />
-         <form:errors path="uname" />
+		<form:input path="uname" placeholder="이름"/><br>
+        <form:errors path="uname" cssStyle="color:red"/><br>
 
-	         이메일 : <form:input path="username" />
-         <form:errors path="username" />
+	    <form:input path="username" placeholder="이메일"/><br>
+        <form:errors path="username" cssStyle="color:red"/><br>
 	
-	         비밀번호 : <form:password path="password" />
-         <form:errors path="password" />
+	    <form:password path="password" placeholder="비밀번호"/><br>
+        <form:errors path="password" cssStyle="color:red"/><br>
          
-	         비밀번호 확인 : <form:password path="passwordCheck" />
-         <form:errors path="passwordCheck" />
+	    <form:password path="passwordCheck" placeholder="비밀번호 확인"/><br>
+        <form:errors path="passwordCheck" cssStyle="color:red"/><br>
 		
 		<input type="submit" value="회원가입하기">
 	</form:form >

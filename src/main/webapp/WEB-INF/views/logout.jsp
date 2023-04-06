@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>로그아웃</title>
 
 </head>
 <body>
@@ -14,7 +14,6 @@
 		<button type="submit">로그인</button><br>
 		
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		
 		<a href="/user/join">회원가입</a>
 	</form>
 </body>
