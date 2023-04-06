@@ -26,4 +26,19 @@
 				WHERE nid = #{nid}
 			]]>
 	</update>
+	
+	<update id="update" parameterType="hashMap">
+			<![CDATA[
+				UPDATE notice SET
+				ntitle = #{ntitle}, ncontent = #{ncontent}, nupdate = sysdate
+				WHERE nid = #{nid}
+			]]>
+	</update>
+	
+	<delete id="delete" parameterType="hashMap">
+			<![CDATA[
+				DELETE FROM notice
+				WHERE nid = #{nid}
+			]]>
+	</delete>
 </mapper>

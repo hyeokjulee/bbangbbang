@@ -28,6 +28,17 @@ public class BoardController {
 		return "boards/boardadd";
 	}
 	
+	@PostMapping("/boardadd")
+	public String submitAddBoardForm(@ModelAttribute("NewBoard") Board board) {
+
+		boardService.setNewBoard(board);
+		
+		System.out.println(board.getBcontent());
+		System.out.println(board.getBtitle());
+		
+		
+		return "redirect:/boards/boardlist";
+	}
 	
 	@GetMapping("/boardlist")
 	public String BoardList(Model model) {
@@ -92,7 +103,7 @@ public class BoardController {
     
     //게시물 수정
     @PostMapping("/update")
-    public String boardModifyPOST(Board board, RedirectAttributes rttr) {
+    public String boardUpdatePOST(Board board, RedirectAttributes rttr) {
         
         boardService.updateBoard(board);
         

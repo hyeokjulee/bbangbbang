@@ -8,9 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.spring.board.Board;
 
 @Controller
 @RequestMapping("/notices")
@@ -53,4 +57,36 @@ public class NoticeController {
 
 		
 	}
+	
+	 //소개글 수정 페이지로 이동
+    @GetMapping("/modify")
+    public void noticeModifyGET(@RequestParam("nid") String nid, Model model) {
+        
+        model.addAttribute("pageInfo", noticeService.getNoticeById(nid));
+        
+    }
+    
+    //소개글 수정
+    @PostMapping("/modify")
+    public String noticeModifyPOST(Notice notice, RedirectAttributes rttr) {
+        
+        noticeService.modifyNotice(notice);
+        
+        rttr.addFlashAttribute("result", "modify success");
+        
+        return "redirect:/notices/notice";
+        
+    }
+    
+    //소개글 삭제
+    @PostMapping("/remove")
+    public String noticeRemovePOST(@RequestParam("nid") String nid, RedirectAttributes rttr) {
+        
+    	noticeService.removeNotice(nid);
+        
+        rttr.addFlashAttribute("result", "remove success");
+        
+        return "redirect:/notices/notice";
+    }
+    
 }

@@ -42,8 +42,6 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>조회수</th>
-						<th>좋아요</th>
-						<th>싫어요</th>
 						<th>작성일</th>
 					</tr>
 					<c:forEach items="${boardList}" var="board">
@@ -54,8 +52,6 @@
 							</td>
 							<td>${board.bwriter}</td>
 							<td>${board.bview}</td>
-							<td>${board.blike}</td>
-							<td>${board.bhate}</td>
 							<td>${board.bdate}</td>
 						</tr>
 					</c:forEach>

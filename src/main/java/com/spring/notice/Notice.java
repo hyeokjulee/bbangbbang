@@ -3,8 +3,8 @@ package com.spring.notice;
 public class Notice {
 
 	private int nid;
-	private String ntitle, ncontent, nregdate, nupdate;
-	
+	private String ntitle, ncontent, nwriter, nregdate, nupdate, nview;
+
 	public int getNid() {
 		return nid;
 	}
@@ -23,6 +23,12 @@ public class Notice {
 	public void setNcontent(String ncontent) {
 		this.ncontent = ncontent;
 	}
+	public String getNwriter() {
+		return nwriter;
+	}
+	public void setNwriter(String nwriter) {
+		this.nwriter = nwriter;
+	}
 	public String getNregdate() {
 		return nregdate;
 	}
@@ -35,18 +41,28 @@ public class Notice {
 	public void setNupdate(String nupdate) {
 		this.nupdate = nupdate;
 	}
+	public String getNview() {
+		return nview;
+	}
+	public void setNview(String nview) {
+		this.nview = nview;
+	}
 	
 	public Notice() {
 	}
 	
-	public Notice(int nid, String ntitle, String ncontent, String nregdate, String nupdate) {
+	public Notice(int nid, String ntitle, String ncontent, String nwriter, String nregdate, String nupdate,
+			String nview) {
 		this.nid = nid;
 		this.ntitle = ntitle;
 		this.ncontent = ncontent;
+		this.nwriter = nwriter;
 		this.nregdate = nregdate;
 		this.nupdate = nupdate;
+		this.nview = nview;
 	}
 	
+
 	
 	
 }

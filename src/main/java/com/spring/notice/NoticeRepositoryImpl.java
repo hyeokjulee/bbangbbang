@@ -34,4 +34,16 @@ public class NoticeRepositoryImpl implements NoticeRepository {
 			this.sqlSessionTemplate.update("notice.update_view", map);
 		}
 	}
+
+
+	@Override
+	public int modifyNotice(Notice notice) {
+		return this.sqlSessionTemplate.update("notice.update", notice);
+	}
+
+
+	@Override
+	public int removeNotice(String nid) {
+		return this.sqlSessionTemplate.delete("notice.delete", nid);
+	}
 }

@@ -25,4 +25,15 @@ public class NoticeServiceImpl implements NoticeService {
 	public void checkNotice(Map map) {
 		noticeRepository.checkNotice(map);		
 	}
+
+	@Override
+	public int modifyNotice(Notice notice) {
+		return noticeRepository.modifyNotice(notice);
+	}
+
+	@Override
+	public int removeNotice(String nid) {
+		return noticeRepository.removeNotice(nid);
+	}
+	
 }
