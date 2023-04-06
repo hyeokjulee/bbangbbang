@@ -6,9 +6,9 @@
 		useGeneratedKeys="true" keyProperty="bid">
 		<![CDATA[
 			INSERT INTO board
-			(btitle, bcontent)
+			(btitle, bcontent, bwriter)
 			values
-			(#{btitle}, #{bcontent})
+			(#{btitle}, #{bcontent}, #{bwriter})
 		]]>
 	</insert>
 	
@@ -16,6 +16,7 @@
 		<![CDATA[
 			SELECT * 
 			FROM board 
+			WHERE bpid IS NULL
 			ORDER BY bid 
 			DESC
 		]]>
@@ -27,4 +28,46 @@
 			select * from board where bid = #{bid}
 		]]>
 	</select>
+	
+	<insert id="insert_reply" parameterType="hashMap"
+		useGeneratedKeys="true" keyProperty="bid">
+		<![CDATA[
+			INSERT INTO board
+			(bpid, bcontent, bwriter)
+			values
+			(#{bid}, #{bcontent}, #{bwriter})
+		]]>
+	</insert>
+	
+	<select id="select_reply" parameterType="String" resultType="com.spring.board.Board">
+		<![CDATA[
+			SELECT * 
+			FROM board
+			WHERE bpid = #{bid}
+			ORDER BY bid DESC
+		]]>
+	</select>
+	
+	<update id="update_view" parameterType="hashMap">
+			<![CDATA[
+				UPDATE board SET
+				bview = bview + 1
+				WHERE bid = #{bid}
+			]]>
+	</update>
+	
+	<update id="update" parameterType="hashMap">
+			<![CDATA[
+				UPDATE board SET
+				btitle = #{btitle}, bcontent = #{bcontent}, bupdate = sysdate
+				WHERE bid = #{bid}
+			]]>
+	</update>
+	
+	<delete id="delete" parameterType="hashMap">
+			<![CDATA[
+				DELETE FROM board
+				WHERE bid = #{bid}
+			]]>
+	</delete>
 </mapper>

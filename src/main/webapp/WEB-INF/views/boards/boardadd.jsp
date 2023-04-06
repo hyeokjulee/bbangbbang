@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 등록</title>
+<title>자유게시판 등록</title>
 </head>
 <body>
 

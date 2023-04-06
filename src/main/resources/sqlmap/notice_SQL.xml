@@ -18,4 +18,12 @@
 			select * from notice where nid = #{nid}
 		]]>
 	</select>
+	
+	<update id="update_view" parameterType="hashMap">
+			<![CDATA[
+				UPDATE notice SET
+				nview = nview + 1
+				WHERE nid = #{nid}
+			]]>
+	</update>
 </mapper>

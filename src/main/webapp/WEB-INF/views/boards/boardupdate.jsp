@@ -58,26 +58,12 @@
 		});
 		window.location.reload();
 	}
-	
-	function checkAlert(result){
-
-		 if(result === ''){
-	          return;
-	        }
-		 
-		 if(result === "update success"){
-	            alert("수정이 완료되었습니다.");
-	        }
-		 
-        if(result === "delete success"){
-            alert("삭제가 완료되었습니다.");
-        }
-	}
 </script>
 
 </head>
 <body>
 
+<form id="updateForm" action="/boards/boardupdate" method="post">
 	<!-- 주 게시물 -->
 	<div class="card">
 		<h5 class="card-header">${board.btitle}</h5>
@@ -91,76 +77,14 @@
 			</div>
 			<div class="d-flex justify-content-end badge bg-light text-dark">${board.bdate}</div>
 		</div>
-		
-		<a class="btn btn-primary" id="update_btn">수정</a>
-		<a class="btn btn-danger" id="delete_btn">삭제</a>
-		<button class="btn btn-secondary" onclick="history.back()">취소</button>
 	</div>
-
-	<!-- 답변 게시물 -->
-
-	<div class="card">
-		<div class="card-body">답변 리스트</div>
-<b>${cnt}개의 답변이 있습니다.</b>
-<c:forEach items="${replyList}" var="reply">
-
-<div class="card">
-  <div class="card-header">
-    ${reply.bwriter} 
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>${reply.bcontent}</p>
-      			<div class="d-flex justify-content-end">
-      <footer class="blockquote-footer">${reply.bdate}</footer>
-      </div>
-    </blockquote>
-  </div>
-</div>
-</c:forEach>
-
-
-	<!-- 답변 등록 -->
-	<sec:authentication property="principal" var="user" />
-	<input id="bpwriter" type="hidden" value="${board.bwriter}"/>
-	<input id="rpwriter" type="hidden" value="${user.username}"/>
-	<input id="bid" type="hidden" name="bid" value="${board.bid}">
 	
-<div class="card text-center">
-  <div class="card-header">
-    작성자 : ${user.username}
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">답변 등록</h5>
-    <p class="card-text">
-    	<textarea name="bcontent" id="bcontent" rows="3" class="form-control"></textarea>
-    </p>
-    <a href="#" class="btn btn-primary" onclick="replyNewFunction()">답변등록</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
-</div>
-
-</div>
+	<input type="submit" class="btn btn-primary" value="수정"/>
+	<button class="btn btn-secondary" onclick="history.back()">취소</button>
+</form>
+	
 
 <div class="my-5"></div>
 
 </body>
-
-<script>
-
-/* 수정 하기 버튼 */
-$("#update_btn").on("click", function(e){
-    mForm.submit();
-});
-
-/* 삭제 버튼 */
-$("#delete_btn").on("click", function(e){
-    form.attr("action", "/board/delete");
-    form.attr("method", "post");
-    form.submit();
-});
-
-</script>
 </html>
