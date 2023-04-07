@@ -45,7 +45,10 @@
 	<!--[if lt IE 9]>
 	<script src="/resources/js/respond.min.js"></script>
 	<![endif]-->
-
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	crossorigin="anonymous"></script>
+	
 	</head>
 	<body>
 		
