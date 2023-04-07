@@ -9,8 +9,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class JoinUser {
 	private int uid, enabled;
 	private String gender, authority, udate;
@@ -24,4 +22,8 @@ public class JoinUser {
 	
 	@NotBlank(message = "이름을 입력해주세요.")
 	private String uname;
+	
+	
+	
+	
 }

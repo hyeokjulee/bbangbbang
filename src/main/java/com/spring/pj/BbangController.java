@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BbangController {
 
 	
-	@GetMapping("/login")
-	public String login() {
-		
-		return "/user/login";
-	}
+	/*
+	 * @GetMapping("/login") public String login() {
+	 * 
+	 * return "/user/login"; }
+	 */
 }

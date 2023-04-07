@@ -2,6 +2,7 @@ package com.spring.user;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,8 +21,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("user")
 @RequiredArgsConstructor
 public class UserController {
-	private final UserService userService;
-	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private  UserService userService;
+	
+	
+	private  BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	@GetMapping("/join")
 	public String joinMethod(@ModelAttribute User user) {
@@ -82,4 +87,7 @@ public class UserController {
 		
 		return "redirect:/";
 	}
+	
+	
+	
 }

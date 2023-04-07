@@ -3,6 +3,7 @@ package com.spring.user;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Repository
 @RequiredArgsConstructor
 public class UserRepositoryImpl implements UserRepository {
+	
 	private final SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
