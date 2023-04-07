@@ -15,7 +15,6 @@
 <title><tiles:insertAttribute name="title" /></title>  
 </head>
 <body>
-<tiles:insertAttribute name="menu" /> 
 
 <div class="my-5">
 	<div class="alert alert-dark">
