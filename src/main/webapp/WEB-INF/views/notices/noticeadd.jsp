@@ -21,11 +21,12 @@
 	           method = "post">
 	<fieldset>
 				<sec:authentication property="principal" var="user" />
-	<form:input path="nwriter" type="hidden" value="${user.username}" class="form-control"/>
+	<%-- <form:input path="nwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="ntitle" class="form-control"/>
 	내용 : <form:textarea path="ncontent" class="form-control" rows="10"/>
 
-	<input type="submit" class="btn btn-primary" value="등록"/>
+	<!-- <input type="submit" class="btn btn-primary" value="등록"/> -->
+	<button type="submit" class="btn btn-primary">등록</button>
 	
 	
 	</fieldset>

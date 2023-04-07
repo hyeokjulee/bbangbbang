@@ -29,6 +29,18 @@ public class NoticeController {
 		return "notices/noticeadd";
 	}
 	
+	@PostMapping("/noticeadd")
+	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice) {
+
+		noticeService.setNewNotice(notice);
+		
+		System.out.println(notice.getNcontent());
+		System.out.println(notice.getNtitle());
+		
+		
+		return "redirect:/notices/notice";
+	}
+	
 	@GetMapping("/notice")
 	public String requestNoticeById(@RequestParam("nid") String nid, Model model) {
 		//주 게시물

@@ -52,7 +52,7 @@
 							</td>
 							<td>${board.bwriter}</td>
 							<td>${board.bview}</td>
-							<td>${board.bdate}</td>
+							<td>${board.bregdate}</td>
 						</tr>
 					</c:forEach>
 				</table>
