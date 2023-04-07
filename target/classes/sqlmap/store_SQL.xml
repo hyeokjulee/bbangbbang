@@ -6,27 +6,46 @@
 		useGeneratedKeys="true" keyProperty="sid">
 		<![CDATA[
 			INSERT INTO store 
-			(sname, saddr, stel, sphoto2, sopen, smenu, sprice) 
+				(sname, 	saddr, 	  stel,    sphoto2,    sopen,    smenu,    sprice) 
 			values 
-			(#{sname}, #{saddr}, #{stel}, #{sphoto2}, #{sopen}, #{smenu}, #{sprice} ) 
+				(#{sname}, #{saddr}, #{stel}, #{sphoto2}, #{sopen}, #{smenu}, #{sprice} ) 
 		]]>
 	</insert>
 
 	<update id="update" parameterType="hashMap">
 		<![CDATA[ 
 			 UPDATE store 
-        	 SET 
+        	 SET sname = #{sname}, 
+        	 	 saddr = #{saddr}, 
+        	 	 stel = #{stel},  
+        	 	 sphoto2 = #{sphoto2}, 
+        		 sopen = #{sopen}, 
+        		 smenu = #{smenu},  
+        		 sprice = #{sprice} 
        		 WHERE sid = #{sid} 
 		]]>
 
 	</update>
 
-	<select id="select_list" resultType="com.bbang.store.Store"> 
+	<select id="select_list"   resultType="com.bbang.store.Store"> 
 		<![CDATA[ 
 			SELECT * 
 			FROM store 
+			WHERE sid > 0
+			ORDER BY sid
+			LIMIT 0, 10
 		 ]]>
 	</select>
+	<select id="select_add_list"  parameterType="String" resultType="com.bbang.store.Store"> 
+		<![CDATA[ 
+			SELECT * 
+			FROM store 
+			WHERE sid > #{sid}
+			ORDER BY sid
+			LIMIT 0, 10
+		 ]]>
+	</select>
+
 
 	<select id="select_detail" parameterType="String" resultType="com.bbang.store.Store"> 
 		<![CDATA[ 
@@ -35,5 +54,14 @@
 			WHERE sid = #{sid} 
 		 ]]>
 	</select>
+	
+	<delete id="delete" parameterType="String" >
+		<![CDATA[ 
+			DELETE 
+			FROM store 
+			WHERE sid = #{sid} 
+		 ]]>
+	
+	</delete>
 
 </mapper>

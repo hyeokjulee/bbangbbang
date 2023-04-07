@@ -18,4 +18,16 @@ public class StoreRepositoryImpl implements StoreRepository {
 		return this.sqlsessionTemplate.selectList("store.select_list") ;
 	}
 
+	@Override
+	public Store getStoreById(String sid) {
+		// TODO Auto-generated method stub
+		return this.sqlsessionTemplate.selectOne("store.select_detail", sid);
+	}
+
+	@Override
+	public void setNewStore(Store store) {
+		 this.sqlsessionTemplate.selectOne("store.insert", store);
+		
+	}
+
 }

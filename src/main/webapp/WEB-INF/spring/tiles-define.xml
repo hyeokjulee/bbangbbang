@@ -6,14 +6,34 @@
 <tiles-definitions>
 	<!-- main layout -->
 	<definition name="layout-tiles" template="/WEB-INF/views/tiles/tiles-layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/views/tiles/headerTemplate.jsp" />
+		<put-attribute name="heading" value="/WEB-INF/views/tiles/headerTemplate.jsp" />
+		<put-attribute name="subheading" value="" />
 		<put-attribute name="left" value="/WEB-INF/views/tiles/sidebarTemplate.jsp" />
 		<put-attribute name="body" value="" />
-		<put-attribute name="foot" value="/WEB-INF/views/tiles/footerTemplate.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footerTemplate.jsp" />
 	</definition>
 	
-	<definition name="*/*" extends="layout-tiles">
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
-		<put-attribute name="title" value="게시판" />
+	
+	
+	<definition name="list" extends="layout-tiles">
+		<put-attribute name="heading" value="list" />
+		<put-attribute name="content" value="/WEB-INF/views/store/list.jsp" />
 	</definition>
+	
+	<definition name="detail" extends="layout-tiles">
+		<put-attribute name="heading" value="detail" />
+		<put-attribute name="content" value="/WEB-INF/views/store/detail.jsp" />
+	</definition>
+	<definition name="add" extends="layout-tiles">
+		<put-attribute name="heading" value="add" />
+		<put-attribute name="content" value="/WEB-INF/views/store/add.jsp" />
+	</definition>
+	
+	<definition name="update" extends="layout-tiles">
+		<put-attribute name="heading" value="update" />
+		<put-attribute name="content" value="/WEB-INF/views/store/update.jsp" />
+	</definition>
+	
+	
 </tiles-definitions>

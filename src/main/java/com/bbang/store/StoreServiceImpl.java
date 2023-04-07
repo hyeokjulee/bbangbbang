@@ -18,4 +18,15 @@ public class StoreServiceImpl implements StoreService{
 		return storeRepository.getAllStoreList();
 	}
 
+	@Override
+	public Store getStoreById(String sid) {
+		// TODO Auto-generated method stub
+		return storeRepository.getStoreById(sid);
+	}
+
+	@Override
+	public void setNewStore(Store store) {
+		storeRepository.setNewStore(store);		
+	}
+
 }
