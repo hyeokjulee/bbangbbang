@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
+
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -72,7 +74,7 @@
 						</li>
 						<li><a href="#">자유게시판</a></li>
 						<li><a href="#">사이트소개</a></li>
-						<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
 					</ul>	
 				</div>
 			</div>
@@ -116,9 +118,9 @@
 			<div class="row">
 
 				<div class="col-lg-3 col-md-4 col-sm-6">
-					<a href="index.html" class="fh5co-card-item image-popup">
-						<figure>
-							<div class="overlay"></div>
+					<a href="#" class="fh5co-card-item image">
+					<figure>
+						<div class="overlay"><i class="ti-plus"></i></div>
 							<img src="/resources/images/1.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
@@ -127,10 +129,10 @@
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-4 col-sm-6">
-					<a href="/resources/images/img_2.jpg" class="fh5co-card-item image-popup">
+					<a href="#" class="fh5co-card-item image">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="/resources/images/img_2.jpg" alt="Image" class="img-responsive">
+							<img src="/resources/images/2.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<p><span class="price cursive-font">강서</span></p>
@@ -138,23 +140,21 @@
 					</a>
 				</div>
 				<div class="col-lg-3 col-md-4 col-sm-6">
-					<a href="/resources/images/img_3.jpg" class="fh5co-card-item image-popup">
+					<a href="#" class="fh5co-card-item image">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="/resources/images/img_3.jpg" alt="Image" class="img-responsive">
+							<img src="/resources/images/3.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<p><span class="price cursive-font">강북</span></p>
 						</div>
 					</a>
 				</div>
-
-
 				<div class="col-lg-3 col-md-4 col-sm-6">
-					<a href="/resources/images/img_4.jpg" class="fh5co-card-item image-popup">
+					<a href="#" class="fh5co-card-item image">
 						<figure>
 							<div class="overlay"><i class="ti-plus"></i></div>
-							<img src="/resources/images/img_4.jpg" alt="Image" class="img-responsive">
+							<img src="/resources/images/4.jpg" alt="Image" class="img-responsive">
 						</figure>
 						<div class="fh5co-text">
 							<p><span class="price cursive-font">강동</span></p>
@@ -172,78 +172,71 @@
 		
 		<div id="map" style="width:80%;height:450px; margin: auto;"></div>
 		
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
-		<script>
-		  var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-		          mapOption = {
-		            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		            level: 3 // 지도의 확대 레벨
-		          };
-		
-		  // 지도를 생성합니다
-		  var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		  // 주소-좌표 변환 객체를 생성합니다
-		  var geocoder = new kakao.maps.services.Geocoder();
-		
-		  var positions = [
-		    {
-		      title: '광진구',
-		      address: '서울 광진구 중곡동 132-11'
-		    },
-		    {
-		      title: '생태연못',
-		      address: '경기 남양주시 조안면 능내리 50'
-		    },
-		    {
-		      title: '근린공원',
-		      address: '경기 남양주시 별내면 청학로68번길 40'
-		    }
-		  ];
-		
-		  // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-		  var bounds = new kakao.maps.LatLngBounds(); //추가한 코드
-		
-		  positions.forEach(function (position) {
-		    // 주소로 좌표를 검색합니다
-		    geocoder.addressSearch(position.address, function(result, status) {
-		
-		      // 정상적으로 검색이 완료됐으면
-		      if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		          map: map,
-		          position: coords
-		        });
-		        marker.setMap(map); //추가한 코드
-		
-		        // LatLngBounds 객체에 좌표를 추가합니다
-		        bounds.extend(coords); //추가한 코드, 현재 코드에서 좌표정보는 point[i]가 아닌 coords이다.
-		
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		          content: '<div style="width:150px;text-align:center;padding:6px 0;">' + position.title + '</div>'
-		        });
-		        infowindow.open(map, marker);
-		
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        // map.setCenter(coords); //제거한 코드
-		        setBounds(); //추가한 코드
-		      }
-		    });
-		  });
-		  function setBounds() { //추가한 함수
-		    // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
-		    // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
-		    map.setBounds(bounds);
-		  }
-		</script>
+<div id="map"></div>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
+    <script>
+
+        var listData = [
+            ["서울 중구 세종대로 110"],
+            ["경기 수원시 팔달구 효원로 1"]
+        ];
+
+        // 맵을 넣을 div
+        var mapContainer = document.getElementById('map');
+        var mapOption = {
+            center: new daum.maps.LatLng(35.95, 128.25),
+            level: 13
+        };  
+
+        // 맵 표시
+        var map = new daum.maps.Map(mapContainer, mapOption); 
+
+        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+        var mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        var zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+        // 주소 -> 좌표 변환 라이브러리        
+        var geocoder = new daum.maps.services.Geocoder();
+        
+        // foreach loop
+        listData.forEach(function(addr, index) {
+            geocoder.addressSearch(addr[0], function(result, status) {
+                if (status === daum.maps.services.Status.OK) {
+                    var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+        
+                    var marker = new daum.maps.Marker({
+                        position: coords,
+                        clickable: true
+                    });
+        
+                    // 마커를 지도에 표시합니다.
+                    marker.setMap(map);
+    
+                    // 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;">' + addr[1] + '</div>',
+                        removable : true
+                    });
+                        
+                    // 마커에 클릭이벤트를 등록합니다
+                    kakao.maps.event.addListener(marker, 'click', function() {
+                          // 마커 위에 인포윈도우를 표시합니다
+                          infowindow.open(map, marker);  
+                    });
+                } 
+            });
+        });
+    </script>
 	</div>
 	<!-- 카카오지도 끝 -->
+	
+ 
 
+	
 	<footer id="gtco-footer" role="contentinfo" style="background-image: url(/resources/images/main.jpg)" data-stellar-background-ratio="0.4">
 		<div class="overlay"></div>
 		<div class="gtco-container">
