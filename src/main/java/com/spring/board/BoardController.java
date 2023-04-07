@@ -1,5 +1,6 @@
 package com.spring.board;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/boards")
@@ -94,24 +96,42 @@ public class BoardController {
 	}
 	
 	 //게시물 수정 페이지로 이동
-    @GetMapping("/update")
-    public void boardUpdateGET(@RequestParam("bid") String bid, Model model) {
-        
+    @GetMapping("/boardupdate")
+    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam("bid") String bid, Model model) {
+    	
+    	Board boardupdate = boardService.getBoardById(bid);
+    	
         model.addAttribute("pageInfo", boardService.getBoardById(bid));
         
+        return "boards/boardupdate";
     }
     
     //게시물 수정
-    @PostMapping("/update")
-    public String boardUpdatePOST(Board board, RedirectAttributes rttr) {
-        
-        boardService.updateBoard(board);
-        
-        rttr.addFlashAttribute("result", "update success");
-        
-        return "redirect:/boards/boardlist";
-        
-    }
+    @PostMapping("/boardupdate")
+	public String boardUpdatePOST(@ModelAttribute("UpdateBoard") Board board, @RequestParam("bid") String bid, Model model) {
+		
+         Board boardupdate = boardService.getBoardById(bid);
+         boardupdate.setBtitle(board.getBtitle());
+         boardupdate.setBcontent(board.getBcontent());
+         boardService.updateBoard(board);
+         return "redirect:/boards/boardupate" + bid;
+         
+	}
+	
+    
+    
+    
+//    @PostMapping("/update")
+//    public String boardUpdatePOST(Board board, RedirectAttributes rttr) {
+//        
+//        boardService.updateBoard(board);
+//        
+//        rttr.addFlashAttribute("result", "update success");
+//        
+//        return "redirect:/boards/boardlist";
+//        
+//    }
+    
     
     //게시물 삭제
     @PostMapping("/delete")

@@ -43,6 +43,7 @@
 						<th>작성자</th>
 						<th>조회수</th>
 						<th>작성일</th>
+						<th>수정일</th>
 					</tr>
 					<c:forEach items="${boardList}" var="board">
 						<tr>
@@ -53,6 +54,7 @@
 							<td>${board.bwriter}</td>
 							<td>${board.bview}</td>
 							<td>${board.bregdate}</td>
+							<td>${board.bupdate}</td>
 						</tr>
 					</c:forEach>
 				</table>
