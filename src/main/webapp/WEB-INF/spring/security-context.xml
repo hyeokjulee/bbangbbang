@@ -18,7 +18,7 @@
 	        username-parameter="username"
 	        password-parameter="password"/>
         <security:csrf />
-        <security:logout logout-success-url="/logout"/>
+        <security:logout logout-success-url="/logout" invalidate-session="true" delete-cookies="JSESSIONID"/>
 	</security:http>
 	<!-- form-login은 기본 로그인 폼 양식을 보여준다.logout은 로그아웃처리를.. -->
 

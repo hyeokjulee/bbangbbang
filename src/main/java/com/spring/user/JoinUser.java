@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JoinUser {
 	private int uid, enabled;
-	private String gender, authority, udate;
+	private String authority, udate;
 
 	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "이메일 형식에 맞게 입력 바랍니다.")

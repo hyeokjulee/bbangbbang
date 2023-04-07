@@ -3,7 +3,6 @@ package com.spring.user;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -50,8 +49,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/myEdit") // 내정보수정
-	public String myEditMethod(@ModelAttribute User user) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	public String myEditMethod(@ModelAttribute User user, Authentication auth) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         User findedUser = userService.getUser(username);
         user.setUsername(username);
