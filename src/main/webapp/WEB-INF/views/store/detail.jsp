@@ -160,10 +160,10 @@ function updateModel(rid, rscore, rcontent) {
 	}
 
 	function insertAjax() {
+		var sid = $('div.container input.sid').val();
+		var uid = $('div.container input.uid').val();
 		var rcontent = $('div.container input.rcontent').val();
 		var rscore = $('div.container input.rscore').val();
-		var uid = $('div.container input.uid').val();
-		var sid = $('div.container input.sid').val();
 
 		alert("rcontent : " + rcontent + ", rscore : " + rscore + ", uid : " + uid + ", sid : " + sid) ;
 
@@ -172,8 +172,8 @@ function updateModel(rid, rscore, rcontent) {
 			url : "/review/insert",
 			type : "POST",
 			data : {
-				uid : uid,
 				sid : sid,
+				uid : uid,
 				rcontent : rcontent,
 				rscore : rscore
 			},
