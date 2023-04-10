@@ -47,7 +47,7 @@
 					str += "<tr><td>" + users[i].username + "</td>";
 					str += "<td>" + users[i].uname + "</td>"
 					str += "<td>" + users[i].udate + "</td>"
-					str += "<td><button onclick='location.href=\"/admin/edit?uid=" + users[i].uid + "\"' class='btn btn-sm btn-warning mx-3 px-3'>수정</button>"
+					str += "<td><button onclick='location.href=\"/admin/edit?uid=" + users[i].uid + "\"' class='btn btn-sm btn-warning mx-3 px-3'>비밀번호변경</button>"
 					str += "<td><button onclick='deleteUser(\"" + users[i].username + "\")' class='btn btn-sm btn-danger mx-3 px-3'>삭제</button></td></tr>"
 				}
 				$("#ajaxTable").html(str);

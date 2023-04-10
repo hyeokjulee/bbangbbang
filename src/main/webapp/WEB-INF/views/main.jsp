@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page session="false" %>
 <html>
 	<head>
@@ -51,7 +52,6 @@
 	
 	<div id="page">
 
-	
 	<!-- <div class="page-inner"> -->
 	<nav class="gtco-nav" role="navigation">
 		<div class="gtco-container">
@@ -72,8 +72,26 @@
 						</li>
 						<li><a href="#">자유게시판</a></li>
 						<li><a href="#">사이트소개</a></li>
-						<li class="btn-cta"><a href="login"><span>Login</span></a></li>
-					</ul>	
+						
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+					        <p><a href="/admin/list">회원목록</a></p>
+					    </sec:authorize>
+						
+					    <sec:authorize access="hasRole('ROLE_USER')">
+					        <p><a href="/user/myEdit">내정보</a></p>
+					    </sec:authorize>
+						
+					    <sec:authorize access="isAuthenticated()">
+					        <form action="/logout?${_csrf.parameterName}=${_csrf.token}" method="post">
+								<input type="submit" value="로그아웃">
+							</form>
+					    </sec:authorize>
+						
+					    <sec:authorize access="!isAuthenticated()">
+					        <p><a href="/login">로그인</a></p>
+							<p><a href="/join">회원가입</a></p>
+					    </sec:authorize>
+					</ul>
 				</div>
 			</div>
 			
@@ -93,7 +111,7 @@
 							<h1 class="cursive-font">All in good taste!</h1>	
 						</div>
 						<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
-							
+						
 						</div>
 					</div>
 							

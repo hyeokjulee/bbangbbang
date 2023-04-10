@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.spring.mail.MailService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,17 +21,16 @@ import lombok.RequiredArgsConstructor;
 public class SecurityController {
 	private final UserService userService;
 	private final BCryptPasswordEncoder bcryptPasswordEncoder;
+	private final MailService mailService;
 	
 	@GetMapping("/login")
-	public String loginMethod() {
-		return "login";
-	}
-	
-	@GetMapping("/loginfailed")
-	public String loginfailedMethod() {
-		return "loginfailed";
-	}
-	
+    public String login(Model model, String error) {
+        if (error != null) {
+            model.addAttribute("error", "아이디나 비밀번호가 올바르지 않습니다.");
+        }
+        return "login";
+    }
+ 
 	@GetMapping("/logout")
 	public String logoutMethod() {
 		return "logout";
@@ -62,6 +64,12 @@ public class SecurityController {
 		
 		userParam.setUsername(joinUser.getUsername());
 		userService.createUser(userParam);
+		
+		String to = userParam.getUsername();
+		String subject = userParam.getUname() + " 님 회원 가입을 환영합니다.";
+		String body = "저희 사이트에 회원으로 가입하셔서 감사드립니다. ";
+		
+		mailService.sendMail(to, subject, body);
 		
 		return "redirect:/";
 	}
