@@ -2,6 +2,7 @@ package com.bbang.store;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -64,6 +65,7 @@ public class StoreController {
 	//	List<Review> reviewById = ReviewService.getReviewById(sid);
 		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
 		model.addAttribute("reviewList", reviewById);
+		
 
 		return "store/detail";
 
@@ -127,23 +129,25 @@ public class StoreController {
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
 
-		return "store/update";
+		return "/store/update";
 	}
 
 	@PostMapping("/update")
-	public String storeUpdateProc(@ModelAttribute("NewStore") Store store) {
+	public String storeUpdateProc(@RequestParam Map<String, Object> map) {
 
-		System.out.println(store.getSid());
-		// boardService.setNewBoard(board);
+		System.out.println(map.get("sid"));
+		storeService.updateStore(map);
 
-		return "redirect:/store/update";
+		return "redirect:/store/list" ;
 	}
 
 	@PostMapping("/delete")
-	public void storeDeleteProc(@RequestParam("sid") String sid) {
+	public String storeDeleteProc(@RequestParam("sid") String sid) {
 
 		System.out.println(sid);
-		// boardService.setNewBoard(board);
+		storeService.deleteStoreById(sid);
+		
+		return "redirect:/store/list" ;
 
 	}
 

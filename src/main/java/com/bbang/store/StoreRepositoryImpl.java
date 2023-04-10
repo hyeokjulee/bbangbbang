@@ -1,6 +1,7 @@
 package com.bbang.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,17 @@ public class StoreRepositoryImpl implements StoreRepository {
 	@Override
 	public void setNewStore(Store store) {
 		 this.sqlsessionTemplate.selectOne("store.insert", store);
+		
+	}
+
+	@Override
+	public void deleteStoreById(String sid) {
+		sqlsessionTemplate.delete("store.delete", sid) ;		
+	}
+
+	@Override
+	public void updateStore(Map<String, Object> map) {
+		sqlsessionTemplate.update("store.update", map) ;		
 		
 	}
 

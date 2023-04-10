@@ -35,13 +35,22 @@ img {
 			<h5 class="card-title">${store.stel}</h5>
 			<br> <br> <br>
 
-			<img alt="" src=" ${store.sphoto}" >
+			<choose>
+				<when test="${store.sphoto2 != null}">
+					<img src="<c:url value="/resources/save_image/${store.sphoto2}"/>" alt="사진" > 
+				</when>
+				<otherwise>
+					<img src="${store.sphoto}" alt="사진" >
+				</otherwise>
+			</choose>
+			
+			
+
 			<div class="d-flex justify-content-end badge bg-light text-dark">${store.smenu}</div>
 			<div class="d-flex justify-content-end badge bg-light text-dark">${store.sprice}</div>
 			
 			<a class="btn btn-secondary" href="/store/update?sid=${store.sid}">수정하기</a>
 			
-			<a href="/store/delete?sid='${store.sid}'">삭제하기</a> 
 		</div>
 	</div>
 

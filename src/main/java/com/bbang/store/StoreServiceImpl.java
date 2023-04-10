@@ -1,6 +1,7 @@
 package com.bbang.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,17 @@ public class StoreServiceImpl implements StoreService{
 	@Override
 	public void setNewStore(Store store) {
 		storeRepository.setNewStore(store);		
+	}
+
+	@Override
+	public void deleteStoreById(String sid) {
+		storeRepository.deleteStoreById(sid);		
+	}
+
+	@Override
+	public void updateStore(Map<String, Object> map) {
+		storeRepository.updateStore(map);		
+		
 	}
 
 }
