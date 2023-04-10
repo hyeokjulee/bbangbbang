@@ -22,8 +22,10 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<context:component-scan base-package="com.spring.*" />
+	<beans:bean id="uploadPath" class="java.lang.String">
+    <beans:constructor-arg value="C:\develop\asd" />
+</beans:bean>
+	<context:component-scan base-package="com.bbang.*" />
 	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

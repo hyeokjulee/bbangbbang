@@ -168,13 +168,13 @@
 			</div>
 		</div>
 	</div>
-	
+<tbody id="ajaxTable">asd</tbody>	
 	
 	<!-- 카카오지도 -->
 	<div id="gtco-features">
 		
 		<div id="map" style="width:80%;height:450px; margin: auto;"></div>
-		
+
 <div id="map"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
     <script>
@@ -248,6 +248,25 @@ if (navigator.geolocation) {
 	            } 
 	        });
 	    });
+	window.onload = function() {
+
+    $.ajax({
+			 type:'get',
+			 url:'/',
+			 datatype:'json',
+			 success:function(data){
+				 var feeds = data.trim();
+				 var str = "";
+				 
+				 for(var i = 0; i < feeds.length; i++) {
+					 str += "<tr><td>" + feeds[i].sname + "</td>";
+					 str += "<td>" + feeds[i].saddr + "</td></tr>";
+				 	}
+				 
+				 $("#ajaxTable").html(str);
+			 }
+		});
+	}    
     </script>
 	</div>
 	<!-- 카카오지도 끝 -->
