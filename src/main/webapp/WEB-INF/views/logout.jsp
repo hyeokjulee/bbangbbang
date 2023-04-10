@@ -8,13 +8,8 @@
 
 </head>
 <body>
-	<form action="/login" method="post">
-		<input type="text" name="username" id="username" placeholder="이메일 주소"><br>
-		<input type="password" name="password" id="password" placeholder="비밀번호"><br>
-		<button type="submit">로그인</button><br>
-		
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<a href="/user/join">회원가입</a>
+	<form action="/logout?${_csrf.parameterName}=${_csrf.token}" method="post">
+		<input type="submit" value="로그아웃">
 	</form>
 </body>
 </html>

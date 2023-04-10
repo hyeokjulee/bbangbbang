@@ -7,6 +7,8 @@
 <title>회원목록</title>
 	<!-- bootstrap CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
 <body>
 	<div class="container mt-3">
@@ -16,7 +18,7 @@
 				<tr>
 					<th scope="col">이메일</th>
 					<th scope="col">이름</th>
-					<th scope="col">가일입</th>
+					<th scope="col">가입시간</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -29,55 +31,40 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	
 	<script>
-	function searchFunction() {
+	function listFunction() {
 		$.ajax({
 			type:"post",
-			url:"/admin/userAllCheck.jsp",
+			url:"/admin/list",
+			headers: {'${_csrf.headerName}': '${_csrf.token}'},
 			success : function(data) {
-				let users = JSON.parse(data.trim());
+				let users = data;
 				let str = "";
 				
 				for (var i = 0; i < users.length; i++) {
-					if (users[i].email == '<%= sid %>') continue
-					str += "<tr><td>" + users[i].email + "</td>";
-					str += "<td>" + users[i].name + "</td>"
-					str += "<td>" + users[i].joindate + "</td>"
-					str += "<td><button onclick='acceptChange(\"" + users[i].email + "\")' class='btn btn-sm btn-warning mx-3 px-3'>승인상태 변경</button>"
-					str +=	"<button onclick='deleteUser(\"" + users[i].email + "\")' class='btn btn-sm btn-danger mx-3 px-3'>유저 삭제</button></td></tr>"
+					if (users[i].authority == 'USER_MANAGER') {
+						continue;
+					}
+					str += "<tr><td>" + users[i].username + "</td>";
+					str += "<td>" + users[i].uname + "</td>"
+					str += "<td>" + users[i].udate + "</td>"
+					str += "<td><button onclick='location.href=\"/admin/edit?uid=" + users[i].uid + "\"' class='btn btn-sm btn-warning mx-3 px-3'>수정</button>"
+					str += "<td><button onclick='deleteUser(\"" + users[i].username + "\")' class='btn btn-sm btn-danger mx-3 px-3'>삭제</button></td></tr>"
 				}
 				$("#ajaxTable").html(str);
 			}
 		})
 	}
 	
-	function acceptChange(userEmail) {
+	function deleteUser(email) {
 		$.ajax({
 			type:"post",
-			url:"/admin/acceptChange.jsp",
-			data : {email : userEmail },
+			url:"/admin/remove",
+			headers: {'${_csrf.headerName}': '${_csrf.token}'},
+			data : {username : email },
 			success : function(data) {
-				if (data.trim() == 1 ) {
-					alert("회원 [" + userEmail +"] 님이 승인 대기 유저가 되었습니다.")
-					searchFunction();
-				} else {
-					alert("처리에 문제가 생겼습니다.")
-				}
-			},
-			error: function (err) {
-				 	alert("처리에 문제가 생겼습니다.");
-				}
-		})
-	}
-	
-	function deleteUser(userEmail) {
-		$.ajax({
-			type:"post",
-			url:"/admin/removeUser.jsp",
-			data : {email : userEmail },
-			success : function(data) {
-				if (data.trim() == 1 ) {
-					alert("회원 [" + userEmail +"] 님을 회원 목록에서 제거하였습니다")
-					searchFunction();
+				if (data == 1 ) {
+					alert("회원 [" + email +"] 님을 회원 목록에서 제거하였습니다")
+					listFunction();
 				} else {
 					alert("처리에 문제가 생겼습니다.")
 				}
@@ -89,7 +76,7 @@
 	}
 	
 	window.onload = function() {
-		searchFunction()
+		listFunction();
 	}
 	</script>
 </body>

@@ -8,7 +8,7 @@
 
 </head>
 <body>
-	<form:form  action="${ pageContext.servletContext.contextPath }/user/join?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
+	<form:form  action="${ pageContext.servletContext.contextPath }/join?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
 		<form:input path="uname" placeholder="이름"/><br>
         <form:errors path="uname" cssStyle="color:red"/><br>
 

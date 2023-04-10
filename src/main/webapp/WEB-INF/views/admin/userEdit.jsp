@@ -4,17 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내정보수정</title>
+<title>회원정보수정</title>
 
 </head>
 <body>
-	<form:form action="${ pageContext.servletContext.contextPath }/user/myEdit?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
-         <form:input path="uname" placeholder="이름" value="${user.uname}"/><br>
-         <form:errors path="uname" cssStyle="color:red" /><br>
-
-	     <form:input path="username" placeholder="이메일" value="${user.username}"/><br>
-         <form:errors path="username" cssStyle="color:red" /><br>
-	
+	<form:form action="${ pageContext.servletContext.contextPath }/admin/edit?${_csrf.parameterName}=${_csrf.token}" method="POST" modelAttribute="user">
 	     <form:password path="password" placeholder="비밀번호"/><br>
          <form:errors path="password" cssStyle="color:red" /><br>
          
@@ -23,9 +17,7 @@
 
 		<form:hidden path="uid" value="${user.uid}"/>
 
-		<input type="button" value="회원탈퇴하기">
-
-		<input type="submit" value="변경사항저장">
+		<input type="submit" value="비밀번호변경">
 	</form:form >
 </body>
 </html>

@@ -17,6 +17,7 @@ public class JoinUser {
 
 	@NotBlank(message = "이메일을 입력해주세요.")
 	@Email(message = "이메일 형식에 맞게 입력 바랍니다.")
+	@UniqueUsername
 	private String username;
 
 	@Size(min = 4, max = 20, message = "4 ~ 20의 길이로 입력 바랍니다.")

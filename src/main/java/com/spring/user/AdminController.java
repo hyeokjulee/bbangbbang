@@ -2,11 +2,6 @@ package com.spring.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,33 +16,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("admin")
 @RequiredArgsConstructor
-public class UserController {
+public class AdminController {
 	private final UserService userService;
 	private final BCryptPasswordEncoder bcryptPasswordEncoder;
-	private final CustomLogoutHandler customLogoutHandler;
 	
-	@GetMapping("/myEdit") // 내정보수정
-	public String myEditMethod(@ModelAttribute User user, Authentication auth) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
-        User findedUser = userService.getUser(username);
-        user.setUsername(username);
-        user.setUname(findedUser.getUname());
-        user.setUid(findedUser.getUid());
-		
-		return "user/myEdit";
+	@GetMapping("/list") // 회원목록
+	public String userList(@ModelAttribute User user) {
+		return "admin/userList";
 	}
 	
-	@PostMapping("/myEdit") // 내 비밀번호변경
-	public String myEdit(@Validated @ModelAttribute("user") EditUser editUser, BindingResult result) { // binding한 결과가 result에 담긴다.
+	@GetMapping("/edit") // 회원수정
+	public String userEditMethod(@ModelAttribute User user, @RequestParam int uid) {
+        User findedUser = userService.getUserByuid(uid);
+        user.setUname(findedUser.getUname());
+        user.setUsername(findedUser.getUsername());
+		return "admin/userEdit";
+	}
+	
+	@PostMapping("/edit") // 회원 비밀번호변경
+	public String userEdit(@Validated @ModelAttribute("user") EditUser editUser, BindingResult result) { // binding한 결과가 result에 담긴다.
 		if( result.hasErrors() ) { // 에러가 있는지 검사
 			List<ObjectError> list = result.getAllErrors(); // 에러를 List로 저장
 			for( ObjectError error : list ) {
 				System.out.println(error);
 			}
-			return "user/myEdit";
+			return "admin/userEdit";
 		}
 		
 		if (!editUser.getPassword().equals(editUser.getPasswordCheck())) {
@@ -62,13 +57,6 @@ public class UserController {
 		
 		userService.modifyUser(userParam);
 		
-		return "redirect:/";
-	}
-	
-	@PostMapping("/myDelete") // 회원탈퇴
-	public String myDelete(@RequestParam("username") String username, HttpServletRequest request, HttpServletResponse response) {
-		userService.removeUser(username); // 삭제
-		customLogoutHandler.logout(request, response, SecurityContextHolder.getContext().getAuthentication()); // 로그아웃
-        return "redirect:/login"; // 로그인페이지로
+		return "redirect:/admin/list";
 	}
 }

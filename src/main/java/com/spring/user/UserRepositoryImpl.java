@@ -22,6 +22,11 @@ public class UserRepositoryImpl implements UserRepository {
 	public User selectUser(String username) {
 		return this.sqlSessionTemplate.selectOne("user.select", username);
 	}
+	
+	@Override
+	public User selectUserByuid(int uid) {
+		return this.sqlSessionTemplate.selectOne("user.select_byuid", uid);
+	}
 
 	@Override
 	public List<User> selectUserList() {

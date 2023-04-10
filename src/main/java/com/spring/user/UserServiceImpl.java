@@ -20,6 +20,11 @@ public class UserServiceImpl implements UserService {
 	public User getUser(String username) {
 		return UserRepository.selectUser(username);
 	}
+	
+	@Override
+	public User getUserByuid(int uid) {
+		return UserRepository.selectUserByuid(uid);
+	}
 
 	@Override
 	public List<User> getUserList() {
