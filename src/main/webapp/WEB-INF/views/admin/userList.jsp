@@ -56,23 +56,25 @@
 	}
 	
 	function deleteUser(email) {
-		$.ajax({
-			type:"post",
-			url:"/admin/remove",
-			headers: {'${_csrf.headerName}': '${_csrf.token}'},
-			data : {username : email },
-			success : function(data) {
-				if (data == 1 ) {
-					alert("회원 [" + email +"] 님을 회원 목록에서 제거하였습니다")
-					listFunction();
-				} else {
-					alert("처리에 문제가 생겼습니다.")
-				}
-			},
-			error: function (err) {
-				 	alert("처리에 문제가 생겼습니다.");
-				}
-		})
+		if (confirm('삭제하시겠습니까?')) {
+			$.ajax({
+				type:"post",
+				url:"/admin/remove",
+				headers: {'${_csrf.headerName}': '${_csrf.token}'},
+				data : {username : email },
+				success : function(data) {
+					if (data == 1 ) {
+						alert("회원 [" + email +"] 님을 회원 목록에서 제거하였습니다")
+						listFunction();
+					} else {
+						alert("처리에 문제가 생겼습니다.")
+					}
+				},
+				error: function (err) {
+					 	alert("처리에 문제가 생겼습니다.");
+					}
+			})
+		}
 	}
 	
 	window.onload = function() {

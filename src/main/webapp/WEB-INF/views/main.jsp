@@ -74,22 +74,20 @@
 						<li><a href="#">사이트소개</a></li>
 						
 						<sec:authorize access="hasRole('ROLE_ADMIN')">
-					        <p><a href="/admin/list">회원목록</a></p>
+							<li class="btn-cta"><a href="/admin/list"><span>회원목록</span></a></li>
 					    </sec:authorize>
 						
 					    <sec:authorize access="hasRole('ROLE_USER')">
-					        <p><a href="/user/myEdit">내정보</a></p>
+					    	<li><a href="/user/myEdit">내정보수정</a></li>
 					    </sec:authorize>
 						
 					    <sec:authorize access="isAuthenticated()">
-					        <form action="/logout?${_csrf.parameterName}=${_csrf.token}" method="post">
-								<input type="submit" value="로그아웃">
-							</form>
+					    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
 					    </sec:authorize>
 						
 					    <sec:authorize access="!isAuthenticated()">
-					        <p><a href="/login">로그인</a></p>
-							<p><a href="/join">회원가입</a></p>
+					    	<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+					    	<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
 					    </sec:authorize>
 					</ul>
 				</div>
@@ -326,9 +324,18 @@
 	<script src="/resources/js/moment.min.js"></script>
 	<script src="/resources/js/bootstrap-datetimepicker.min.js"></script>
 
-
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
+	
+	<script>
+		$('#logout').click(function(){   //logout 버튼을 클릭하였을 때
+			$.ajax({
+				type:'post',   //post 방식으로 전송
+				url:'/logout?${_csrf.parameterName}=${_csrf.token}'
+			});
+			location.reload();
+		});
+	</script>
 
 	</body>
 </html>
