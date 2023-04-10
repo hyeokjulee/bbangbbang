@@ -44,6 +44,53 @@ img {
 			<a href="/store/delete?sid="${store.sid}" >삭제하기</a> 
 		</div>
 	</div>
+	
+	<c:forEach items="${reviewList}" var="r">
+	<div class="card">
+		<h5 class="card-header">${r.rid}</h5>
+		<div class="card-body">
+			<h5 class="card-title">${r.rscore}</h5>
+			<input type="hidden" name="rid" value="${r.rid}">
+			<br> <br> <br>
+
+			<div class="d-flex justify-content-end badge bg-light text-dark">${r.rcontent}</div>
+			<div class="d-flex justify-content-end badge bg-light text-dark">${r.rregdate}</div>
+			<div class="d-flex justify-content-end badge bg-light text-dark">${r.rupdate}</div>
+			
+			//수정하기 버튼 ajax 로 만들기
+			<button type="button" class="btn btn-secondary" onclick="javascript:updateAjax()">수정하기</button>
+			//삭제하기 버튼 ajax 로 만들기
+			<button type="button" class="btn btn-secondary" onclick="location.href='/review/delete?rid=${r.rid}'">삭제하기</button>
+
+			
+		</div>
+	</div>
+	</c:forEach>
+	
+	
+	
+	
 </body>
+
+<script type="javascript">
+	// sid 값을 받아서 수정하기 버튼을 누르면 수정페이지로 이동
+	function updateAjax() {
+		var rid = document.getElementById("rid").value;
+		$.ajax ({
+			url : "/review/update",
+			type : "POST",
+			data : {
+				rid : rid
+			},
+			success : function(data) {
+				//페이지를 리로드하자
+				window.location.reload();
+			}
+		});
+	}
+
+
+</script>
+
 
 </html>

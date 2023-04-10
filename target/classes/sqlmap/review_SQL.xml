@@ -6,9 +6,9 @@
 		useGeneratedKeys="true" keyProperty="rid">
 		<![CDATA[
 			INSERT INTO review 
-				( rcontent, rscore )
+				(sid, uid, rcontent, rscore )
 			values 
-				(#{rcontent}, #{rscore} ) 
+				(#{sid}, #{uid}, #{rcontent}, #{rscore} ) 
 		]]>
 	</insert>
 
@@ -22,26 +22,26 @@
 
 	</update>
 
-	<select id="select_list_for_store"  parameterType="String"
+	<select id="review_list_by_sid"  parameterType="String"
 				resultType="com.bbang.review.Review"> 
 		<![CDATA[ 
 			SELECT * 
 			FROM review 
-			WHERE sid = #{sid}
-			ORDER BY sid 
+			WHERE sid = #{sid} 
+			ORDER BY rid DESC 
 		 ]]>
 	</select>
 
-	<select id="select_my_review" parameterType="String"
+	<select id="select_my_review_by_uid" parameterType="String"
 		resultType="com.bbang.review.Review"> 
 		<![CDATA[ 
 			SELECT * 
 			FROM store 
-			WHERE rid = #{rid}
+			WHERE uid = #{uid}
 		 ]]>
 	</select>
 
-	<delete id="delete_review" parameterType="String">
+	<delete id="delete_review_by_rid" parameterType="String">
 		<![CDATA[ 
 			DELETE 
 			FROM review 

@@ -17,12 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bbang.review.Review;
+import com.bbang.review.ReviewService;
+
 @Controller
 @RequestMapping("/store")
 public class StoreController {
 
 	@Autowired // DI
 	private StoreService storeService;
+	
+	@Autowired
+	ReviewService reviewService;
 
 	@Autowired // DI
 	SqlSessionTemplate sqlsessionTemplate;
@@ -40,7 +46,7 @@ public class StoreController {
 
 		// List<Store> list = storeService.getAllStoreList();
 
-		List<Store> list = sqlsessionTemplate.selectList("select_add_list", sid);
+		List<Store> list = sqlsessionTemplate.selectList("store.select_add_list", sid);
 
 		model.addAttribute("storeList", list);
 		System.out.println(sid);
@@ -51,26 +57,14 @@ public class StoreController {
 	@GetMapping("/detail")
 	public String storeDetail(@RequestParam("sid") String sid, Model model) {
 
+		System.out.println(sid);
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+	//	List<Review> reviewById = ReviewService.getReviewById(sid);
+		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
+		model.addAttribute("reviewList", reviewById);
 
-		// 답변 게시물
-		// List<Board> list = boardService.getReplyById(bid);
-		// int cnt = list.size();
-		// model.addAttribute("replyList",list);
-		// model.addAttribute("cnt", cnt);
-
-		// 폼을 띄우기 전에 조회수 하나 증가
-
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		
-//			map.put("check","bview");
-//			map.put("bid",bid);
-//		
-//		boardService.checkBoard(map);
-
-		// return "board/deta"
-		// + "il";
 		return "store/detail";
 
 	}
@@ -80,6 +74,9 @@ public class StoreController {
 
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
+		model.addAttribute("reviewList", reviewById);
 	
 		return "/store/storeInfo" ;
 	}
@@ -108,7 +105,7 @@ public class StoreController {
 		System.out.println(saveName);
 		store.setSphoto(saveName);
 
-		File saveFile = new File(uploadPath + "\\images", saveName);
+		File saveFile = new File(uploadPath + "\\save_images", saveName);
 
 		if (storeImg != null && !storeImg.isEmpty()) {
 			try {

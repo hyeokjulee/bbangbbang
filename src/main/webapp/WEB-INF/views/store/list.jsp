@@ -40,39 +40,36 @@
 
 <input type="hidden" class="start" value="x">
 <script>
-$(document).ready(function() {
-	// Get the initial length of storeList
-	var sid = $(".store-item").length;
-	
-	// Set up a scroll event listener
-	$(window).scroll(function() {
-		if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-			// Save sid before the AJAX request
-			var prevSid = sid;
-			
-			// Send an AJAX request with the current sid value
-			$.ajax({
-				url: "/store/list",
-				type: "post",
-				data: {
+	$(document).ready(function() {
+		// Get the initial length of storeList
+		var sid = $(".store-item").length;
+		
+		// Set up a scroll event listener
+		$(window).scroll(function() {
+			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+			  setTimeout(function() {
+				var prevSid = sid;
+				$.ajax({
+				  url: "/store/list",
+				  type: "post",
+				  data: {
 					sid: sid
-				},
-				success: function(data) {
-					// Append the returned data to the element with the class 'start'
+				  },
+				  success: function(data) {
 					$(".start").before(data);
-					
-					// Update sid with the new length of storeList
 					sid = $(".store-item").length;
-					
-					// If there were no new items, remove the scroll listener to avoid unnecessary requests
 					if (prevSid == sid) {
-						$(window).off("scroll");
+					  $(window).off("scroll");
 					}
-				}
-			});
-		}
+				  }
+				});
+			  }, 300); // Delay of 0.3 seconds (300 milliseconds)
+			}
+		  });
+		  
+		
+		
 	});
-});
 </script>
 
 
