@@ -1,10 +1,13 @@
 package com.spring.notice;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.spring.board.Board;
 
 @Repository
 public class NoticeRepositoryImpl implements NoticeRepository {
@@ -18,6 +21,10 @@ public class NoticeRepositoryImpl implements NoticeRepository {
 		this.sqlSessionTemplate.insert("notice.insert", notice);
 	}
 
+	@Override
+	public List<Notice> getAllNoticeList() {
+		return this.sqlSessionTemplate.selectList("notice.select_list");
+	}
 
 	@Override
 	public Notice getNoticeById(String nid) {
@@ -35,15 +42,15 @@ public class NoticeRepositoryImpl implements NoticeRepository {
 		}
 	}
 
-
 	@Override
-	public int modifyNotice(Notice notice) {
-		return this.sqlSessionTemplate.update("notice.update", notice);
+	public void setUpdateNotice(Notice notice) {
+		this.sqlSessionTemplate.update("notice.update", notice);
+		
 	}
 
-
 	@Override
-	public int removeNotice(String nid) {
-		return this.sqlSessionTemplate.delete("notice.delete", nid);
+	public void deleteNotice(Map<String, Object> map) {
+		this.sqlSessionTemplate.delete("notice.delete", map);
 	}
+
 }

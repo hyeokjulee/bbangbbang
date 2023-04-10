@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -75,7 +76,7 @@ public class BoardController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/replynew")
+	@PostMapping("/replynew")
 	public void replynew(@RequestParam Map<String, Object> map) {
 		
 		String rpid = (String)map.get("rpwriter");
@@ -83,6 +84,7 @@ public class BoardController {
 
 		boardService.replynewBoard(map);
 
+		System.out.println(bpid);
 	}
 	
 	@ResponseBody
@@ -97,7 +99,7 @@ public class BoardController {
 	
 	 //게시물 수정 페이지로 이동
     @GetMapping("/boardupdate")
-    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam("bid") String bid, Model model) {
+    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value="bid", required = false) String bid, Model model) {
     	
     	Board boardupdate = boardService.getBoardById(bid);
     	
@@ -108,13 +110,15 @@ public class BoardController {
     
     //게시물 수정
     @PostMapping("/boardupdate")
-	public String boardUpdatePOST(@ModelAttribute("UpdateBoard") Board board, @RequestParam("bid") String bid, Model model) {
+	public String boardUpdatePOST(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value= "bid", required = false) String bid, @RequestParam("btitle") String btitle, @RequestParam("bcontent") String bcontent, Model model) {
 		
-         Board boardupdate = boardService.getBoardById(bid);
-         boardupdate.setBtitle(board.getBtitle());
-         boardupdate.setBcontent(board.getBcontent());
+         Board boardById = boardService.getBoardById(bid);
+         model.addAttribute("board", boardById);
+         boardById.setBtitle(board.getBtitle());
+         boardById.setBcontent(board.getBcontent());
          boardService.updateBoard(board);
-         return "redirect:/boards/boardupate" + bid;
+         
+         return "redirect:/boards/boardlist";
          
 	}
 	
@@ -133,15 +137,27 @@ public class BoardController {
 //    }
     
     
-    //게시물 삭제
-    @PostMapping("/delete")
-    public String boardDeletePOST(@RequestParam("bid") String bid, RedirectAttributes rttr) {
-        
-        boardService.deleteBoard(bid);
-        
-        rttr.addFlashAttribute("result", "delete success");
-        
-        return "redirect:/boards/boardlist";
-    }
+  
+//    @PostMapping("/deleteboard")
+//    public String boardDeletePOST(@RequestParam(value="bid", required = false) String bid, RedirectAttributes rttr) {
+//        
+//        boardService.deleteBoard(bid);
+//        
+//        rttr.addFlashAttribute("result", "delete success");
+//        
+//        return "redirect:/boards/boardlist";
+//    }
+    
+      //게시물 삭제
+    @PostMapping("/deleteboard") 
+	public ModelAndView deletePost(@RequestParam Map<String, Object> map) {  
+
+	boardService.deleteBoard(map);
+
+	ModelAndView mav = new ModelAndView("redirect:/boards/boardlist");  
+	
+	return mav;  
+
+   }
     
 }

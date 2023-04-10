@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사이트 소개 등록</title>
+<title>사이트 소개 수정</title>
 </head>
 <body>
 
@@ -16,8 +16,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	
 	<%-- ${_csrf.parameterName}=${_csrf.token} --%>
-	<form:form modelAttribute="NewNotice" 
-			   action="/notices/noticeadd?${_csrf.parameterName}=${_csrf.token}"
+	<form:form modelAttribute="UpdateNotice" 
+			   action="/notices/noticeupdate?${nid}"
 	           class="form-horizontal"
 	           method = "post">
 	<fieldset>
@@ -25,9 +25,9 @@
 	<%-- <form:input path="nwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="ntitle" class="form-control"/>
 	내용 : <form:textarea path="ncontent" class="form-control" rows="10"/>
-
-	<!-- <input type="submit" class="btn btn-primary" value="등록"/> -->
-	<button type="submit" class="btn btn-primary">등록</button>
+		 <form:input type="hidden" path="nid" id="nid" size="20" maxlength="20" value="${notice.nid}"/>
+	<input type="submit" class="btn btn-primary" value="수정">
+	<button class="btn btn-secondary" onclick="history.back()">취소</button>
 	
 	
 	</fieldset>

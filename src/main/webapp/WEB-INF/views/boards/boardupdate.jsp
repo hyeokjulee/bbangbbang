@@ -74,8 +74,8 @@
 	<%-- <form:input path="bwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="btitle" class="form-control" value="${board.btitle}"/>
 	내용 : <form:textarea path="bcontent" class="form-control" rows="10" value="${board.bcontent}"/>
-
-	<button type="submit" class="btn btn-primary">수정</button>
+ 		 <form:input type="hidden" path="bid" id="bid" size="20" maxlength="20" value="${baord.bid}"/>
+	<input type="submit" class="btn btn-primary" value="수정">
 	<button class="btn btn-secondary" onclick="history.back()">취소</button>
 	
 	</fieldset>

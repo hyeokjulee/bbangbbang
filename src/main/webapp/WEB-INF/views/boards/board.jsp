@@ -22,7 +22,7 @@
 			data : {
 				bid : document.getElementById('bid').value,
 				bpwriter : document.getElementById('bpwriter').value,
-				rpwriter : document.getElementById('rpwriter').value,
+			//	rpwriter : document.getElementById('rpwriter').value,
 				bcontent : document.getElementById('bcontent').value
 			},
 			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
@@ -92,13 +92,66 @@
 				<p class="btn btn-success btn-sm">조회수 [ ${board.bview} ]</p>
 			</div>
 			<div class="d-flex justify-content-end badge bg-light text-dark">${board.bregdate}</div>
+			
 				<!-- <button type="button" class="btn btn-primary" style="float:right" onclick="goToUpdate()">수정</button> -->
 				<a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float:right">수정</a>
-				<button type="button" class="btn btn-danger" style="float:right" id="delete_btn">삭제</button>
+				<!-- <button type="button" class="btn btn-danger" style="float:right" id="delete_btn">삭제</button> -->
+				<%-- <a id = "board" href="javascript:ajaxremoveFromBoard('${board.bid}')"
+								class="btn btn-danger" style="float:right">삭제</a> --%>
+				<form action="/boards/deleteboard" method="post">
+				<input type="hidden" name="bid" value="${board.bid }"/>
+				<input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
+				</form>
 				<button type="button" class="btn btn-secondary" style="float:right" onclick="history.back()">취소</button>
 		</div>
 	</div>
 
+<!-- 답변 게시물 -->
+
+	<div class="card">
+		<div class="card-body">답변 리스트</div>
+<b>${cnt}개의 답변이 있습니다.</b>
+<c:forEach items="${replyList}" var="reply">
+
+<div class="card">
+  <div class="card-header">
+    ${reply.bwriter} 
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>${reply.bcontent}</p>
+      			<div class="d-flex justify-content-end">
+      <footer class="blockquote-footer">${reply.bregdate}</footer>
+      </div>
+    </blockquote>
+  </div>
+</div>
+</c:forEach>
+
+
+	<!-- 답변 등록 -->
+	<sec:authentication property="principal" var="member" />
+	<input id="bpwriter" type="hidden" value="${board.bwriter}"/>
+	<%-- <input id="rpwriter" type="hidden" value="${member.username}"/> --%>
+	<input id="bid" type="hidden" name="bid" value="${board.bid}">
+	
+<div class="card text-center">
+  <div class="card-header">
+   <%--  작성자 : ${member.username} --%>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">답변 등록</h5>
+    <p class="card-text">
+    	<textarea name="bcontent" id="bcontent" rows="3" class="form-control"></textarea>
+    </p>
+    <a href="#" class="btn btn-primary" style="float:right" onclick="replyNewFunction()">답변등록</a>
+  </div>
+  <div class="card-footer text-muted">
+    2 days ago
+  </div>
+</div>
+
+</div>
 
 </body>
 
@@ -110,12 +163,32 @@ function goToUpdate() {
 		}
 		
 		
-/* 삭제 버튼 */
+function ajaxremoveFromBoard(board) {
+	$.ajax({
+		type:"POST",
+		url:"/board/ajaxremove",
+			data:{bid:board},
+		beforeSend : function(xhr)
+	          {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	          },
+		success:function(result) {
+			alert("게시글이 삭제되었습니다.");
+		},
+		error:function(request, status, error) {
+			alert(request.status + " " +request.responseText);
+		}
+	})
+
+    window.location.reload();
+}
+
+/*  삭제 버튼 
 $("#delete_btn").on("click", function(e){
     form.attr("action", "/board/delete");
     form.attr("method", "post");
     form.submit();
-});
+}); */
 
 </script>
 </html>

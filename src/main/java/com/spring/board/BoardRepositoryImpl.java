@@ -28,10 +28,16 @@ public class BoardRepositoryImpl implements BoardRepository {
 		return this.sqlSessionTemplate.selectOne("board.select_detail", bid);
 	}
 
-	public void replynewBoard(Map map) {
+	public void replynewBoard(Map<String, Object> map) {
 		this.sqlSessionTemplate.insert("board.insert_reply", map);
-
 	}
+	
+//	@Override
+//	public void replynewBoard(Board board) {
+//		this.sqlSessionTemplate.insert("board.insert_reply", board);
+//	}
+
+	
 	
 	public List<Board> getReplyById(String bid) {
 		return this.sqlSessionTemplate.selectList("board.select_reply", bid);
@@ -49,14 +55,21 @@ public class BoardRepositoryImpl implements BoardRepository {
 	}
 
 	@Override
-	public int updateBoard(Board board) {
-		return this.sqlSessionTemplate.update("board.update", board);
+	public void updateBoard(Board board) {
+		this.sqlSessionTemplate.update("board.update", board);
 	}
 
+//	@Override
+//	public int deleteBoard(String bid) {
+//		return this.sqlSessionTemplate.delete("board.delete", bid);
+//	}
+
 	@Override
-	public int deleteBoard(String bid) {
-		return this.sqlSessionTemplate.delete("board.delete", bid);
+	public void deleteBoard(Map<String, Object> map) {
+		this.sqlSessionTemplate.delete("board.delete", map);
+		
 	}
+
 
 
 

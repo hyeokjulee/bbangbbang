@@ -1,6 +1,7 @@
 package com.spring.notice;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.board.Board;
+
 
 @Controller
 @RequestMapping("/notices")
@@ -30,19 +34,29 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/noticeadd")
-	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice) {
+	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice ) {
 
 		noticeService.setNewNotice(notice);
 		
 		System.out.println(notice.getNcontent());
 		System.out.println(notice.getNtitle());
+		System.out.println(notice.getNid());
 		
 		
-		return "redirect:/notices/notice";
+		return "redirect:/notices/noticelist";
 	}
 	
+	@GetMapping("/noticelist")
+	public String noticeList(Model model) {
+	    List<Notice> list = noticeService.getAllNoticeList();
+	    model.addAttribute("noticeList", list);
+
+	    return "notices/noticelist";
+	}
+
+	
 	@GetMapping("/notice")
-	public String requestNoticeById(@RequestParam("nid") String nid, Model model) {
+	public String requestNoticeById(@RequestParam(value="nid", required = false) String nid, Model model) {
 		//주 게시물
 		Notice noticeById = noticeService.getNoticeById(nid);
 		model.addAttribute("notice", noticeById);
@@ -52,7 +66,7 @@ public class NoticeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 			map.put("check","nview");
-			map.put("nid",nid);
+			map.put("nid", nid);
 		
 		noticeService.checkNotice(map);
 		
@@ -71,34 +85,65 @@ public class NoticeController {
 	}
 	
 	 //소개글 수정 페이지로 이동
-    @GetMapping("/modify")
-    public void noticeModifyGET(@RequestParam("nid") String nid, Model model) {
-        
-        model.addAttribute("pageInfo", noticeService.getNoticeById(nid));
-        
-    }
+    
+    @GetMapping("/noticeupdate")
+	public String requestUpdateNoticeForm(@ModelAttribute("UpdateNotice") Notice notice) {
+		
+		return "notices/noticeupdate";
+	}
     
     //소개글 수정
-    @PostMapping("/modify")
-    public String noticeModifyPOST(Notice notice, RedirectAttributes rttr) {
-        
-        noticeService.modifyNotice(notice);
-        
-        rttr.addFlashAttribute("result", "modify success");
-        
-        return "redirect:/notices/notice";
-        
-    }
+    @PostMapping("/noticeupdate")
+	public String submitUpdateNoticeForm(@RequestParam(value = "nid", required = false) String nid, @ModelAttribute("UpdateNotice") Notice notice ) {
+
+		noticeService.setUpdateNotice(notice);
+		
+		System.out.println(notice.getNcontent());
+		System.out.println(notice.getNtitle());
+		System.out.println(notice.getNid());
+		
+		
+		return "redirect:/notices/noticelist";
+	}
+    
+//    @GetMapping("/noticeupdate")
+//    public void noticeModifyGET(@RequestParam("nid") String nid, Model model) {
+//        
+//        model.addAttribute("pageInfo", noticeService.getNoticeById(nid));
+//        
+//    }
+   
+//    @PostMapping("/modify")
+//    public String noticeModifyPOST(Notice notice, RedirectAttributes rttr) {
+//        
+//        noticeService.modifyNotice(notice);
+//        
+//        rttr.addFlashAttribute("result", "modify success");
+//        
+//        return "redirect:/notices/notice";
+//        
+//    }
     
     //소개글 삭제
-    @PostMapping("/remove")
-    public String noticeRemovePOST(@RequestParam("nid") String nid, RedirectAttributes rttr) {
-        
-    	noticeService.removeNotice(nid);
-        
-        rttr.addFlashAttribute("result", "remove success");
-        
-        return "redirect:/notices/notice";
-    }
+//    @PostMapping("/remove")
+//    public String noticeRemovePOST(@RequestParam("nid") String nid, RedirectAttributes rttr) {
+//        
+//    	noticeService.removeNotice(nid);
+//        
+//        rttr.addFlashAttribute("result", "remove success");
+//        
+//        return "redirect:/notices/notice";
+//    }
+
+   @PostMapping("/deletenotice") 
+	public ModelAndView deletePost(@RequestParam Map<String, Object> map) {  
+
+	noticeService.deleteNotice(map);
+
+	ModelAndView mav = new ModelAndView("redirect:/notices/noticelist");  
+	
+	return mav;  
+
+   }
     
 }

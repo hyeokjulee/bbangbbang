@@ -12,10 +12,20 @@
 		]]>
 	</insert>
 	
+	<select id="select_list" resultType="com.spring.notice.Notice">
+		<![CDATA[
+			SELECT * 
+			FROM notice 
+			ORDER BY nid 
+			DESC
+		]]>
+	</select>
+	
+	
 	<select id="select_detail" parameterType="String"
 		resultType="com.spring.notice.Notice">
 		<![CDATA[
-			select * from notice where nid = #{nid}
+			SELECT * FROM notice WHERE nid = #{nid}
 		]]>
 	</select>
 	
@@ -27,10 +37,10 @@
 			]]>
 	</update>
 	
-	<update id="update" parameterType="hashMap">
+	<update id="update" parameterType="com.spring.notice.Notice">
 			<![CDATA[
 				UPDATE notice SET
-				ntitle = #{ntitle}, ncontent = #{ncontent}, nupdate = sysdate
+				ntitle = #{ntitle}, ncontent = #{ncontent}
 				WHERE nid = #{nid}
 			]]>
 	</update>

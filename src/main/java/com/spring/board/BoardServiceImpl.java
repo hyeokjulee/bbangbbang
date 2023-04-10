@@ -26,9 +26,14 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.getBoardById(bid);
 	}
 
-	public void replynewBoard(Map map) {
+	public void replynewBoard(Map<String, Object> map) {
 		boardRepository.replynewBoard(map);
 	}
+	
+//	@Override
+//	public void replynewBoard(Board board) {
+//		boardRepository.replynewBoard(board);
+//	}
 	
 	public List<Board> getReplyById(String bid) {
 		return boardRepository.getReplyById(bid);
@@ -39,13 +44,20 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int updateBoard(Board board) {
-		return boardRepository.updateBoard(board);
+	public void updateBoard(Board board) {
+		boardRepository.updateBoard(board);
 	}
 
+//	@Override
+//	public int deleteBoard(String bid) {
+//		return boardRepository.deleteBoard(bid);
+//	}
+
 	@Override
-	public int deleteBoard(String bid) {
-		return boardRepository.deleteBoard(bid);
+	public void deleteBoard(Map<String, Object> map) {
+		 boardRepository.deleteBoard(map);
+		
 	}
+
 
 }

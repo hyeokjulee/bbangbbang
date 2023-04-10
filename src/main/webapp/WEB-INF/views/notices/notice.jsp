@@ -16,12 +16,12 @@
 
 <script>
 	
-	function checkFunction(bid, check) {
+	function checkFunction(nid, check) {
 		$.ajax({
 			type : "POST",
-			url : "/boards/check",
+			url : "/notices/check",
 			data : {
-				bid : bid,
+				nid : nid,
 				check : check
 			},
 			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
@@ -55,6 +55,8 @@
 
 </head>
 <body>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 	<!-- 주 게시물 -->
 	<div class="card">
@@ -68,12 +70,19 @@
 				<p class="btn btn-success btn-sm">조회수 [ ${notice.nview} ]</p>
 			</div>
 			<div class="d-flex justify-content-end badge bg-light text-dark">${notice.nregdate}</div>
-		</div>
+	
 		
-		<a class="btn btn-primary" id="update_btn">수정</a>
-		<a class="btn btn-danger" id="delete_btn">삭제</a>
-		<button class="btn btn-secondary" onclick="history.back()">취소</button>
+		
+		<a href="/notices/noticeupdate?nid=${notice.nid }" class="btn btn-primary" style="float:right">수정</a>
+		<form action="/notices/deletenotice" method="post">
+		<input type="hidden" name="nid" value="${notice.nid }"/>
+		<input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
+		</form>
+		<button type="button" class="btn btn-secondary" style="float:right" onclick="history.back()">취소</button>
+		</div>
 	</div>
+		
+	
 
 <div class="my-5"></div>
 
@@ -82,16 +91,31 @@
 <script>
 
 /* 수정 하기 버튼 */
-$("#update_btn").on("click", function(e){
-    mForm.submit();
-});
+function goToUpdate() {
+			window.location.href = "/noticeupdate";
+		}
+		
+/* 삭제 버튼 */		
+function ajaxremoveFrom(notice) {
+	$.ajax({
+		type:"POST",
+		url:"/notice/ajaxremove",
+			data:{nid:notice},
+		beforeSend : function(xhr)
+	          {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	          },
+		success:function(result) {
+			alert("게시글이 삭제되었습니다.");
+		},
+		error:function(request, status, error) {
+			alert(request.status + " " +request.responseText);
+		}
+	})
 
-/* 삭제 버튼 */
-$("#delete_btn").on("click", function(e){
-    form.attr("action", "/board/delete");
-    form.attr("method", "post");
-    form.submit();
-});
+    window.location.reload();
+}
+
 
 </script>
 </html>

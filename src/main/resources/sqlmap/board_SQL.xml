@@ -56,15 +56,15 @@
 			]]>
 	</update>
 	
-	<update id="update" parameterType="hashMap">
+	<update id="update" parameterType="com.spring.board.Board">
 			<![CDATA[
 				UPDATE board SET
-				btitle = #{btitle}, bcontent = #{bcontent}, bupdate = sysdate
+				btitle = #{btitle}, bcontent = #{bcontent}
 				WHERE bid = #{bid}
 			]]>
 	</update>
 	
-	<delete id="delete" parameterType="hashMap">
+	<delete id="delete" parameterType="String">
 			<![CDATA[
 				DELETE FROM board
 				WHERE bid = #{bid}
