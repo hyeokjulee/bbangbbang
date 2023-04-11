@@ -114,7 +114,6 @@
 			
 			
 			<div class="row">
-
 				<div class="col-lg-3 col-md-4 col-sm-6">
 					<a href="index.html" class="fh5co-card-item image-popup">
 						<figure>
@@ -148,8 +147,6 @@
 						</div>
 					</a>
 				</div>
-
-
 				<div class="col-lg-3 col-md-4 col-sm-6">
 					<a href="/resources/images/img_4.jpg" class="fh5co-card-item image-popup">
 						<figure>
@@ -161,7 +158,6 @@
 						</div>
 					</a>
 				</div>
-
 			</div>
 		</div>
 	</div>
