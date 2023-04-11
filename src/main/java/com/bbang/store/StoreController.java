@@ -2,6 +2,7 @@ package com.bbang.store;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -26,13 +27,19 @@ public class StoreController {
 
 	@Autowired // DI
 	SqlSessionTemplate sqlsessionTemplate;
+	
+	@GetMapping("/main")
+	public String main() {
+		
+		return "/main";
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String storeList(Model model) {
 
 		List<Store> list = storeService.getAllStoreList();
 		model.addAttribute("storeList", list);
-		return "store/list";
+		return "store/list"; 
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -149,5 +156,37 @@ public class StoreController {
 		// boardService.setNewBoard(board);
 
 	}
+	
+	//경외------------------------------------------------------
+	@PostMapping("/searchInfo")
+	public String searchInfo(@RequestParam("search") String search, Model model) {
 
+		List<Store> list = sqlsessionTemplate.selectList("search_list", search);
+		model.addAttribute("storeList", list);
+		
+		
+	
+		return "/store/searchList" ;
+	}
+	//경외------------------------------------------------------
+	
+	//경외------------------------------------------------------
+	@PostMapping("/areaList")
+    public String getAreaList(@RequestParam Map<String, Object> map , Model model) {
+        // MyBatis의 Mapper를 사용하여 데이터베이스에서 데이터를 조회
+
+		System.out.println(map.get("area1"));
+		System.out.println(map.get("area2"));
+		System.out.println(map.get("area3"));
+
+		 List<Store> areaList = storeService.getAreaList(map);
+		
+        // 조회한 데이터를 Model에 담아 View로 전달
+        model.addAttribute("areaList", areaList);
+
+        // View의 이름 반환
+        return "/store/areaList";
+    }
+
+	//경외------------------------------------------------------
 }

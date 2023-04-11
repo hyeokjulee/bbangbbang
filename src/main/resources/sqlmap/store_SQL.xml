@@ -11,6 +11,26 @@
 				(#{sname}, #{saddr}, #{stel}, #{sphoto2}, #{sopen}, #{smenu}, #{sprice} ) 
 		]]>
 	</insert>
+	
+	<!--경외  -->
+	<select id="search_list" parameterType="String" resultType="com.bbang.store.Store"> 
+	    <![CDATA[ 
+	        SELECT sid, sname, saddr
+	        FROM store 
+	        WHERE saddr LIKE CONCAT('%', #{search}, '%') OR sname LIKE CONCAT('%', #{search}, '%')
+	     ]]>
+	</select>
+	<!--경외  -->
+	
+		<!--경외  -->
+	<select id="getAreaList" parameterType="hashMap" resultType="com.bbang.store.Store">
+        SELECT sid, sname, saddr
+        FROM store
+        WHERE saddr LIKE CONCAT('%', #{area1}, '%')
+        OR saddr LIKE CONCAT('%', #{area2}, '%')
+        OR saddr LIKE CONCAT('%', #{area3}, '%')
+    </select>
+	<!--경외  -->
 
 	<update id="update" parameterType="hashMap">
 		<![CDATA[ 
@@ -36,6 +56,17 @@
 			LIMIT 0, 10
 		 ]]>
 	</select>
+	
+	<select id="select_list_map"   resultType="com.bbang.store.Store"> 
+		<![CDATA[ 
+			SELECT * 
+			FROM store 
+			WHERE sid > 0
+			ORDER BY sid
+			LIMIT 0, 500
+		 ]]>
+	</select>
+	
 	<select id="select_add_list"  parameterType="String" resultType="com.bbang.store.Store"> 
 		<![CDATA[ 
 			SELECT * 
