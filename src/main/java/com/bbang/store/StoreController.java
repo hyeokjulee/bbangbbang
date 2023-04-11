@@ -1,7 +1,9 @@
 package com.bbang.store;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,60 +19,64 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bbang.review.Review;
+import com.bbang.review.ReviewService;
+
 @Controller
 @RequestMapping("/store")
 public class StoreController {
 
 	@Autowired // DI
 	private StoreService storeService;
+	
+	@Autowired
+	ReviewService reviewService;
 
 	@Autowired // DI
 	SqlSessionTemplate sqlsessionTemplate;
+	
+	@GetMapping("/main")
+	public String main() {
+		
+		return "/main";
+	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String storeList(Model model) {
 
 		List<Store> list = storeService.getAllStoreList();
 		model.addAttribute("storeList", list);
-		return "store/list";
+		return "store/list"; 
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public String storeListReload(String sid, Model model) {
+	public String storeListReload(@RequestParam int page, Model model) {
 
-		// List<Store> list = storeService.getAllStoreList();
+		//1.페이지 변수를 찍어보자. 
+		System.out.println(page);
+	   
+	    int offset = (page - 1) * 20;
 
-		List<Store> list = sqlsessionTemplate.selectList("select_add_list", sid);
+	    List<Store> storeList = sqlsessionTemplate.selectList("store.select_add_list", 
+	        Collections.singletonMap("offset", offset));
 
-		model.addAttribute("storeList", list);
-		System.out.println(sid);
+	    model.addAttribute("storeList", storeList);
 
-		return "store/list";
+	    return "store/list";
 	}
 
 	@GetMapping("/detail")
 	public String storeDetail(@RequestParam("sid") String sid, Model model) {
 
+		System.out.println(sid);
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+	//	List<Review> reviewById = ReviewService.getReviewById(sid);
+		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
+		model.addAttribute("reviewList", reviewById);
+		
 
-		// 답변 게시물
-		// List<Board> list = boardService.getReplyById(bid);
-		// int cnt = list.size();
-		// model.addAttribute("replyList",list);
-		// model.addAttribute("cnt", cnt);
-
-		// 폼을 띄우기 전에 조회수 하나 증가
-
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		
-//			map.put("check","bview");
-//			map.put("bid",bid);
-//		
-//		boardService.checkBoard(map);
-
-		// return "board/deta"
-		// + "il";
 		return "store/detail";
 
 	}
@@ -80,6 +86,9 @@ public class StoreController {
 
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
+		model.addAttribute("reviewList", reviewById);
 	
 		return "/store/storeInfo" ;
 	}
@@ -108,7 +117,7 @@ public class StoreController {
 		System.out.println(saveName);
 		store.setSphoto(saveName);
 
-		File saveFile = new File(uploadPath + "\\images", saveName);
+		File saveFile = new File(uploadPath + "\\save_images", saveName);
 
 		if (storeImg != null && !storeImg.isEmpty()) {
 			try {
@@ -130,24 +139,58 @@ public class StoreController {
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
 
-		return "store/update";
+		return "/store/update";
 	}
 
 	@PostMapping("/update")
-	public String storeUpdateProc(@ModelAttribute("NewStore") Store store) {
+	public String storeUpdateProc(@RequestParam Map<String, Object> map) {
 
-		System.out.println(store.getSid());
-		// boardService.setNewBoard(board);
+		System.out.println(map.get("sid"));
+		storeService.updateStore(map);
 
-		return "redirect:/store/update";
+		return "redirect:/store/list" ;
 	}
 
 	@PostMapping("/delete")
-	public void storeDeleteProc(@RequestParam("sid") String sid) {
+	public String storeDeleteProc(@RequestParam("sid") String sid) {
 
 		System.out.println(sid);
-		// boardService.setNewBoard(board);
+		storeService.deleteStoreById(sid);
+		
+		return "redirect:/store/list" ;
 
 	}
+	
+	//경외------------------------------------------------------
+	@PostMapping("/searchInfo")
+	public String searchInfo(@RequestParam("search") String search, Model model) {
 
+		List<Store> list = sqlsessionTemplate.selectList("search_list", search);
+		model.addAttribute("storeList", list);
+		
+		
+	
+		return "/store/searchList" ;
+	}
+	//경외------------------------------------------------------
+	
+	//경외------------------------------------------------------
+	@PostMapping("/areaList")
+    public String getAreaList(@RequestParam Map<String, Object> map , Model model) {
+        // MyBatis의 Mapper를 사용하여 데이터베이스에서 데이터를 조회
+
+		System.out.println(map.get("area1"));
+		System.out.println(map.get("area2"));
+		System.out.println(map.get("area3"));
+
+		 List<Store> areaList = storeService.getAreaList(map);
+		
+        // 조회한 데이터를 Model에 담아 View로 전달
+        model.addAttribute("areaList", areaList);
+
+        // View의 이름 반환
+        return "/store/areaList";
+    }
+
+	//경외------------------------------------------------------
 }

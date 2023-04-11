@@ -16,6 +16,12 @@
 		]]>
 	</select>
 	
+	<select id="select_byuid" resultType="com.spring.user.User">
+		<![CDATA[
+			SELECT * FROM user WHERE uid=#{uid}
+		]]>
+	</select>
+	
 	<select id="select_list" resultType="com.spring.user.User">
 		<![CDATA[
 			SELECT * FROM user ORDER BY udate DESC
@@ -26,8 +32,6 @@
 		<![CDATA[
 			UPDATE user
 			SET
-			uname = #{uname},
-			username = #{username},
 			password = #{password}
 			WHERE uid = #{uid}
 		]]>

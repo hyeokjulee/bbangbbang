@@ -9,7 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class User {
 	private int uid, enabled;
-	private String gender, authority, udate, username, password, passwordCheck, uname;
-	
-	
+	private String authority, udate, username, password, passwordCheck, uname;
 }

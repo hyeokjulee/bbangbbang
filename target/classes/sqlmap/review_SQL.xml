@@ -2,18 +2,18 @@
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 
-	<insert id="insert_review" parameterType="com.bbang.review.Review"
+	<insert id="insert_review" parameterType="hashMap"
 		useGeneratedKeys="true" keyProperty="rid">
 		<![CDATA[
-			INSERT INTO review 
-				( rcontent, rscore )
+			INSERT INTO review
+				(sid, uid, rcontent, rscore )
 			values 
-				(#{rcontent}, #{rscore} ) 
+				(#{sid}, #{uid}, #{rcontent}, #{rscore} ) 
 		]]>
 	</insert>
 
 	<update id="update_review" parameterType="hashMap">
-		<![CDATA[ 
+		<![CDATA[
 			 UPDATE review 
         	 SET rcontent = #{rcontent}, 
         		 rscore = #{rscore}
@@ -22,26 +22,26 @@
 
 	</update>
 
-	<select id="select_list_for_store"  parameterType="String"
+	<select id="review_list_by_sid"  parameterType="String"
 				resultType="com.bbang.review.Review"> 
 		<![CDATA[ 
 			SELECT * 
 			FROM review 
-			WHERE sid = #{sid}
-			ORDER BY sid 
+			WHERE sid = #{sid} 
+			ORDER BY rid DESC 
 		 ]]>
 	</select>
 
-	<select id="select_my_review" parameterType="String"
+	<select id="select_my_review_by_uid" parameterType="String"
 		resultType="com.bbang.review.Review"> 
 		<![CDATA[ 
 			SELECT * 
 			FROM store 
-			WHERE rid = #{rid}
+			WHERE uid = #{uid}
 		 ]]>
 	</select>
 
-	<delete id="delete_review" parameterType="String">
+	<delete id="delete_review_by_rid" parameterType="String">
 		<![CDATA[ 
 			DELETE 
 			FROM review 

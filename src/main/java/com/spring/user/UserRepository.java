@@ -8,6 +8,8 @@ public interface UserRepository {
 
 	User selectUser(String username);
 	
+	User selectUserByuid(int uid);
+	
 	List<User> selectUserList();
 	
 	int updateUser(User user);
