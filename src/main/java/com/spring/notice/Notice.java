@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Notice {
-	private int nid;
+	private int nid, nview;
 	private String ntitle, ncontent, ncate, nwriter, ndate;
 
 }

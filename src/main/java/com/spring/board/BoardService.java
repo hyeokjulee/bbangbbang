@@ -13,7 +13,7 @@ public interface BoardService {
 	
 	void replynewBoard(Map<String, Object> map);	//댓글 등록
 	
-	List<Board> getReplyById(String bid);	//댓글 목록
+	List<Comment> getReplyById(String bid);	//댓글 목록
 	
 	void checkBoard(Map map);	//조회수
 	
@@ -22,4 +22,8 @@ public interface BoardService {
 	// int deleteBoard(String bid);	
 
 	void deleteBoard(Map<String, Object> map);	//게시물 삭제
+
+	void deleteReply(String cid);	//댓글 삭제
+
+	void updateReply(Map<String, Object> map);	//댓글 수정
 }

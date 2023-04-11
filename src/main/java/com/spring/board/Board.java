@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class Board {
-	private int bid, bstatus;
-	private String bpid, btitle, bcontent, bcate, bwriter, bdate;
-
+	private int bid;
+	private String bpid, btitle, bcontent, bwriter, bregdate, bupdate, bview;
+	
+	
+	
 }

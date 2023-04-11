@@ -11,7 +11,7 @@
 			(#{btitle}, #{bcontent}, #{bwriter})
 		]]>
 	</insert>
-	
+
 	<select id="select_list" resultType="com.spring.board.Board">
 		<![CDATA[
 			SELECT * 
@@ -28,34 +28,45 @@
 			select * from board where bid = #{bid}
 		]]>
 	</select>
-	
-	<insert id="insert_reply" parameterType="hashMap"
-		useGeneratedKeys="true" keyProperty="bid">
-		<![CDATA[
-			INSERT INTO board
-			(bpid, bcontent, bwriter)
-			values
-			(#{bid}, #{bcontent}, #{bwriter})
-		]]>
-	</insert>
-	
-	<select id="select_reply" parameterType="String" resultType="com.spring.board.Board">
+
+
+
+	<select id="select_reply" parameterType="String"
+		resultType="com.spring.board.Comment">
 		<![CDATA[
 			SELECT * 
-			FROM board
-			WHERE bpid = #{bid}
-			ORDER BY bid DESC
+			FROM comment
+			WHERE bid = #{bid}
+			ORDER BY cid DESC
 		]]>
 	</select>
-	
-	<update id="update_view" parameterType="hashMap">
+
+	<insert id="insert_comment" parameterType="hashMap"
+		useGeneratedKeys="true" keyProperty="cid">
+		<![CDATA[
+			INSERT comment
+			(bid, ccontent, cwriter)
+			values
+			(#{bid}, #{ccontent}, #{cwriter})
+		]]>
+	</insert>
+
+	 <update id="update_view" parameterType="hashMap">
 			<![CDATA[
-				UPDATE board SET
-				bview = bview + 1
-				WHERE bid = #{bid}
+				UPDATE comment 
+				SET ccontent = #{ccontent}
+				WHERE cid = #{cid}
 			]]>
-	</update>
-	
+	</update> 
+
+	<delete id="delete_review" parameterType="String">
+			<![CDATA[
+				DELETE FROM comment
+				WHERE cid = #{cid}
+			]]>
+	</delete>
+
+
 	<update id="update" parameterType="com.spring.board.Board">
 			<![CDATA[
 				UPDATE board SET
@@ -63,11 +74,20 @@
 				WHERE bid = #{bid}
 			]]>
 	</update>
-	
+
 	<delete id="delete" parameterType="String">
 			<![CDATA[
 				DELETE FROM board
 				WHERE bid = #{bid}
 			]]>
 	</delete>
+	
+	<update id="update_review" parameterType="hashMap">
+		<![CDATA[
+			 UPDATE comment 
+        	 SET ccontent = #{ccontent}
+       		 WHERE cid = #{cid} 
+		]]>
+
+	</update>
 </mapper>
