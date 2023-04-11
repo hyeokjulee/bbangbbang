@@ -1,13 +1,24 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
-<head>
-<title>게시판</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
-	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-	crossorigin="anonymous"></script>
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+
+					<div class="row row-mt-8em">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">사이트소개</h2>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</header>
 
 <script>
 	/*  function removeCar(cid) {
@@ -31,10 +42,10 @@
 	 } */
 </script>
 </head>
+<section class="py-5 text-center container"></section><br><br><br><br>
 <body>
 
 	<div class="container">
-		<div class="container">
 			<div style="padding-top: 50px">
 				<table class="table table-hover">
 					<tr>
@@ -60,7 +71,12 @@
 				</table>
 			</div>
 			<hr>
+			<div class="row form-group" >
+			<div class="col-md-12">
+			<a href="noticeadd"><button type="button" class="btn btn-primary" style="float:right">등록</button></a>
+			</div>
+			</div>
 		</div>
-	</div>
-</body>
-</html>
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>

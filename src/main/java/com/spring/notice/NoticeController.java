@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.board.Board;
-
 
 @Controller
 @RequestMapping("/notices")
@@ -85,12 +83,15 @@ public class NoticeController {
 	}
 	
 	 //소개글 수정 페이지로 이동
-    
+    //경외---------------------
     @GetMapping("/noticeupdate")
-	public String requestUpdateNoticeForm(@ModelAttribute("UpdateNotice") Notice notice) {
-		
+	public String requestUpdateNoticeForm(@ModelAttribute("UpdateNotice") Notice notice, @RequestParam(value = "nid") String nid, Model model) {
+    	
+    	Notice noticeById = noticeService.getNoticeById(nid);
+		model.addAttribute("notice", noticeById);
 		return "notices/noticeupdate";
 	}
+    //경외---------------------
     
     //소개글 수정
     @PostMapping("/noticeupdate")
