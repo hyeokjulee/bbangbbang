@@ -1,76 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
-<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-		crossorigin="anonymous">
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
-
-	<!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
+	<div class="container">
+		<div class="row" id="store-list">
+			<c:forEach var="store" items="${storeList}">
+				<div class="col-md-3">
+					<div class="card mb-4 shadow-sm storeItem">
+						<img src="${store.sphoto}" class="card-img-top"
+							alt="${store.sname}"
+							onerror="this.onerror=null; this.src='https://www.sejong.go.kr/images/prog/no_image.png';">
+						<div class="card-body">
+							<h5 class="card-title">${store.sname}</h5>
+							<p class="card-text">${store.saddr}</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<a href="/store/info?sid=${store.sid }"
+										class="btn btn-sm btn-outline-secondary">View</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+			<input type="hidden" class="page" value="1">
+		</div>
+	</div>
 
-	<c:forEach var="store" items="${storeList}">
-<div class="card store-item" style="width: 18rem;">
-<img src="${store.sphoto}" class="card-img-top" alt="...">
-<div class="card-body">
-<h5 class="card-title">${store.sname}</h5>
-<p class="card-text">${store.saddr}</p>
-<a href="/store/detail?sid=${store.sid }" class="btn btn-primary">Go Detail</a>
-<input type="hidden" name="sid" value="${store.sid}">
-</div>
-</div>
-</c:forEach>
-
-<input type="hidden" class="start" value="x">
-<script>
-	$(document).ready(function() {
-		// Get the initial length of storeList
-		var sid = $(".store-item").length;
-		
-		// Set up a scroll event listener
-		$(window).scroll(function() {
-			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-			  setTimeout(function() {
-				var prevSid = sid;
-				$.ajax({
-				  url: "/store/list",
-				  type: "post",
-				  data: {
-					sid: sid
-				  },
-				  success: function(data) {
-					$(".start").before(data);
-					sid = $(".store-item").length;
-					if (prevSid == sid) {
-					  $(window).off("scroll");
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		var loading = false;
+		var page = document.querySelector('.page').value;
+		$(window).scroll(
+				function() {
+					if ($(window).scrollTop() + $(window).height() >= $(
+							document).height()) {
+						if (!loading) {
+							loading = true;
+							page++;
+							console.log(page)
+							document.querySelector('.page').value = page;
+							$.ajax({
+								url : "/store/list",
+								type : "POST",
+								data : { page : page },
+								success : function(data) {
+									$('#store-list').append(data);
+									loading = false;
+								},
+								error : function() {
+									alert('There is no more data to load.');
+									loading = true;
+								}
+							});
+						}
 					}
-				  }
 				});
-			  }, 300); // Delay of 0.3 seconds (300 milliseconds)
-			}
-		  });
-		  
-		
-		
-	});
-</script>
-
-
+	</script>
+</body>
 </html>
