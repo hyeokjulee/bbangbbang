@@ -6,7 +6,7 @@
 <tiles-definitions>
 	<!-- main layout -->
 	<definition name="/" extends="layout-tiles">
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 		<put-attribute name="title" value="게시판" />
 	</definition>
 	<definition name="base-Template" template="/WEB-INF/views/tiles/tiles-layout.jsp">
