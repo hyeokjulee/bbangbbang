@@ -32,7 +32,7 @@
     </select>
 	<!--경외  -->
 
-	<update id="update" parameterType="hashMap">
+	<update id="update" parameterType="hashMap" >
 		<![CDATA[ 
 			 UPDATE store 
         	 SET sname = #{sname}, 

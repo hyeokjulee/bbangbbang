@@ -46,4 +46,15 @@ public class StoreRepositoryImpl implements StoreRepository {
 	}
 	
 
+	@Override
+	public void deleteStoreById(String sid) {
+		sqlsessionTemplate.delete("store.delete", sid) ;		
+	}
+
+	@Override
+	public void updateStore(Map<String, Object> map) {
+		sqlsessionTemplate.update("store.update", map) ;		
+		
+	}
+
 }

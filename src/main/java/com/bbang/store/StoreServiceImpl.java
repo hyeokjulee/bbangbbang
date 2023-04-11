@@ -42,4 +42,15 @@ public class StoreServiceImpl implements StoreService{
 		return storeRepository.getStoreListForMap();
 	}
 
+	@Override
+	public void deleteStoreById(String sid) {
+		storeRepository.deleteStoreById(sid);		
+	}
+
+	@Override
+	public void updateStore(Map<String, Object> map) {
+		storeRepository.updateStore(map);		
+		
+	}
+
 }
