@@ -81,7 +81,7 @@
 								<li><a href="#">Birthday's Celebration</a></li>
 							</ul></li>
 						<li><a href="#">자유게시판</a></li>
-						<li><a href="#">사이트소개</a></li>
+						<li><a href="/notices/noticelist">사이트소개</a></li>
 						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
 					</ul>
 				</div>
