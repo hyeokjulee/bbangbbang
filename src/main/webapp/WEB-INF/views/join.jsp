@@ -70,7 +70,7 @@
 						</li>
 						<li><a href="#">자유게시판</a></li>
 						<li><a href="#">사이트소개</a></li>
-						<li class="btn-cta"><a href="/join"><span>Sign up</span></a></li>
+						<li class="btn-cta"><a href="/login"><span>로그인</span></a></li>
 					</ul>	
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h2 class="white-color" style="font-size: 80px; font-weight: bold;">로그인</h2>
+							<h2 class="white-color" style="font-size: 80px; font-weight: bold;">회원가입</h2>
 						</div>
 						
 					</div>

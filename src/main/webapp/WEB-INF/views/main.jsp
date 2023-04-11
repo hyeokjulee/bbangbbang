@@ -78,7 +78,7 @@
 					    </sec:authorize>
 						
 					    <sec:authorize access="hasRole('ROLE_USER')">
-					    	<li><a href="/user/myEdit">내정보수정</a></li>
+					    	<li class="btn-cta"><a href="/user/myEdit"><span>마이페이지</span></a></li>
 					    </sec:authorize>
 						
 					    <sec:authorize access="isAuthenticated()">
