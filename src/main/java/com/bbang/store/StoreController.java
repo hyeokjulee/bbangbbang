@@ -49,7 +49,7 @@ public class StoreController {
 		return "store/list"; 
 	}
 
-	@PostMapping("/list")
+	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	public String storeListReload(@RequestParam int page, Model model) {
 
 		//1.페이지 변수를 찍어보자. 

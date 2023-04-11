@@ -245,6 +245,9 @@ function updateModel(rid, rscore, rcontent) {
 		$.ajax ({
 			url : "/review/update",
 			type : "POST",
+			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			},
 			data : {
 				rid : rid,
 				rcontent : rcontent,
@@ -273,6 +276,9 @@ function updateModel(rid, rscore, rcontent) {
 		$.ajax ({
 			url : "/review/insert",
 			type : "POST",
+			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			},
 			data : {
 				sid : sid,
 				uid : uid,
@@ -290,6 +296,7 @@ function updateModel(rid, rscore, rcontent) {
 		});
 	}
 
+	
 	//rid 값을 받아서 삭제하기 버튼을 누르면 삭제페이지로 rid 값을 보내준다.
 	function deleteAjax() {
 		var rid = document.querySelector("#rid").value;	
@@ -297,6 +304,9 @@ function updateModel(rid, rscore, rcontent) {
 		$.ajax ({
 			url : "/review/delete",
 			type : "POST",
+			beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
+				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			},
 			data : {
 				rid : rid
 			},
@@ -448,14 +458,14 @@ function updateModel(rid, rscore, rcontent) {
 
 			smenu.appendChild(li);
 
-			//li 가 20개가 넘을경우 더보기 버튼 생성
+			//li 가 18개가 넘을경우 더보기 버튼 생성
 			if (i > 18) {
 				var li = document.createElement('li');
 				// 해당 버튼을 눌렀을 때, 모달을 띄우도록 처리
 				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>더보기</button>";
 				smenu.appendChild(li);
 			}
-			// 20개 이상일경우 더보기 버튼 클릭시 나타나는 메뉴
+			// 18개 이상일경우 더보기 버튼 클릭시 나타나는 메뉴
 			if (i > 18) {
 				var li = document.createElement('li');
 				li.innerHTML = menuArr[i].toString().replace("'", "").replace(
