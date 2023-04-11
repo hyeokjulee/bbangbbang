@@ -74,13 +74,8 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li class="has-dropdown"><a href="#">맛집리스트</a>
-							<ul class="dropdown">
-								<li><a href="#">Food Catering</a></li>
-								<li><a href="#">Wedding Celebration</a></li>
-								<li><a href="#">Birthday's Celebration</a></li>
-							</ul></li>
-						<li><a href="#">자유게시판</a></li>
+						<li class="has-dropdown"><a href="/store/list">맛집리스트</a></li>
+						<li><a href="/boards/boardlist">자유게시판</a></li>
 						<li><a href="/notices/noticelist">사이트소개</a></li>
 						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
 					</ul>

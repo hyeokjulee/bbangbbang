@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 //		boardRepository.replynewBoard(board);
 //	}
 	
-	public List<Board> getReplyById(String bid) {
+	public List<Comment> getReplyById(String bid) {
 		return boardRepository.getReplyById(bid);
 	}
 	
@@ -57,6 +57,23 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(Map<String, Object> map) {
 		 boardRepository.deleteBoard(map);
 		
+	}
+
+	
+
+	@Override
+	public void deleteReply(String cid) {
+		 boardRepository.deleteReply(cid);		
+	}
+	
+//	@Override
+//	public void updateReply(String cid) {
+//		boardRepository.updateReply(cid);
+//	}
+
+	@Override
+	public void updateReply(Map<String, Object> map) {
+		boardRepository.updateReply(map);		
 	}
 
 
