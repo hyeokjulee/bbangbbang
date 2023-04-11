@@ -28,6 +28,7 @@ body {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
+
 .offcanvas #page {
   overflow: hidden;
   position: absolute;
@@ -240,6 +241,11 @@ h1, h2, h3, h4, h5, h6, figure {
 #gtco-header {
   background: #4d4d4d;
 }
+
+#gtco-header-sub {
+  background: #ffaf60;
+}
+
 @media screen and (max-width: 992px) {
   #gtco-header.gtco-cover {
     height: inherit !important;
@@ -390,6 +396,16 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .gtco-cover-sub {
   height: 500px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.gtco-cover-sub2 {
+  height: 300px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
