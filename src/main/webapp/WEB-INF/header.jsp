@@ -42,9 +42,13 @@
 <!-- Owl Carousel  -->
 <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
 <link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="/resources/css/style.css">
+
+<!-- jQuery -->
+<script src="/resources/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="/resources/js/jquery.easing.1.3.js"></script>
 
 <!-- Modernizr JS -->
 <script src="/resources/js/modernizr-2.6.2.min.js"></script>
