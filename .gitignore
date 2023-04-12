@@ -5,3 +5,5 @@
 /bin/
 /.springBeans
 /.gitattributes
+target/
+INF/maven/com.bbang/controller/pom.properties
