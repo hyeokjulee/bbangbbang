@@ -70,23 +70,26 @@
 </script>
 
 <script>
-   // smenu, sprice 의 모든 값을 가져와서 배열에 넣는다.
    function getMenus(){
       var smenu = document.getElementsByName("smenu");
       var sprice = document.getElementsByName("sprice");
       var menus = [];
       var prices = [];
-      
-      // smenu, sprice의 값을 배열에 '값1','값2' 의 형식으로 넣는다
+            
       for(var i=0; i<smenu.length; i++){
-         menus.push("'"+smenu[i].value+"'");
-         prices.push("'"+sprice[i].value+"'");
+
+         smenu[i].value = "'" + smenu[i].value + "'";
+         sprice[i].value = "'" + sprice[i].value + "'";
+         menus.push(smenu[i].value);
+         prices.push(sprice[i].value);
       }
       console.log(menus);
       console.log(prices);
-   }
 
+      
+   }
 </script>
+
 
 <script>
    function sendForm(){
