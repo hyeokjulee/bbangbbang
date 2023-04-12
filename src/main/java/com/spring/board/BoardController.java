@@ -57,7 +57,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board")
-	public String requestBoardById(@RequestParam("bid") String bid, Model model) {
+	public String requestBoardById(@RequestParam String bid, Model model, Authentication auth) {
 		//주 게시물
 		Board boardById = boardService.getBoardById(bid);
 		model.addAttribute("board", boardById);
@@ -67,6 +67,16 @@ public class BoardController {
 				int cnt = list.size();
 				model.addAttribute("commentList",list);
 				model.addAttribute("cnt", cnt);
+				
+				if (auth == null) {
+					model.addAttribute("flag", false);
+				} else if (auth.getName().equals(boardService.getBoardById(bid).getBwriter())) {
+					model.addAttribute("flag", true);
+		    	} else if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+					model.addAttribute("flag", true);
+		    	} else {
+		    		model.addAttribute("flag", false);
+		    	}
 				
 				// 폼을 띄우기 전에 조회수 하나 증가
 				
@@ -79,6 +89,7 @@ public class BoardController {
 		
 		return "boards/board";
 	}
+	
 	@ResponseBody
 	@PostMapping("/replynew")
 	public void replynew(@RequestParam Map<String, Object> map) {
