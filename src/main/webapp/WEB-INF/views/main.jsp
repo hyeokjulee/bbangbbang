@@ -114,7 +114,7 @@
 												<h1 class="cursive-font">All in good taste!</h1>
 
 
-												<form action="/store/searchInfo" method="post">
+												<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="post">
 													<div class="input-group" style="margin-top: 50px;">
 														<input type="text" placeholder="지역 또는 검색어를 입력해주세요"
 															class="form-control" name="search"
