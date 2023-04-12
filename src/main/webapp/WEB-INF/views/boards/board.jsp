@@ -2,6 +2,11 @@
 
 <%@ include file="/WEB-INF/header.jsp"%>
 
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+	crossorigin="anonymous"></script>
+
 <header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
 <div class="overlay"></div>
 		<div class="gtco-container">
@@ -20,9 +25,6 @@
 		</div>
 	</header>
 	
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"
-	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-	crossorigin="anonymous"></script>
 
 	<section class="py-5 text-center container"></section><br><br>
 <body>
@@ -193,9 +195,8 @@
 		var modal_title = document.getElementById("modal-title");
 		modal_title.innerHTML = "댓글 수정";
 		var modal_body = document.getElementById("modal-body");
-		modal_body.innerHTML =  "<input id='cid' value= '" + cid + "' >" +
-								"<input id='ccontent' value= '" + ccontent + "' >" ;
-		
+		modal_body.innerHTML =  "<input id='cid' type='hidden' value= '" + cid + "' >" +
+								"<input id='ccontent' name='ccontent' value= '" + ccontent + "' rows='3' class='form-control'>" ;
 		var modal_footer = document.getElementById("modal-footer");
 		modal_footer.innerHTML = "<button type='button' class='btn btn-primary' onclick='javascript:updateAjax()'>수정</button>"
 			+ "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>닫기</button>" ; 
