@@ -13,9 +13,9 @@
 		<property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/bbang?serverTimezone=UTC" />
-		<property name="username" value="asd" />
-		<property name="password" value="1111" />
+			value="jdbc:mysql://bestguby.cafe24.com:3306/bestguby?allowMultiQueries=true&amp;autoReconnect=true" />
+		<property name="username" value="bestguby" />
+		<property name="password" value="sy5146!3040!" />
 	</bean>
 
 	<bean id="sqlSessionFactory"

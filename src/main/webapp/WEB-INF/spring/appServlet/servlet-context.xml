@@ -60,9 +60,9 @@
     <beans:bean id="dataSource"
     class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-    <beans:property name="url" value="jdbc:mysql://localhost:3306/bbang?serverTimezone=UTC"/>
-   	<beans:property name="username" value="asd"/>
-   	<beans:property name="password" value="1111"/>
+    <beans:property name="url" value="jdbc:mysql://bestguby.cafe24.com:3306/bestguby?allowMultiQueries=true&amp;autoReconnect=true"/>
+   	<beans:property name="username" value="bestguby"/>
+   	<beans:property name="password" value="sy5146!3040!"/>
     
    	
     </beans:bean>
