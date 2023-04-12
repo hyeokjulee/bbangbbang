@@ -48,13 +48,12 @@
          가게 사진 :
          <form:input path="sphotoFile" type="file" class="form-control" />
          <!-- 여기는 따로 수정이 필요 -->
-         메뉴 :
-         <form:input path="smenu" class="form-control" />
-         가격 :
-         <form:input path="sprice" class="form-control" />
+         
+         <button type="button" class="btn btn-primary" onclick="addMenu()">메뉴 추가</button>
+         <div id="menu" class="col-md-12"></div>
+       
 
-
-         <br><input type="submit" class="btn btn-primary" value="등록" />
+         <br><button type="button" class="btn btn-primary"  onclick="sendForm()">등록</button>
 
 
       </fieldset>
@@ -62,6 +61,42 @@
 </div>
    
 </body>
+
+<script>
+   function addMenu(){
+      var menu = document.getElementById("menu");
+      var div = document.createElement("div");
+      div.innerHTML = "메뉴 : <input type='text' name='smenu' class='form-control col-md-6' /> 가격 : <input type='text' name='sprice' class='form-control col-md-6' />";
+      menu.appendChild(div);
+   }
+</script>
+
+<script>
+   // smenu, sprice 의 모든 값을 가져와서 배열에 넣는다.
+   function getMenus(){
+      var smenu = document.getElementsByName("smenu");
+      var sprice = document.getElementsByName("sprice");
+      var menus = [];
+      var prices = [];
+      
+      // smenu, sprice의 값을 배열에 '값1','값2' 의 형식으로 넣는다
+      for(var i=0; i<smenu.length; i++){
+         menus.push(smenu[i].value);
+         prices.push(sprice[i].value);
+      }
+      console.log(menus);
+      console.log(prices);
+   }
+
+</script>
+
+<script>
+   function sendForm(){
+      getMenus();
+      document.forms[0].submit();
+   }
+</script>  
+
 <section class="py-5 text-center container"></section><br><br><br><br>
 
 <%@ include file="/WEB-INF/footer.jsp"%>
