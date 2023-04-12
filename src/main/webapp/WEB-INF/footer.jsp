@@ -70,6 +70,16 @@
 
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
+	
+	<script>
+		$('#logout').click(function(){   //logout 버튼을 클릭하였을 때
+			$.ajax({
+				type:'post',   //post 방식으로 전송
+				url:'/logout?${_csrf.parameterName}=${_csrf.token}'
+			});
+			location.reload();
+		});
+	</script>
 
 </body>
 </html>
