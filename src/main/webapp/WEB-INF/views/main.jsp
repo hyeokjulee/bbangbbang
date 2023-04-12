@@ -185,42 +185,44 @@
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강서</span>
+													<span class="price cursive-font" id="강서">강서</span>
 												</p>
 											</div>
 										</div>
 									</div>
 									<!-- 강북 -->
 									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangbuk()">
-										<a class="fh5co-card-item image">
+										<div class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
 												</div>
-												<img src="/resources/images/강북.jpg" alt="Image" class="img-responsive">
+												<img src="/resources/images/강북.jpg" alt="Image" class="img-responsive"
+													id="areaList">
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강북</span>
+													<span class="price cursive-font" id="강북">강북</span>
 												</p>
 											</div>
-										</a>
+										</div>
 									</div>
 									<!-- 강동 -->
 									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangDong()">
-										<a class="fh5co-card-item image">
+										<div class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
 												</div>
-												<img src="/resources/images/강동.jpg" alt="Image" class="img-responsive">
+												<img src="/resources/images/강동.jpg" alt="Image" class="img-responsive"
+													id="areaList">
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강동</span>
+													<span class="price cursive-font" id="강동">강동</span>
 												</p>
 											</div>
-										</a>
+										</div>
 									</div>
 
 								</div>
