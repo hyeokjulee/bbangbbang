@@ -10,7 +10,7 @@
 
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">사이트소개</h2>
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">자유게시판</h2>
 						</div>
 						
 					</div>
