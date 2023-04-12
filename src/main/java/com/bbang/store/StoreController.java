@@ -172,7 +172,7 @@ public class StoreController {
 
 	
 	//경외------------------------------------------------------
-	@PostMapping("/searchInfo")
+	@GetMapping("/searchInfo")
 	public String searchInfo(@RequestParam("search") String search, Model model) {
 
 		List<Store> list = sqlsessionTemplate.selectList("search_list", search);
