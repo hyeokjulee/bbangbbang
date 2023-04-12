@@ -185,7 +185,7 @@ public class StoreController {
 	//경외------------------------------------------------------
 	
 	//경외------------------------------------------------------
-	@PostMapping("/areaList")
+	@GetMapping("/areaList")
     public String getAreaList(@RequestParam Map<String, Object> map , Model model) {
         // MyBatis의 Mapper를 사용하여 데이터베이스에서 데이터를 조회
 
