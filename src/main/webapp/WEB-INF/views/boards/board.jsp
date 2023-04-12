@@ -115,11 +115,11 @@
                     </button>
                 </div>
                 <div class="modal-body" id="modal-body">
-                    <input id="updateContent" class="form-control">
+                    <input id="cccontent" class="form-control">
                 </div>
                 <div class="modal-footer" id="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary" onclick="javascript:updateComment()">수정</button>
+                    <!--  <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" onclick="javascript:updateComment()">수정</button> -->
                 </div>
             </div>
         </div>
@@ -196,18 +196,18 @@
 		modal_title.innerHTML = "댓글 수정";
 		var modal_body = document.getElementById("modal-body");
 		modal_body.innerHTML =  "<input id='cid' type='hidden' value= '" + cid + "' >" +
-								"<input id='ccontent' name='ccontent' value= '" + ccontent + "' rows='3' class='form-control'>" ;
+								"<input id='cccontent' name='ccontent' value= '" + ccontent + "' rows='3' class='form-control'>" ;
 		var modal_footer = document.getElementById("modal-footer");
 		modal_footer.innerHTML = "<button type='button' class='btn btn-primary' onclick='javascript:updateAjax()'>수정</button>"
-			+ "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>닫기</button>" ; 
+			+ "<button type='button' class='btn btn-secondary' onclick='modalClose()'>닫기</button>"; 
 	}
 
 	function updateAjax() {
 	    var cid = document.querySelector("#cid").value;
-	    var ccontent = document.querySelector("#ccontent").value;
+	    var ccontent = document.querySelector("#cccontent").value;
 
 	    $.ajax({
-	        url: "/boards/updatereply?${_csrf.parameterName}=${_csrf.token}",
+	        url: "/boards/updatereply",
 	        type: "POST",
 	        data: {
 	            cid: cid,
@@ -223,8 +223,22 @@
 	            // 수정 실패 시 처리할 로직
 	        }
 	    });
+	    
 	}
 
+	 $('a[href="#updateModal"]').click(function(event) {
+	      event.preventDefault();
+	 
+	      $(this).modal({
+	        fadeDuration: 250
+	      });
+	    });
+	 
+	    function modalClose() {
+	        $('#updateModal').modal('hide'); 
+	        $('#updateModal').hide();
+	        $('.jquery-modal').hide();
+	    }
 
 </script>
 

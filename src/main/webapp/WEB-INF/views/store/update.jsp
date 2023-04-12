@@ -1,36 +1,116 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
+
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+      <div class="gtco-container">
+         <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+
+               <div class="row row-mt-8em">
+                  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+                     <h2 class="white-color" style="font-size: 60px; font-weight: bold;">가게 등록</h2>
+                  </div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+   </header>
+<section class="py-5 text-center container"></section><br><br>
 <body>
-updateForm
+   <div class="container">
+   <div class="row form-group" ></div>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<form action="/store/update" method="post">
-<input type="hidden" name="sid" value="${store.sid}">
-<input name="sname" value="${store.sname}"> name
-<input name="saddr"value="${store.saddr}"> addr
-<input name="stel"value="${store.stel}"> stel
-<input name="sphoto2"value="${store.sphoto2}">  spho2
-<input name="sopen"value="${store.sopen}"> sopen
-<input name="smenu"value="${store.smenu}"> smenu
-<input name="sprice"value="${store.sprice}"> sprice
+<!--  ${_csrf.parameterName}=${_csrf.token} -->
 
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+   <form
+      action="/store/update?${_csrf.parameterName}=${_csrf.token}&sid=${store.sid}"
+      class="form-horizontal" method="POST" enctype="multipart/form-data">
+      <fieldset>
+         
+         가게 이름 :
+         <input name="sname" class="form-control" />
+         가게 주소 :
+         <input name="saddr" class="form-control" />
+         가게 번호 :
+         <input name="stel" class="form-control" />
+         가게 사진 :
+         <input name="sphotoFile" type="file" class="form-control" />
+         <!-- 여기는 따로 수정이 필요 -->
+         
+         <button type="button" class="btn btn-primary" onclick="addMenu()">메뉴 추가</button>
+         <div id="menu" class="col-md-12"></div>
+       
 
-<input type="submit" value="수정하기">
+         <br><button type="button" class="btn btn-primary"  onclick="sendForm()">등록</button>
 
-<input formaction="/store/delete" formmethod="POST" type="submit" value="삭제">
-</form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+      </fieldset>
+   </form>
+</div>
+   
 </body>
-</html>
 
+<script>
+    
+
+
+   function addMenu(){
+      var menu = document.getElementById("menu");
+      var div = document.createElement("div");
+      div.innerHTML = "메뉴 : <input type='text' name='smenu' class='form-control col-md-6' /> 가격 : <input type='text' name='sprice' class='form-control col-md-6' />";
+      menu.appendChild(div);
+   }
+</script>
+
+<script>
+   function getMenus(){
+      var smenu = document.getElementsByName("smenu");
+      var sprice = document.getElementsByName("sprice");
+      var menus = [];
+      var prices = [];
+            
+      for(var i=0; i<smenu.length; i++){
+
+         smenu[i].value = "'" + smenu[i].value + "'";
+         sprice[i].value = "'" + sprice[i].value + "'";
+         menus.push(smenu[i].value);
+         prices.push(sprice[i].value);
+      }
+      console.log(menus);
+      console.log(prices);
+
+      var updateMenu = document.createElement("input");
+      updateMenu.setAttribute("type", "hidden");
+      updateMenu.setAttribute("name", "smenu");
+      updateMenu.setAttribute("value", updateMenu);
+      document.forms[0].appendChild(updateMenu);
+
+       var updatePrice = document.createElement("input");
+       updatePrice.setAttribute("type", "hidden");
+       updatePrice.setAttribute("name", "sprice");
+       updatePrice.setAttribute("value", updatePrice);
+       document.forms[0].appendChild(updatePrice);
+   }
+</script>
+
+
+<script>
+   function sendForm(){
+      getMenus();
+      document.forms[0].submit();
+   }
+</script>  
+
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>
