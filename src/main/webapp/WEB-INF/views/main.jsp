@@ -191,7 +191,7 @@
 										</div>
 									</div>
 									<!-- 강북 -->
-									<div class="col-lg-3 col-md-4 col-sm-6">
+									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangbuk()">
 										<a href="#" class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
@@ -207,7 +207,7 @@
 										</a>
 									</div>
 									<!-- 강동 -->
-									<div class="col-lg-3 col-md-4 col-sm-6">
+									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangDong()">
 										<a href="#" class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
@@ -427,6 +427,35 @@
 						<script src="/resources/js/main.js"></script>
 
 						<script>
+						
+							function areaGangNam() {
+								var form = document.createElement("form");
+								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
+								form.method = "POST";
+								
+								var hiddenField = document.createElement("input");
+								hiddenField.type = "hidden";
+								hiddenField.name = "area1";
+								hiddenField.value = "강남";
+								
+								var hiddenField2 = document.createElement("input");
+								hiddenField2.type = "hidden";
+								hiddenField2.name = "area2";
+								hiddenField2.value = "서초";
+								
+								var hiddenField3 = document.createElement("input");
+								hiddenField3.type = "hidden";
+								hiddenField3.name = "area3";
+								hiddenField3.value = "송파";
+								
+								form.appendChild(hiddenField);
+								form.appendChild(hiddenField2);
+								form.appendChild(hiddenField3);
+								
+								document.body.appendChild(form);
+								form.submit();
+							}
+							
 							function areaWest() {
 								var form = document.createElement("form");
 								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
@@ -454,6 +483,65 @@
 								document.body.appendChild(form);
 								form.submit();
 							}
+							
+							 function areaGangBuk() {
+								var form = document.createElement("form");
+								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
+								form.method = "POST";
+								
+								var hiddenField = document.createElement("input");
+								hiddenField.type = "hidden";
+								hiddenField.name = "area1";
+								hiddenField.value = "강북";
+								
+								var hiddenField2 = document.createElement("input");
+								hiddenField2.type = "hidden";
+								hiddenField2.name = "area2";
+								hiddenField2.value = "종로";
+								
+								var hiddenField3 = document.createElement("input");
+								hiddenField3.type = "hidden";
+								hiddenField3.name = "area3";
+								hiddenField3.value = "동대문";
+								
+								form.appendChild(hiddenField);
+								form.appendChild(hiddenField2);
+								form.appendChild(hiddenField3);
+								
+								document.body.appendChild(form);
+								form.submit();
+							}
+							 
+							 function areaGangDong() {
+								var form = document.createElement("form");
+								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
+								form.method = "POST";
+								
+								var hiddenField = document.createElement("input");
+								hiddenField.type = "hidden";
+								hiddenField.name = "area1";
+								hiddenField.value = "강동";
+								
+								var hiddenField2 = document.createElement("input");
+								hiddenField2.type = "hidden";
+								hiddenField2.name = "area2";
+								hiddenField2.value = "광진";
+								
+								var hiddenField3 = document.createElement("input");
+								hiddenField3.type = "hidden";
+								hiddenField3.name = "area3";
+								hiddenField3.value = "중랑";
+								
+								form.appendChild(hiddenField);
+								form.appendChild(hiddenField2);
+								form.appendChild(hiddenField3);
+								
+								document.body.appendChild(form);
+								form.submit();
+							}
+					
+							
+							
 						</script>
 
 					</body>
