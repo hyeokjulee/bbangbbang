@@ -51,62 +51,98 @@
          <br><button type="button" class="btn btn-primary"  onclick="sendForm()">등록</button>
          <input type="hidden" name="sid" class="form-control" value="${store.sid }"/>
 
+       
       </fieldset>
    </form>
+   <input type="text" class="smenu" class="form-control" value="${store.smenu}"/>
+   <input type="text" class="sprice" class="form-control" value="${store.sprice}"/>
 </div>
    
 </body>
 
+<script>
+    window.onload = function(){
+        var menu = document.getElementById("menu");
+
+        var smenuList = document.querySelector(".smenu").value;
+        var spriceList = document.querySelector(".sprice").value;
+
+        var smenuList2 = smenuList.split(",");
+        var spriceList2 = spriceList.split(",");
+        
+        console.log(smenuList2) ;
+        console.log(spriceList2) ;
+
+        //menu.innerText 로 하면 안됨
+        for(var i=0; i<smenuList2.length; i++){
+            var div = document.createElement("div");
+            div.className = "row form-group";
+            div.innerHTML = "<div class='col-md-6'><input type='text' name='smenu' class='form-control' value="+smenuList2[i]+"/></div><div class='col-md-6'><input type='text' name='sprice' class='form-control' value="+spriceList2[i]+"/></div>";
+            menu.appendChild(div);
+        }
+
+    }
+
+</script>
+
+
 
 <script>
-   function sendForm(){
-      getMenus();
-      document.forms[0].submit();
-   }
+
+function addMenu(){
+    var menu = document.getElementById("menu");
+    var div = document.createElement("div");
+    div.className = "row form-group";
+    div.innerHTML = "<div class='col-md-6'><input type='text' name='smenu' class='form-control col-md-6' placeholder='메뉴 이름'/></div><div class='col-md-6'><input type='text' name='sprice' class='form-control col-md-6' placeholder='메뉴 가격' /></div>";
+    menu.appendChild(div);
+}
+
 </script>  
 
 <script>
+function getMenus(){
+    var smenu = document.getElementsByName("smenu");
+    var sprice = document.getElementsByName("sprice");
+    var menus = [];
+    var prices = [];
+            
+    for(var i=0; i<smenu.length; i++){
+
+        smenu[i].value = "'" + smenu[i].value + "'";
+        sprice[i].value = "'" + sprice[i].value + "'";
+        menus.push(smenu[i].value);
+        prices.push(sprice[i].value);
+    }
+    console.log(menus);
+    console.log(prices);
+    
+    //menus 를 form 에 name="smenu" 의 이름으로 추가해서 보내기
+    var smenu = document.createElement("input");
+    smenu.setAttribute("type", "hidden");
+    smenu.setAttribute("name", "smenu");
+    smenu.setAttribute("value", menus);
+    document.forms[0].appendChild(smenu);
+
+    //prices 를 form 에 name="sprice" 의 이름으로 추가해서 보내기
+    var sprice = document.createElement("input");
+    sprice.setAttribute("type", "hidden");
+    sprice.setAttribute("name", "sprice");
+    sprice.setAttribute("value", prices);
+    document.forms[0].appendChild(sprice);
+
     
 
-
-   function addMenu(){
-      var menu = document.getElementById("menu");
-      var div = document.createElement("div");
-      div.innerHTML = "메뉴 : <input type='text' name='smenu' class='form-control col-md-6' /> 가격 : <input type='text' name='sprice' class='form-control col-md-6' />";
-      menu.appendChild(div);
-   }
+    
+}
 </script>
+
 
 <script>
-   function getMenus(){
-      var smenu = document.getElementsByName("smenu");
-      var sprice = document.getElementsByName("sprice");
-      var menus = [];
-      var prices = [];
-            
-      for(var i=0; i<smenu.length; i++){
-
-         smenu[i].value = "'" + smenu[i].value + "'";
-         sprice[i].value = "'" + sprice[i].value + "'";
-         menus.push(smenu[i].value);
-         prices.push(sprice[i].value);
-      }
-      console.log(menus);
-      console.log(prices);
-
-      var updateMenu = document.createElement("input");
-      updateMenu.setAttribute("type", "hidden");
-      updateMenu.setAttribute("name", "smenu");
-      updateMenu.setAttribute("value", updateMenu);
-      document.forms[0].appendChild(updateMenu);
-
-       var updatePrice = document.createElement("input");
-       updatePrice.setAttribute("type", "hidden");
-       updatePrice.setAttribute("name", "sprice");
-       updatePrice.setAttribute("value", updatePrice);
-       document.forms[0].appendChild(updatePrice);
-   }
-</script>
+function sendForm(){
+    getMenus();
+    document.forms[0].submit();
+}
+</script>  
 
 
 <section class="py-5 text-center container"></section><br><br><br><br>

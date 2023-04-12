@@ -141,9 +141,9 @@ public class StoreController {
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
 		
-		System.out.println(storeById.getSid());
-		System.out.println(storeById.getSaddr());
-		System.out.println(storeById.getSname());
+		//System.out.println(storeById.getSid());
+		//System.out.println(storeById.getSaddr());
+		//System.out.println(storeById.getSname());
 
 		return "/store/update";
 	}
