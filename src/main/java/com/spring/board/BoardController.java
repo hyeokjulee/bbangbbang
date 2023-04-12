@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.notice.Notice;
+
 
 @Controller
 @RequestMapping("/boards")
@@ -101,24 +103,27 @@ public class BoardController {
 	
 	 //게시물 수정 페이지로 이동
     @GetMapping("/boardupdate")
-    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value="bid", required = false) String bid, Model model) {
+    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value="bid") String bid, Model model) {
     	
-    	Board boardupdate = boardService.getBoardById(bid);
-    	
-        model.addAttribute("pageInfo", boardService.getBoardById(bid));
-        
+    	Board boardById = boardService.getBoardById(bid);
+        model.addAttribute("board", boardById);
         return "boards/boardupdate";
     }
     
     //게시물 수정
     @PostMapping("/boardupdate")
-	public String boardUpdatePOST(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value= "bid", required = false) String bid, @RequestParam("btitle") String btitle, @RequestParam("bcontent") String bcontent, Model model) {
+	public String boardUpdatePOST(@RequestParam(value = "bid", required = false) String bid, @ModelAttribute("UpdateBoard") Board board) {
 		
-         Board boardById = boardService.getBoardById(bid);
-         model.addAttribute("board", boardById);
-         boardById.setBtitle(board.getBtitle());
-         boardById.setBcontent(board.getBcontent());
-         boardService.updateBoard(board);
+    	boardService.updateBoard(board);
+
+//    	Board boardById = boardService.getBoardById(bid);
+//         model.addAttribute("board", boardById);
+//         boardById.setBtitle(board.getBtitle());
+//         boardById.setBcontent(board.getBcontent());
+         
+         System.out.println(board.getBcontent());
+ 		System.out.println(board.getBtitle());
+ 		System.out.println(board.getBid());
          
          return "redirect:/boards/boardlist";
          

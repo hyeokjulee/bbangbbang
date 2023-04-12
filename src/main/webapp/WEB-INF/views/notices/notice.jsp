@@ -75,12 +75,13 @@
 <div>
      조회수 [ ${notice.nview} ] 
 
+  <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
   <form action="/notices/deletenotice" method="post" style="display:inline;">
     <input type="hidden" name="nid" value="${notice.nid }"/>
-    <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
   </form>
   <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
-  <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
 </div>
 	</div>
 
@@ -98,18 +99,19 @@ function goToUpdate() {
 			window.location.href = "/noticeupdate";
 		}
 		
-/* 삭제 버튼 */		
+/*  //삭제 버튼 		
 function ajaxremoveFrom(notice) {
 	$.ajax({
 		type:"POST",
 		url:"/notice/ajaxremove",
-			data:{nid:notice},
-		beforeSend : function(xhr)
-	          {   /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	          },
+			data:{
+				nid:notice
+			},
+			beforeSend : function(xhr){   //데이터를 전송하기 전에 헤더에 csrf값을 설정한다
+	            xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	        },
 		success:function(result) {
-			alert("게시글이 삭제되었습니다.");
+			alert("소개글이 삭제되었습니다.");
 		},
 		error:function(request, status, error) {
 			alert(request.status + " " +request.responseText);
@@ -118,7 +120,7 @@ function ajaxremoveFrom(notice) {
 
     window.location.reload();
 }
-
+ */
 
 </script>
 <section class="py-5 text-center container"></section><br><br><br><br>

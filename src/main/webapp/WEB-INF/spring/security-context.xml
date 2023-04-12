@@ -9,6 +9,7 @@
 	<!-- web.xml에서 사용하는 FilterChain의 대한 설정부분이다. -->
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/login" access="isAnonymous()" />
+		<security:intercept-url pattern="/join" access="isAnonymous()" />
 		<security:intercept-url pattern="/admin/*" access="hasAuthority('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/user/*" access="hasAuthority('ROLE_USER')" />
 		<security:intercept-url pattern="/**" access="permitAll" />

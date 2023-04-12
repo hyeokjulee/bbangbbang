@@ -75,7 +75,7 @@ li {
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div id="gtco-logo">
-						<a href="index.html">서울에서 배빵빵 <em>.</em></a>
+						<a href="/">서울에서 배빵빵 <em>.</em></a>
 					</div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">

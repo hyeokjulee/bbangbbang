@@ -20,27 +20,6 @@
 		</div>
 	</header>
 
-<script>
-	/*  function removeCar(cid) {
-	     $.ajax({
-	         type:"POST",
-	         url:"/cars/remove",
-	         data:{cid: cid },
-	         beforeSend : function(xhr)
-	         {  
-	             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	         },
-	         success: function(result) {
-	             alert("제품이 삭제되었습니다.")
-	         },
-	         error:function (request, status, error) {
-	             alert(request.status + " " + request.responseText);
-	         }
-	     })
-
-	     window.location.reload();
-	 } */
-</script>
 </head>
 <section class="py-5 text-center container"></section><br><br><br><br>
 <body>
