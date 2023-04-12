@@ -89,6 +89,7 @@ public class NoticeController {
     	
     	Notice noticeById = noticeService.getNoticeById(nid);
 		model.addAttribute("notice", noticeById);
+		
 		return "notices/noticeupdate";
 	}
     //경외---------------------
@@ -136,7 +137,7 @@ public class NoticeController {
 //        return "redirect:/notices/notice";
 //    }
 
-   @PostMapping("/deletenotice") 
+    @PostMapping("/deletenotice")
 	public ModelAndView deletePost(@RequestParam Map<String, Object> map) {  
 
 	noticeService.deleteNotice(map);

@@ -1,130 +1,129 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>게시물 보기</title>
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+
+					<div class="row row-mt-8em">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">사이트소개</h2>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</header>
+	
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
 	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 	crossorigin="anonymous"></script>
 
-
-</head>
+	<section class="py-5 text-center container"></section><br><br>
 <body>
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-		crossorigin="anonymous">
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
+  <div class="container">
 
-	<!-- 주 게시물 -->
-	<div class="card">
-		<h5 class="card-header">${board.btitle}</h5>
-		<div class="card-body">
-			<h5 class="card-title">${board.bcontent}</h5>
-			<br> <br> <br>
-			<div class="d-flex justify-content-end">
-				<p class="btn btn-success btn-sm">조회수 [ ${board.bview} ]</p>
-			</div>
-			<div class="d-flex justify-content-end badge bg-light text-dark">${board.bregdate}</div>
+    <!-- 주 게시물 -->
+    <div class="panel panel-default">
+      <div class="panel-heading">${board.btitle}</div>
+      <div class="panel-body">
+        <h5>${board.bcontent}</h5>
+        <br><br><br>
+        <div class="text-right">
+       		   조회수 [ ${board.bview} ]
+        </div>
+        <div class="text-right">작성일: ${board.bregdate}</div>
 
-			<!-- <button type="button" class="btn btn-primary" style="float:right" onclick="goToUpdate()">수정</button> -->
-			<a href="/boards/boardupdate?bid=${board.bid }"
-				class="btn btn-primary" style="float: right">수정</a>
-			<!-- <button type="button" class="btn btn-danger" style="float:right" id="delete_btn">삭제</button> -->
-			<%-- <a id = "board" href="javascript:ajaxremoveFromBoard('${board.bid}')"
-								class="btn btn-danger" style="float:right">삭제</a> --%>
-			<form action="/boards/deleteboard" method="post">
-				<input type="hidden" name="bid" value="${board.bid }" /> <input
-					type="submit" class="btn btn-danger" style="float: right"
-					value="삭제" />
-			</form>
-			<button type="button" class="btn btn-secondary" style="float: right"
-				onclick="history.back()">취소</button>
-		</div>
-	</div>
-	
-		<!-- 답변 등록 -->
-		<sec:authentication property="principal" var="user" />
-		<%-- 	<input id="cwriter" type="hidden" value="${board.bwriter}"/> --%>
-		<input id="bid" type="hidden" name="bid" value="${board.bid}">
+         <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
+        <form action="/boards/deleteboard" method="post" style="display:inline;">
+          <input type="hidden" name="bid" value="${board.bid }" />
+          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />
+        </form>
+        <a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</a>
+      </div>
+    </div>
 
-		<div class="card text-center">
-			<div class="card-header">
-				<%--  작성자 : ${member.username} --%>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">답변 등록</h5>
-				<p class="card-text">
-					<textarea name="ccontent" id="ccontent" rows="3"
-						class="form-control"></textarea>
-				</p>
-				<button class="btn btn-primary" style="float: right" type="button"
-					onclick="addreply()">답변등록</button>
-			</div>
-		</div>
+    <!-- 답변 등록 -->
+    <sec:authentication property="principal" var="user" />
+    <input id="bid" type="hidden" name="bid" value="${board.bid}">
 
+    <div class="panel panel-default">
+      <div class="panel-heading">답변 등록</div>
+      <div class="panel-body">
+        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
+        <br>
+        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">답변 등록</button>
+      </div>
+    </div>
+    
+    
 	<!-- 답변 게시물 -->
 
-	<div class="card">
-		<div class="card-body">답변 리스트</div>
-		<b>${cnt}개의 답변이 있습니다.</b>
-		<c:forEach items="${commentList}" var="c">
-
-			<div class="card">
-				<div class="card-header">${c.cwriter}</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-						<p>${c.ccontent}</p>
-						<div class="d-flex justify-content-end">
-							<footer class="blockquote-footer">${c.cregdate}</footer>
-						</div>
-						<button type="button" class="btn btn-primary btn-sm" style="float: right" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
-						<form action="/boards/deletereply" method="post">
+	<div class="panel panel-default">
+    <div class="panel-heading">답변 리스트</div>
+    <div class="panel-body">
+        <b>${cnt}개의 답변이 있습니다.</b>
+        <c:forEach items="${commentList}" var="c">
+            <div class="panel panel-default">
+                <div class="panel-heading">${c.cwriter}</div>
+                <div class="panel-body">
+                    <p>${c.ccontent}</p>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <small>${c.cregdate}</small>
+                        </div>
+                         <div class="col-sm-6">
+                            <div class="btn-group pull-right">
+                                <%-- <button type="button" class="btn btn-primary btn-xs" onclick="javascript:updateModal(${c.cid},'${c.ccontent}')">수정</button>
+                                <form action="/boards/deletereply" method="post">
+                                    <input type="hidden" name="bid" value="${c.bid}" />
+                                    <input type="hidden" name="cid" value="${c.cid}" />
+                                    <button type="submit" class="btn btn-danger btn-xs">삭제</button>
+                                </form> --%>
+						<form action="/boards/deletereply" method="post"   style="display:inline;">
+						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<input type="hidden" name="bid" value="${c.bid }" />
-						<input type="hidden" name="cid" value="${c.cid }" /> <input
-							type="submit" class="btn btn-danger btn-sm" style="float: right"
-							value="삭제" />
+						<input type="hidden" name="cid" value="${c.cid }" /> 
+						<input type="submit" class="btn btn-danger btn-sm" style="float: right; margin-right: 5px;" value="삭제" />
 						</form>
-					</blockquote>
-				</div>
-			</div>
-		</c:forEach>
+                        <button type="button" class="btn btn-primary btn-sm" style="float: right; margin-right: 5px;" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 
-		<!-- 댓글 수정 모달 -->
-					<div class="modal" tabindex="-1">
-						<div class="modal-dialog" id="updateModal">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="modal-title">모달_타이틀_</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal"
-										aria-label="Close"></button>
-								</div>
-								<div class="modal-body" id="modal-body">
-									모달_바디_부분_자동으로_정보를_가져와서_바꿀_예정
-								</div>
-								<div class="modal-footer" id="modal-footer">
-
-
-								</div>
-							</div>
-						</div>
-					</div>
-					
-	
-
-	</div>
-
+    <!-- 댓글 수정 모달 -->
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-title">댓글 수정</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <input id="updateContent" class="form-control">
+                </div>
+                <div class="modal-footer" id="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" onclick="javascript:updateComment()">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </body>
 
 <script>
@@ -227,4 +226,7 @@
 
 
 </script>
-</html>
+
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>
