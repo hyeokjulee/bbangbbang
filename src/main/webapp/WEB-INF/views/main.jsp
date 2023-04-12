@@ -486,7 +486,7 @@
 								form.submit();
 							}
 							
-							 function areaGangBuk() {
+							 function areaGangbuk() {
 								var form = document.createElement("form");
 								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
 								form.method = "POST";
