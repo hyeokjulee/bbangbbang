@@ -75,13 +75,17 @@
 <div>
      조회수 [ ${notice.nview} ] 
 
-  <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
-  <form action="/notices/deletenotice" method="post" style="display:inline;">
-    <input type="hidden" name="nid" value="${notice.nid }"/>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
-  </form>
-  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
+  <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
+  
+  <sec:authorize access="hasRole('ROLE_ADMIN')">
+	  <form action="/notices/deletenotice" method="post" style="display:inline;">
+	    <input type="hidden" name="nid" value="${notice.nid }"/>
+	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
+	  </form>
+	  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
+  </sec:authorize>
+		    
 </div>
 	</div>
 
