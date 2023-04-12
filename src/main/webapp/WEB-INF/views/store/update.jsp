@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-
-
 <%@ include file="/WEB-INF/header.jsp"%>
 
 <%@ taglib prefix="sec"
@@ -16,7 +13,7 @@
 
                <div class="row row-mt-8em">
                   <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-                     <h2 class="white-color" style="font-size: 60px; font-weight: bold;">가게 등록</h2>
+                     <h2 class="white-color" style="font-size: 60px; font-weight: bold;">가게 수정</h2>
                   </div>
                   
                </div>
@@ -33,32 +30,40 @@
 <!--  ${_csrf.parameterName}=${_csrf.token} -->
 
    <form
-      action="/store/update?${_csrf.parameterName}=${_csrf.token}&sid=${store.sid}"
+      action="/store/update?${_csrf.parameterName}=${_csrf.token}"
       class="form-horizontal" method="POST" enctype="multipart/form-data">
       <fieldset>
          
          가게 이름 :
-         <input name="sname" class="form-control" />
+         <input type="text" name="sname" class="form-control" value="${store.sname }"/>
          가게 주소 :
-         <input name="saddr" class="form-control" />
+         <input name="saddr" class="form-control" value="${store.saddr }"/>
          가게 번호 :
-         <input name="stel" class="form-control" />
+         <input name="stel" class="form-control" value="${store.stel }" />
          가게 사진 :
-         <input name="sphotoFile" type="file" class="form-control" />
+         <input name="sphotoFile" type="file" class="form-control"/>
          <!-- 여기는 따로 수정이 필요 -->
          
          <button type="button" class="btn btn-primary" onclick="addMenu()">메뉴 추가</button>
-         <div id="menu" class="col-md-12"></div>
+         <div id="menu" class="col-md-12" ></div>
        
 
          <br><button type="button" class="btn btn-primary"  onclick="sendForm()">등록</button>
-
+         <input type="hidden" name="sid" class="form-control" value="${store.sid }"/>
 
       </fieldset>
    </form>
 </div>
    
 </body>
+
+
+<script>
+   function sendForm(){
+      getMenus();
+      document.forms[0].submit();
+   }
+</script>  
 
 <script>
     
@@ -103,13 +108,6 @@
    }
 </script>
 
-
-<script>
-   function sendForm(){
-      getMenus();
-      document.forms[0].submit();
-   }
-</script>  
 
 <section class="py-5 text-center container"></section><br><br><br><br>
 

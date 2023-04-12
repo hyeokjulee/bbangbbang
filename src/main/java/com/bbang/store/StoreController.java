@@ -136,8 +136,14 @@ public class StoreController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String storeUpdateForm(@RequestParam("sid") String sid, Model model) {
 
+		System.out.println(sid);
+		
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+		System.out.println(storeById.getSid());
+		System.out.println(storeById.getSaddr());
+		System.out.println(storeById.getSname());
 
 		return "/store/update";
 	}
