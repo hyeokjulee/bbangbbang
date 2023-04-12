@@ -35,7 +35,7 @@
           </div>
           <div class="panel-footer">
             <div class="btn-group">
-              <a href="/store/detail?sid=${store.sid}" class="btn btn-primary">Go Detail</a>
+              <a href="/store/info?sid=${store.sid}" class="btn btn-primary">View</a>
               <input type="hidden" name="sid" value="${store.sid}">
             </div>
           </div>
