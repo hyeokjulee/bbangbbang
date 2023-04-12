@@ -191,7 +191,7 @@
 										</div>
 									</div>
 									<!-- 강북 -->
-									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangbuk()">
+									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangBuk()">
 										<div class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
@@ -486,7 +486,7 @@
 								form.submit();
 							}
 							
-							 function areaGangbuk() {
+							 function areaGangBuk() {
 								var form = document.createElement("form");
 								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
 								form.method = "POST";
