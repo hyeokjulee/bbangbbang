@@ -73,10 +73,26 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li class="has-dropdown"><a href="#">맛집리스트</a></li>
-						<li><a href="#">자유게시판</a></li>
-						<li><a href="notices/noticelist">사이트소개</a></li>
-						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
+						<li><a href="/store/list">맛집리스트</a></li>
+						<li><a href="/boards/boardlist">자유게시판</a></li>
+						<li><a href="/notices/noticelist">사이트소개</a></li>
+
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li class="btn-cta"><a href="/admin/list"><span>회원목록</span></a></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="hasRole('ROLE_USER')">
+					    	<li class="btn-cta"><a href="/user/myEdit"><span>마이페이지</span></a></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="isAuthenticated()">
+					    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="!isAuthenticated()">
+					    	<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+					    	<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+					    </sec:authorize>
 					</ul>
 				</div>
 			</div>
