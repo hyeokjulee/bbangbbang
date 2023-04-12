@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+
 <%@ include file="/WEB-INF/header.jsp"%>
+
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
 
 <header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
 <div class="overlay"></div>
@@ -29,7 +35,7 @@
 <!--  ${_csrf.parameterName}=${_csrf.token} -->
 
    <form:form modelAttribute="NewStore"
-      action="/store/add"
+      action="/store/add?${_csrf.parameterName}=${_csrf.token}"
       class="form-horizontal" method="POST" enctype="multipart/form-data">
       <fieldset>
          
