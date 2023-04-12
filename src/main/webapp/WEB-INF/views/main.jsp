@@ -2,6 +2,7 @@
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 			<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+			<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 				<%@ page session="false" %>
 
 
@@ -58,22 +59,10 @@
 					<body>
 
 						<div class="gtco-loader"></div>
-
-			<div class="row">
-				<div class="col-sm-4 col-xs-12">
-					<div id="gtco-logo">
-						<a href="/">서울에서 배빵빵 <em>.</em></a>
-					</div>
-				</div>
-				<div class="col-xs-8 text-right menu-1">
-					<ul>
-						<li class="has-dropdown"><a href="/store/list">맛집리스트</a></li>
-						<li><a href="/boards/boardlist">자유게시판</a></li>
-						<li><a href="/notices/noticelist">사이트소개</a></li>
-						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
-					</ul>
-				</div>
-			</div>
+						
+						<!-- <div class="page-inner"> -->
+						<nav class="gtco-nav" role="navigation">
+							<div class="gtco-container">
 
 								<div class="row">
 									<div class="col-sm-4 col-xs-12">
@@ -83,16 +72,26 @@
 									</div>
 									<div class="col-xs-8 text-right menu-1">
 										<ul>
-											<li class="has-dropdown"><a href="#">맛집리스트</a>
-												<ul class="dropdown">
-													<li><a href="#">Food Catering</a></li>
-													<li><a href="#">Wedding Celebration</a></li>
-													<li><a href="#">Birthday's Celebration</a></li>
-												</ul>
-											</li>
-											<li><a href="#">자유게시판</a></li>
-											<li><a href="#">사이트소개</a></li>
-											<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
+											<li><a href="/store/list">맛집리스트</a></li>
+											<li><a href="/boards/boardlist">자유게시판</a></li>
+											<li><a href="/notices/noticelist">사이트소개</a></li>
+
+											<sec:authorize access="hasRole('ROLE_ADMIN')">
+												<li class="btn-cta"><a href="/admin/list"><span>회원목록</span></a></li>
+										    </sec:authorize>
+											
+										    <sec:authorize access="hasRole('ROLE_USER')">
+										    	<li class="btn-cta"><a href="/user/myEdit"><span>마이페이지</span></a></li>
+										    </sec:authorize>
+											
+										    <sec:authorize access="isAuthenticated()">
+										    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
+										    </sec:authorize>
+											
+										    <sec:authorize access="!isAuthenticated()">
+										    	<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+										    	<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+										    </sec:authorize>
 										</ul>
 									</div>
 								</div>
@@ -107,7 +106,6 @@
 							<div class="gtco-container">
 								<div class="row">
 									<div class="col-md-12 col-md-offset-0 text-left">
-
 
 										<div class="row row-mt-15em">
 											<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
@@ -239,6 +237,14 @@
 							<script type="text/javascript"
 								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
 							<script>
+							$('#logout').click(function(){   //logout 버튼을 클릭하였을 때
+								$.ajax({
+									type:'post',   //post 방식으로 전송
+									url:'/logout?${_csrf.parameterName}=${_csrf.token}'
+								});
+								location.reload();
+							});
+							
 								var listData = [];
 
 								/* 		$(document).ready(function() {
@@ -421,11 +427,7 @@
 						<script src="/resources/js/main.js"></script>
 
 						<script>
-						
 						</script>
-
-
-
 
 					</body>
 
