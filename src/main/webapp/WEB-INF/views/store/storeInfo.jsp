@@ -21,7 +21,7 @@ li {
 
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">${store.sname}</h2>
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">${store.sname}</h2><br>
 						</div>
 						
 					</div>
@@ -32,40 +32,62 @@ li {
 	</header>
 	
 	<div class="gtco-section">
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3>${store.sname}</h3>
-					<ul>
-						<li class="saddr">영업일 : ${store.sopen}</li>
-					</ul>
+  <div class="gtco-container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>${store.sname}</h3> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 ">
+        <h4>메뉴</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="smenu">
+              <!-- 메뉴 목록 추가 -->
+              <li>메뉴1</li>
+              <li>메뉴2</li>
+              <li>메뉴3</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-push-1 col-sm-6">
+      <h4>오시는 길</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div id="map"></div>
+            <ul>
+              <li class="saddr">${store.saddr}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-push-1 col-sm-6">
+      <h4>영업시간</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li class="sopen">${store.sopen}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-push-1 col-sm-6">
+      <h4>전화번호</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li class="stel"><a href="tel://1234567920">${store.stel}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
-					<div class="col-md-6 animate-box">
-						<ul class="smenu col-6">
-							<li>메뉴</li>
-						</ul>
-
-					</div>
-
-					<div class="col-md-5 col-md-push-1 animate-box">
-
-						<div class="gtco-contact-info">
-							<div class="text-center">
-								<h2>Contact Information</h2>
-							</div>
-							<div id="map"></div>
-							<ul>
-								<li class="saddr">${store.saddr}</li>
-								<li class="stel"><a href="tel://1234567920">${store.stel}</a></li>
-							</ul>
-							<!-- 카카오지도 끝 -->
-						</div>
-						<!-- 카카오지도 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 		<sec:authorize access="isAuthenticated()">
 	    	<!-- 리뷰 등록 구역 -->
