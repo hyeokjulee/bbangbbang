@@ -154,7 +154,7 @@ function updateModel(rid, rscore, rcontent) {
 
 
 		$.ajax ({
-			url : "/review/update",
+			url : "/review/update?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				rid : rid,
@@ -182,7 +182,7 @@ function updateModel(rid, rscore, rcontent) {
 
 
 		$.ajax ({
-			url : "/review/insert",
+			url : "/review/insert?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				sid : sid,
@@ -206,7 +206,7 @@ function updateModel(rid, rscore, rcontent) {
 		var rid = document.querySelector("#rid").value;	
 		alert(rid) ;
 		$.ajax ({
-			url : "/review/delete",
+			url : "/review/delete?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				rid : rid
