@@ -9,7 +9,7 @@ li {
 }
 
 #map {
-   width: 400;
+   width: 480;
    height: 400;
    margin: auto;
 }
@@ -21,7 +21,7 @@ li {
 
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">${store.sname}</h2><br>
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">${store.sname}</h2>
 						</div>
 						
 					</div>
@@ -35,7 +35,7 @@ li {
   <div class="gtco-container">
     <div class="row">
       <div class="col-md-12">
-        <h3>${store.sname}</h3> 
+        <h3>${store.sname}</h3><br>
       </div>
     </div>
     <div class="row">
@@ -44,10 +44,7 @@ li {
         <div class="panel panel-default">
           <div class="panel-body">
             <ul class="smenu">
-              <!-- 메뉴 목록 추가 -->
-              <li>메뉴1</li>
-              <li>메뉴2</li>
-              <li>메뉴3</li>
+              
             </ul>
           </div>
         </div>

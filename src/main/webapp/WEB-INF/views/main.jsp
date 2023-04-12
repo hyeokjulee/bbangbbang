@@ -431,8 +431,8 @@
 						
 							function areaGangNam() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -459,8 +459,8 @@
 							
 							function areaWest() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -487,8 +487,8 @@
 							
 							 function areaGangBuk() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -515,8 +515,8 @@
 							 
 							 function areaGangDong() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
