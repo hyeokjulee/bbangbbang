@@ -24,7 +24,7 @@
 	
 		<!--경외  -->
 	<select id="getAreaList" parameterType="hashMap" resultType="com.bbang.store.Store">
-	<![CDATA[
+        <![CDATA[
         SELECT sid, sname, saddr
         FROM store
         WHERE saddr LIKE CONCAT('%', #{area1}, '%')

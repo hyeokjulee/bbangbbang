@@ -30,12 +30,12 @@ public class NoticeRepositoryImpl implements NoticeRepository {
 	public Notice getNoticeById(String nid) {
 		return this.sqlSessionTemplate.selectOne("notice.select_detail", nid);
 	}
-
+	
+	@Override
 	public void checkNotice(Map map) {
 		String check = (String)map.get("check");
 		
 //		System.out.println("조건1 : " + check);
-		
 		
 		if (check.equals("nview")){
 			this.sqlSessionTemplate.update("notice.update_view", map);

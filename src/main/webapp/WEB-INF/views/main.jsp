@@ -59,9 +59,21 @@
 
 						<div class="gtco-loader"></div>
 
-						<!-- <div class="page-inner"> -->
-						<nav class="gtco-nav" role="navigation">
-							<div class="gtco-container">
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo">
+						<a href="/">서울에서 배빵빵 <em>.</em></a>
+					</div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li class="has-dropdown"><a href="/store/list">맛집리스트</a></li>
+						<li><a href="/boards/boardlist">자유게시판</a></li>
+						<li><a href="/notices/noticelist">사이트소개</a></li>
+						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
+					</ul>
+				</div>
+			</div>
 
 								<div class="row">
 									<div class="col-sm-4 col-xs-12">
