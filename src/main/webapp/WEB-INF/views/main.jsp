@@ -192,7 +192,7 @@
 									</div>
 									<!-- 강북 -->
 									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangbuk()">
-										<a href="#" class="fh5co-card-item image">
+										<a class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
@@ -208,7 +208,7 @@
 									</div>
 									<!-- 강동 -->
 									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangDong()">
-										<a href="#" class="fh5co-card-item image">
+										<a class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
