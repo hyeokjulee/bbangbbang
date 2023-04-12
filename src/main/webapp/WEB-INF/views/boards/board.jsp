@@ -207,7 +207,7 @@
 	    var ccontent = document.querySelector("#ccontent").value;
 
 	    $.ajax({
-	        url: "/boards/updatereply",
+	        url: "/boards/updatereply?${_csrf.parameterName}=${_csrf.token}",
 	        type: "POST",
 	        data: {
 	            cid: cid,
