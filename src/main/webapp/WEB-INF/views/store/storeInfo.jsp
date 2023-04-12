@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <html>
 <head>
@@ -74,20 +75,31 @@ li {
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div id="gtco-logo">
-						<a href="index.html">서울에서 배빵빵 <em>.</em></a>
+						<a href="/">서울에서 배빵빵 <em>.</em></a>
 					</div>
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li class="has-dropdown"><a href="#">맛집리스트</a>
-							<ul class="dropdown">
-								<li><a href="#">Food Catering</a></li>
-								<li><a href="#">Wedding Celebration</a></li>
-								<li><a href="#">Birthday's Celebration</a></li>
-							</ul></li>
-						<li><a href="#">자유게시판</a></li>
-						<li><a href="#">사이트소개</a></li>
-						<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+						<li><a href="/store/list">맛집리스트</a></li>
+						<li><a href="/boards/boardlist">자유게시판</a></li>
+						<li><a href="/notices/noticelist">사이트소개</a></li>
+
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li class="btn-cta"><a href="/admin/list"><span>회원목록</span></a></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="hasRole('ROLE_USER')">
+					    	<li class="btn-cta"><a href="/user/myEdit"><span>마이페이지</span></a></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="isAuthenticated()">
+					    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
+					    </sec:authorize>
+						
+					    <sec:authorize access="!isAuthenticated()">
+					    	<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+					    	<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+					    </sec:authorize>
 					</ul>
 				</div>
 			</div>
@@ -155,23 +167,26 @@ li {
 			</div>
 		</div>
 	</div>
-		<!-- 리뷰 등록 구역 -->
-		<div class="card">
-			<h5 class="card-header">리뷰 등록</h5>
-			<div class="card-body">
-				<h5 class="card-title">리뷰 등록</h5>
-
-				<div class="container">
-					<input type="hidden" class="sid" name="sid" value='${store.sid}'>
-					<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
-					<input type="hidden" class="uid" name="uid" value="1"> <input
-						type="text" class="form-data rcontent"> <input type="text"
-						class="form-data rscore">
-					<button class="btn btn-primary" type="button"
-						onclick="insertAjax()">리뷰 등록하기</button>
+	
+		<sec:authorize access="isAuthenticated()">
+	    	<!-- 리뷰 등록 구역 -->
+			<div class="card">
+				<h5 class="card-header">리뷰 등록</h5>
+				<div class="card-body">
+					<h5 class="card-title">리뷰 등록</h5>
+	
+					<div class="container">
+						<input type="hidden" class="sid" name="sid" value='${store.sid}'>
+						<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
+						<input type="hidden" class="uid" name="uid" value="1"> <input
+							type="text" class="form-data rcontent"> <input type="text"
+							class="form-data rscore">
+						<button class="btn btn-primary" type="button"
+							onclick="insertAjax()">리뷰 등록하기</button>
+					</div>
 				</div>
 			</div>
-		</div>
+	    </sec:authorize>
 
 		<!-- 리뷰 게시물 -->
 

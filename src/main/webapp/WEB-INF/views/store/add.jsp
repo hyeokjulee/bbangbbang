@@ -1,56 +1,102 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+      <div class="gtco-container">
+         <div class="row">
+            <div class="col-md-12 col-md-offset-0 text-center">
+
+               <div class="row row-mt-8em">
+                  <div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+                     <h2 class="white-color" style="font-size: 60px; font-weight: bold;">가게 등록</h2>
+                  </div>
+                  
+               </div>
+               
+            </div>
+         </div>
+      </div>
+   </header>
+
+         
+<section class="py-5 text-center container"></section><br><br>
 <body>
-
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-		crossorigin="anonymous">
+   <div class="container">
+   <div class="row form-group" ></div>
 
 <!--  ${_csrf.parameterName}=${_csrf.token} -->
 
-	<form:form modelAttribute="NewStore"
-		action="/store/add"
-		class="form-horizontal" method="POST" enctype="multipart/form-data">
-		<fieldset>
-			<legend>가게 등록</legend>
-			가게 이름 :
-			<form:input path="sname" class="form-control" />
-			가게 주소 :
-			<form:input path="saddr" class="form-control" />
-			가게 번호 :
-			<form:input path="stel" class="form-control" />
-			가게 사진 :
-			<form:input path="sphotoFile" type="file" class="form-control" />
-			<!-- 여기는 따로 수정이 필요 -->
-			메뉴 :
-			<form:input path="smenu" class="form-control" />
-			가격 :
-			<form:input path="sprice" class="form-control" />
+   <form:form modelAttribute="NewStore"
+      action="/store/add?${_csrf.parameterName}=${_csrf.token}"
+      class="form-horizontal" method="POST" enctype="multipart/form-data">
+      <fieldset>
+         
+         가게 이름 :
+         <form:input path="sname" class="form-control" />
+         가게 주소 :
+         <form:input path="saddr" class="form-control" />
+         가게 번호 :
+         <form:input path="stel" class="form-control" />
+         가게 사진 :
+         <form:input path="sphotoFile" type="file" class="form-control" />
+         <!-- 여기는 따로 수정이 필요 -->
+         
+         <button type="button" class="btn btn-primary" onclick="addMenu()">메뉴 추가</button>
+         <div id="menu" class="col-md-12"></div>
+       
+
+         <br><button type="button" class="btn btn-primary"  onclick="sendForm()">등록</button>
 
 
-			<input type="submit" class="btn btn-primary" value="등록" />
-
-
-		</fieldset>
-	</form:form>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-		crossorigin="anonymous"></script>
-
+      </fieldset>
+   </form:form>
+</div>
+   
 </body>
-</html>
+
+<script>
+   function addMenu(){
+      var menu = document.getElementById("menu");
+      var div = document.createElement("div");
+      div.innerHTML = "메뉴 : <input type='text' name='smenu' class='form-control col-md-6' /> 가격 : <input type='text' name='sprice' class='form-control col-md-6' />";
+      menu.appendChild(div);
+   }
+</script>
+
+<script>
+   // smenu, sprice 의 모든 값을 가져와서 배열에 넣는다.
+   function getMenus(){
+      var smenu = document.getElementsByName("smenu");
+      var sprice = document.getElementsByName("sprice");
+      var menus = [];
+      var prices = [];
+      
+      // smenu, sprice의 값을 배열에 '값1','값2' 의 형식으로 넣는다
+      for(var i=0; i<smenu.length; i++){
+         menus.push("'"+smenu[i].value+"'");
+         prices.push("'"+sprice[i].value+"'");
+      }
+      console.log(menus);
+      console.log(prices);
+   }
+
+</script>
+
+<script>
+   function sendForm(){
+      getMenus();
+      document.forms[0].submit();
+   }
+</script>  
+
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>

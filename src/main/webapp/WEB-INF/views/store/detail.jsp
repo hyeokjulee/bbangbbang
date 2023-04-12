@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
@@ -35,43 +36,46 @@ img {
 			<h5 class="card-title">${store.stel}</h5>
 			<br> <br> <br>
 
-			<choose>
-				<when test="${store.sphoto2 != null}">
+			<c:choose>
+				<c:when test="${store.sphoto2 != null}">
 					<img src="<c:url value="/resources/save_image/${store.sphoto2}"/>" alt="사진" > 
-				</when>
-				<otherwise>
+				</c:when>
+				<c:otherwise>
 					<img src="${store.sphoto}" alt="사진" >
-				</otherwise>
-			</choose>
+				</c:otherwise>
+			</c:choose>
 			
 			
 
 			<div class="d-flex justify-content-end badge bg-light text-dark">${store.smenu}</div>
 			<div class="d-flex justify-content-end badge bg-light text-dark">${store.sprice}</div>
 			
-			<a class="btn btn-secondary" href="/store/update?sid=${store.sid}">수정하기</a>
-			
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<a class="btn btn-secondary" href="/store/update?sid=${store.sid}">수정하기</a>
+		    </sec:authorize>
 		</div>
 	</div>
 
-	<!-- 리뷰 등록 구역 -->
-	<div class="card">
-		<h5 class="card-header">리뷰 등록</h5>
-		<div class="card-body">
-			<h5 class="card-title">리뷰 등록</h5>
-			<br> <br> <br>
-
-			<div class="container">
-				<input type="hidden" class="sid" name="sid" value='${store.sid}'>
-				<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
-				<input type="hidden" class="uid" name="uid" value="1">
-
-				<input type="text" class="form-data rcontent">
-				<input type="text" class="form-data rscore">
-				<button type="button" onclick="insertAjax()">등록</button>
+	<sec:authorize access="isAuthenticated()">
+    	<!-- 리뷰 등록 구역 -->
+		<div class="card">
+			<h5 class="card-header">리뷰 등록</h5>
+			<div class="card-body">
+				<h5 class="card-title">리뷰 등록</h5>
+				<br> <br> <br>
+	
+				<div class="container">
+					<input type="hidden" class="sid" name="sid" value='${store.sid}'>
+					<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
+					<input type="hidden" class="uid" name="uid" value="1">
+	
+					<input type="text" class="form-data rcontent">
+					<input type="text" class="form-data rscore">
+					<button type="button" onclick="insertAjax()">등록</button>
+				</div>
 			</div>
-			</div>
-			</div>
+		</div>
+    </sec:authorize>
 
 	<!-- 리뷰 게시물 -->
 
@@ -150,7 +154,7 @@ function updateModel(rid, rscore, rcontent) {
 
 
 		$.ajax ({
-			url : "/review/update",
+			url : "/review/update?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				rid : rid,
@@ -178,7 +182,7 @@ function updateModel(rid, rscore, rcontent) {
 
 
 		$.ajax ({
-			url : "/review/insert",
+			url : "/review/insert?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				sid : sid,
@@ -202,7 +206,7 @@ function updateModel(rid, rscore, rcontent) {
 		var rid = document.querySelector("#rid").value;	
 		alert(rid) ;
 		$.ajax ({
-			url : "/review/delete",
+			url : "/review/delete?${_csrf.parameterName}=${_csrf.token}",
 			type : "POST",
 			data : {
 				rid : rid

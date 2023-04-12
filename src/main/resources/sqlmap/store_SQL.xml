@@ -15,7 +15,7 @@
 	<!--경외  -->
 	<select id="search_list" parameterType="String" resultType="com.bbang.store.Store"> 
 	    <![CDATA[ 
-	        SELECT sid, sname, saddr
+	        SELECT *
 	        FROM store 
 	        WHERE saddr LIKE CONCAT('%', #{search}, '%') OR sname LIKE CONCAT('%', #{search}, '%')
 	     ]]>
@@ -24,11 +24,13 @@
 	
 		<!--경외  -->
 	<select id="getAreaList" parameterType="hashMap" resultType="com.bbang.store.Store">
-        SELECT sid, sname, saddr
+        <![CDATA[
+        SELECT *
         FROM store
         WHERE saddr LIKE CONCAT('%', #{area1}, '%')
         OR saddr LIKE CONCAT('%', #{area2}, '%')
         OR saddr LIKE CONCAT('%', #{area3}, '%')
+        ]]>
     </select>
 	<!--경외  -->
 

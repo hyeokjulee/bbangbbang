@@ -160,6 +160,13 @@ public class StoreController {
 		return "redirect:/store/list" ;
 
 	}
+
+	@GetMapping("/test")
+	public String test() {
+
+		return "/store/test";
+	}
+
 	
 	//경외------------------------------------------------------
 	@PostMapping("/searchInfo")
@@ -191,6 +198,8 @@ public class StoreController {
         // View의 이름 반환
         return "/store/areaList";
     }
+	
+	
 
 	//경외------------------------------------------------------
 }
