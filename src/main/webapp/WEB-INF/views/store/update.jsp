@@ -23,6 +23,8 @@ updateForm
 <input name="smenu"value="${store.smenu}"> smenu
 <input name="sprice"value="${store.sprice}"> sprice
 
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 <input type="submit" value="수정하기">
 
 <input formaction="/store/delete" formmethod="POST" type="submit" value="삭제">
