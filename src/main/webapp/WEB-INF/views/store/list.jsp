@@ -73,12 +73,7 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li class="has-dropdown"><a href="#">맛집리스트</a>
-							<ul class="dropdown">
-								<li><a href="#">Food Catering</a></li>
-								<li><a href="#">Wedding Celebration</a></li>
-								<li><a href="#">Birthday's Celebration</a></li>
-							</ul></li>
+						<li class="has-dropdown"><a href="#">맛집리스트</a></li>
 						<li><a href="#">자유게시판</a></li>
 						<li><a href="notices/noticelist">사이트소개</a></li>
 						<li class="btn-cta"><a href="/login"><span>Login</span></a></li>
@@ -111,14 +106,14 @@
   <div class="row" id="store-list">
     <c:forEach var="store" items="${storeList}">
       <div class="col-md-3">
-        <div class="panel panel-default">
+        <div class="panel panel-default" >
           <div class="panel-heading">
-            <img src="${store.sphoto}" class="img-responsive" alt="${store.sname}"
+            <img src="${store.sphoto}" style="height:250px;" class="img-responsive" alt="${store.sname}"
               onerror="this.onerror=null; this.src='https://www.sejong.go.kr/images/prog/no_image.png';">
           </div>
           <div class="panel-body">
             <h5 class="card-title">${store.sname}</h5>
-            <p class="card-text">${store.saddr}</p>
+            <p class="card-text" style="height:50px;">${store.saddr}</p>
           </div>
           <div class="panel-footer">
             <div class="btn-group">
