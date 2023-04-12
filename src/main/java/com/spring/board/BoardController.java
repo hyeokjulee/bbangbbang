@@ -1,10 +1,14 @@
 package com.spring.board;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,7 +107,12 @@ public class BoardController {
 	
 	 //게시물 수정 페이지로 이동
     @GetMapping("/boardupdate")
-    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value="bid") String bid, Model model) {
+    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam String bid, Model model, Authentication auth) {
+    	if (auth == null) {
+            return "login";
+        } else if (!auth.getName().equals(boardService.getBoardById(bid).getBwriter()) && !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        	return "redirect:/boards/board?bid=" + bid;
+    	}
     	
     	Board boardById = boardService.getBoardById(bid);
         model.addAttribute("board", boardById);
