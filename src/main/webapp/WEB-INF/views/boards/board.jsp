@@ -41,27 +41,35 @@
         </div>
         <div class="text-right">작성일: ${board.bregdate}</div>
 
-         <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
-        <form action="/boards/deleteboard" method="post" style="display:inline;">
-          <input type="hidden" name="bid" value="${board.bid }" />
-          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />
-        </form>
-        <a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</a>
+         <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
+        <c:choose>
+			<c:when test="${flag == true}">
+				<form action="/boards/deleteboard" method="post" style="display:inline;">
+		          <input type="hidden" name="bid" value="${board.bid }" />
+		          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />
+		        </form>
+		        <a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</a>
+			</c:when>
+		</c:choose>
+        
       </div>
     </div>
 
-    <!-- 답변 등록 -->
-    <sec:authentication property="principal" var="user" />
-    <input id="bid" type="hidden" name="bid" value="${board.bid}">
-
-    <div class="panel panel-default">
-      <div class="panel-heading">답변 등록</div>
-      <div class="panel-body">
-        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
-        <br>
-        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">답변 등록</button>
-      </div>
-    </div>
+    <sec:authorize access="isAuthenticated()">
+    	<!-- 답변 등록 -->
+	    <sec:authentication property="principal" var="user" />
+	    <input id="bid" type="hidden" name="bid" value="${board.bid}">
+	
+	    <div class="panel panel-default">
+	      <div class="panel-heading">답변 등록</div>
+	      <div class="panel-body">
+	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
+	        <br>
+	        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">답변 등록</button>
+	      </div>
+	    </div>
+    </sec:authorize>
+    
     
     
 	<!-- 답변 게시물 -->
