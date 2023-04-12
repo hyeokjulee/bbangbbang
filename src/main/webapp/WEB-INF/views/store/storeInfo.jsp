@@ -59,8 +59,6 @@ li {
             </ul>
           </div>
         </div>
-      </div>
-      <div class="col-md-5 col-md-push-1 col-sm-6">
       <h4>영업시간</h4>
         <div class="panel panel-default">
           <div class="panel-body">
@@ -69,21 +67,18 @@ li {
             </ul>
           </div>
         </div>
-      </div>
-      <div class="col-md-5 col-md-push-1 col-sm-6">
       <h4>전화번호</h4>
         <div class="panel panel-default">
           <div class="panel-body">
             <ul>
-              <li class="stel"><a href="tel://1234567920">${store.stel}</a></li>
+              <li class="sopen">${store.stel}</li>
             </ul>
           </div>
         </div>
       </div>
-      
+      </div>
     </div>
-  </div>
-</div>
+   </div>
 
 	
 		<sec:authorize access="isAuthenticated()">
