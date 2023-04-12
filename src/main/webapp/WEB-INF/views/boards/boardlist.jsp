@@ -1,39 +1,34 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
-<head>
-<title>게시판</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+
+					<div class="row row-mt-8em">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">사이트소개</h2>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</header>
+
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
 	integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
 	crossorigin="anonymous"></script>
 
-<script>
-	/*  function removeCar(cid) {
-	     $.ajax({
-	         type:"POST",
-	         url:"/cars/remove",
-	         data:{cid: cid },
-	         beforeSend : function(xhr)
-	         {  
-	             xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-	         },
-	         success: function(result) {
-	             alert("제품이 삭제되었습니다.")
-	         },
-	         error:function (request, status, error) {
-	             alert(request.status + " " + request.responseText);
-	         }
-	     })
+<section class="py-5 text-center container"></section><br><br><br><br>
 
-	     window.location.reload();
-	 } */
-</script>
-</head>
 <body>
 
-	<div class="container">
 		<div class="container">
 			<div style="padding-top: 50px">
 				<table class="table table-hover">
@@ -60,7 +55,13 @@
 				</table>
 			</div>
 			<hr>
+			<div class="row form-group" >
+			<div class="col-md-12">
+			<a href="/boards/boardadd"><button type="button" class="btn btn-primary" style="float:right">등록</button></a>
+			</div>
+			</div>
 		</div>
-	</div>
 </body>
-</html>
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>

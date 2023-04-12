@@ -45,7 +45,7 @@
 			]]>
 	</update>
 	
-	<delete id="delete" parameterType="hashMap">
+	<delete id="delete" parameterType="String">
 			<![CDATA[
 				DELETE FROM notice
 				WHERE nid = #{nid}

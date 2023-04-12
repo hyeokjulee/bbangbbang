@@ -16,7 +16,6 @@
 		<![CDATA[
 			SELECT * 
 			FROM board 
-			WHERE bpid IS NULL
 			ORDER BY bid 
 			DESC
 		]]>
@@ -53,9 +52,9 @@
 
 	 <update id="update_view" parameterType="hashMap">
 			<![CDATA[
-				UPDATE comment 
-				SET ccontent = #{ccontent}
-				WHERE cid = #{cid}
+					UPDATE board SET
+				bview = bview + 1
+				WHERE bid = #{bid}
 			]]>
 	</update> 
 
