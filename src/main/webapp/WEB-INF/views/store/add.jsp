@@ -28,8 +28,8 @@
 
 <!--  ${_csrf.parameterName}=${_csrf.token} -->
 
-   <form:form modelAttribute="NewStore"
-      action="/store/add"
+      <form:form modelAttribute="NewStore"
+      action="/store/add?${_csrf.parameterName}=${_csrf.token}"
       class="form-horizontal" method="POST" enctype="multipart/form-data">
       <fieldset>
          
