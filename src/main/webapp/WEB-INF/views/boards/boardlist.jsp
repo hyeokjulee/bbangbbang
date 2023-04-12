@@ -55,11 +55,13 @@
 				</table>
 			</div>
 			<hr>
-			<div class="row form-group" >
-			<div class="col-md-12">
-			<a href="/boards/boardadd"><button type="button" class="btn btn-primary" style="float:right">등록</button></a>
-			</div>
-			</div>
+			<sec:authorize access="isAuthenticated()">
+				<div class="row form-group" >
+				<div class="col-md-12">
+				<a href="/boards/boardadd"><button type="button" class="btn btn-primary" style="float:right">등록</button></a>
+				</div>
+				</div>
+			</sec:authorize>
 		</div>
 </body>
 <section class="py-5 text-center container"></section><br><br><br><br>

@@ -24,35 +24,11 @@
 <link href="https://fonts.googleapis.com/css?family=Kaushan+Script"
 	rel="stylesheet">
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="/resources/css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="/resources/css/icomoon.css">
-<!-- Themify Icons-->
-<link rel="stylesheet" href="/resources/css/themify-icons.css">
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="/resources/css/bootstrap.css">
 
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="/resources/css/magnific-popup.css">
-
-<!-- Bootstrap DateTimePicker -->
-<link rel="stylesheet"
-	href="/resources/css/bootstrap-datetimepicker.min.css">
-
-<!-- Owl Carousel  -->
-<link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/resources/css/owl.theme.default.min.css">
-
 <!-- Theme style  -->
 <link rel="stylesheet" href="/resources/css/style.css">
-
-<!-- Modernizr JS -->
-<script src="/resources/js/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-	<script src="/resources/js/respond.min.js"></script>
-	<![endif]-->
 
 </head>
 <body>
@@ -143,39 +119,20 @@
   </div>
 </div>
    </div>
+  
+  
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-   <script>
-      var loading = false;
-      var page = document.querySelector('.page').value;
-      $(window).scroll(
-            function() {
-               if ($(window).scrollTop() + $(window).height() >= $(
-                     document).height()) {
-                  if (!loading) {
-                     loading = true;
-                     page++;
-                     console.log(page)
-                     document.querySelector('.page').value = page;
-                     $.ajax({
-                        url : "/store/list",
-                        type : "POST",
-                        beforeSend : function(xhr) { /*데이터를 전송하기 전에 헤더에 csrf값을 설정한다*/
-                           xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                        },
-                        data : { page : page },
-                        success : function(data) {
-                           $('#store-list').append(data);
-                           loading = false;
-                        },
-                        error : function() {
-                           alert('There is no more data to load.');
-                           loading = true;
-                        }
-                     });
-                  }
-               }
-            });
-   </script>
+<script>
+  // Assign jQuery to a new variable
+  var $myJQuery = jQuery.noConflict();
+  
+  // Use $myJQuery to avoid conflicts
+  $myJQuery(document).ready(function() {
+    // Your code here
+  });
+</script>
+
+
 
 <!-- jQuery -->
 	<script src="/resources/js/jquery.min.js"></script>
@@ -202,5 +159,38 @@
 
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
+	
+<script>
+var loading = false;
+var page = document.querySelector('.page').value;
+$(window).scroll(function() {
+    if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+        if (!loading) {
+            loading = true;
+            page++;
+            console.log(page)
+            document.querySelector('.page').value = page;
+            $.ajax({
+                url: "/store/list",
+                type: "POST",
+                data: { page: page },
+                beforeSend: function(xhr) { /* Set the csrf value in the header before sending data */
+                    xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                },
+                success: function(data) {
+                    $('#store-list').append(data);
+                    loading = false;
+                },
+                error: function() {
+                    alert('There is no more data to load.');
+                    loading = true;
+                }
+            });
+        }
+    }
+});
+</script>
+
+	
 </body>
 </html>

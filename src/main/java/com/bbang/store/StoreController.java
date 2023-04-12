@@ -146,6 +146,9 @@ public class StoreController {
 	public String storeUpdateProc(@RequestParam Map<String, Object> map) {
 
 		System.out.println(map.get("sid"));
+		System.out.println(map.get("smenu"));
+		System.out.println(map.get("sprice"));
+		
 		storeService.updateStore(map);
 
 		return "redirect:/store/list" ;

@@ -185,42 +185,44 @@
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강서</span>
+													<span class="price cursive-font" id="강서">강서</span>
 												</p>
 											</div>
 										</div>
 									</div>
 									<!-- 강북 -->
-									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangbuk()">
-										<a class="fh5co-card-item image">
+									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangBuk()">
+										<div class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
 												</div>
-												<img src="/resources/images/강북.jpg" alt="Image" class="img-responsive">
+												<img src="/resources/images/강북.jpg" alt="Image" class="img-responsive"
+													id="areaList">
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강북</span>
+													<span class="price cursive-font" id="강북">강북</span>
 												</p>
 											</div>
-										</a>
+										</div>
 									</div>
 									<!-- 강동 -->
 									<div class="col-lg-3 col-md-4 col-sm-6" onclick="areaGangDong()">
-										<a class="fh5co-card-item image">
+										<div class="fh5co-card-item image">
 											<figure>
 												<div class="overlay">
 													<i class="ti-plus"></i>
 												</div>
-												<img src="/resources/images/강동.jpg" alt="Image" class="img-responsive">
+												<img src="/resources/images/강동.jpg" alt="Image" class="img-responsive"
+													id="areaList">
 											</figure>
 											<div class="fh5co-text">
 												<p>
-													<span class="price cursive-font">강동</span>
+													<span class="price cursive-font" id="강동">강동</span>
 												</p>
 											</div>
-										</a>
+										</div>
 									</div>
 
 								</div>
@@ -264,7 +266,7 @@
 											});
 										   */
 								<c:forEach items="${storeList}" var="store">
-									listData.push(["${store.saddr}","${store.sname}"]);
+									listData.push(["${store.saddr}","${store.sname}","${store.sid}"]);
 								</c:forEach>
 								/* console.log(listData) */
 
@@ -315,21 +317,21 @@
 												clickable: true
 											});
 
-											// 마커를 지도에 표시합니다.
+											// 마커를 지도에 표시합니다.ㅎㅎ
 											marker.setMap(map);
 
 											// 인포윈도우를 생성합니다
 											var infowindow = new kakao.maps.InfoWindow({
-												content: '<div style="width:150px;text-align:center;padding:6px 0;">' + addr[1] + '</div>',
+												content: '<a href = "/store/info?sid='+ addr[2]+'"><div style="width:150px;text-align:center;padding:6px 0;">' + addr[1] + '</div></a>',
 											});
 
-											/*        // 마커에 클릭이벤트를 등록합니다
+											        // 마커에 클릭이벤트를 등록합니다
 												   kakao.maps.event.addListener(marker, 'click', function() {
 														 // 마커 위에 인포윈도우를 표시합니다
 														 infowindow.open(map, marker);  
-													   }); */
+													   }); 
 
-											kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+											/* kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 											kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
 											// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
@@ -344,7 +346,7 @@
 												return function () {
 													infowindow.close();
 												};
-											}
+											} */
 
 										}
 									});
