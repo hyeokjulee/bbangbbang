@@ -238,7 +238,7 @@
 
 							<div id="map"></div>
 							<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dce92aec2508609fa2293615add6c011&libraries=services"></script>
 							<script>
 							$('#logout').click(function(){   //logout 버튼을 클릭하였을 때
 								$.ajax({
