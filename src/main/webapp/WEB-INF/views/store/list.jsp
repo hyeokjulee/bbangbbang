@@ -86,13 +86,8 @@
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
 							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">전체 맛집</h2>
-							
-							
-							
 						</div>
-						
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -180,6 +175,7 @@
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
 	
+	<!-- 
 <script>
 var loading = false;
 var page = document.querySelector('.page').value;
@@ -209,7 +205,7 @@ $(window).scroll(function() {
         }
     }
 });
-</script>
+</script> -->
 
 	
 </body>

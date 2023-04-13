@@ -94,6 +94,9 @@ li {
 						 <input type="text" class="form-data rcontent">
 						 
 							<input type="text" class="form-data rscore">
+
+
+							
 							
 						<button class="btn btn-primary" type="button"
 							onclick="insertAjax()">리뷰 등록하기</button>
@@ -351,7 +354,7 @@ function updateModel(rid, rscore, rcontent) {
 			if (i > 18) {
 				var li = document.createElement('li');
 				// 해당 버튼을 눌렀을 때, 모달을 띄우도록 처리
-				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>메뉴 더보기</button>";
+				li.innerHTML = "<button type='button' class='btn btn-primary text-align-center' data-toggle='modal' data-target='#exampleModal''>메뉴 더보기</button>";
 				smenu.appendChild(li);
 			}
 			// 18개 이상일경우 더보기 버튼 클릭시 나타나는 메뉴
@@ -439,6 +442,12 @@ for (var i = 0; i < menuArr.length; i++) {
 }
 
 </script>	
+
+
+<script>
+
+
+</script>
 
 
 </body>
