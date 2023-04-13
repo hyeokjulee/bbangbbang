@@ -26,7 +26,7 @@
 
 	<div class="container" >
 			<div style="padding-top: 50px">
-				<table class="table table-hover">
+				<table class="table">
 					<tr style="background-color: #f5f5f5;">
 						<th>No</th>
 						<th>제목</th>
