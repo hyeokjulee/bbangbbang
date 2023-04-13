@@ -165,8 +165,9 @@ li {
                 </div>
                 <div class="col-sm-6">
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-primary"
-                        onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정모달</button>
+					<c:if test="${r.uid == id}">
+                        <button type="button" class="btn btn-primary"  onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정모달</button>
+					</c:if>
                     </div>
                 </div> 
             </div>
