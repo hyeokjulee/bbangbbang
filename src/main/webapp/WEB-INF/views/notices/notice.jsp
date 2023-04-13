@@ -81,8 +81,9 @@
 	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
 	  </form>
-	  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
   </sec:authorize>    
+  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
+    <a href="/notices/noticelist" class="btn btn-outline btn-default" style="float:right; margin-right: 5px;">이전으로</a>
  </div>
 </div>
 		
