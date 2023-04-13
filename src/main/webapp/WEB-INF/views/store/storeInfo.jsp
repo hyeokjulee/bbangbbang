@@ -339,11 +339,8 @@ function updateModel(rid, rscore, rcontent) {
 
 		for (var i = 0; i < menuArr.length; i++) {
 			var li = document.createElement('li');
-			li.innerHTML = menuArr[i].toString().replace("'", "").replace("'",
-					"")
-					+ "     :     "
-					+ priceArr[i].toString().replace("'", "").replace("'", "");
-
+			li.innerHTML = "<div class='left'>"+menuArr[i].toString().replace("'", "").replace("'","")+"</div>" +
+							"<div class='right'>"+menuArr[i].toString().replace("'", "").replace("'","")+"</div>"
 			smenu.appendChild(li);
 
 			//li 가 18개가 넘을경우 더보기 버튼 생성
@@ -366,17 +363,21 @@ function updateModel(rid, rscore, rcontent) {
 		}
 	</script>
 
-<div class="modal fade" id="exampleModal" tabindex="-1"
-	aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog-scrollable">
-		<div class="modal-content">
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+		  <div class="modal-content">
 			<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">전체 메뉴</h1>
+			  <h1 class="modal-title fs-5" id="exampleModalLabel">Menu</h1>
 			</div>
-			<div class="modal-body">${store.smenu }:${store.sprice }</div>
+			<div class="modal-body">
+			  <ul id="menu_modal_target">
+
+			  </ul>
+			</div>
+		  </div>
 		</div>
-	</div>
-</div>
+	  </div>
+	  
 
 <div class="m"></div>
 
@@ -399,25 +400,42 @@ function updateModel(rid, rscore, rcontent) {
 var $j341 = jQuery.noConflict();
 </script>
 
+<style>
+	
+	li {
+	  list-style: none;
+	  overflow: hidden;
+	}
+	
+	.left {
+	  float: left;
+	}
+	
+	.right {
+	  float: right;
+	}
+</style>
 
 <script>
-		$j341('#summernote').summernote({
-		  placeholder: '리뷰를 작성해주세요.',
-		  tabsize: 2,
-		  height: 100, // 변경 가능
-		  maximumImageFileSize: 1048576*4,   // DB에 허용하는 최대 크기 1mb * 4
-		  toolbar: [
-			['style', ['style']],
-			['font', ['bold', 'underline', 'clear']],
-			['color', ['color']],
-			['para', ['ul', 'ol', 'paragraph']],
-			['table', ['table']],
-			['insert', ['link', 'picture', 'video']],
-			['view', ['fullscreen', 'codeview', 'help']]
-		  ]
-		});
-		
-	  </script>
+var menu_modal_target = document.getElementById('menu_modal_target');
+// menu_modal_target.innerHTML = "모달 타겟에 잘 도착했나?";
+// menu_modal_target 에 li 를 추가해야한다.
+// menuArr[i], priceArr[i] 를 이용한다.
+// menuArr[i] 는 smenu 의 값이고, priceArr[i] 는 sprice 의 값이다.
+// menuArr[i] 는 왼쪽에, priceArr[i] 는 오른쪽에 띄운다.
+
+
+
+for (var i = 0; i < menuArr.length; i++) {
+	var li = document.createElement('li');
+	
+	li.innerHTML = "<div class='left'>"+menuArr[i]+"</div><div class='right'>"+priceArr[i]+"</div>" ;
+	
+	menu_modal_target.appendChild(li);
+}
+
+</script>	
+
 
 </body>
 <section class="py-5 text-center container"></section><br><br><br><br>
