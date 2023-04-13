@@ -43,7 +43,7 @@
 
          <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
         <c:choose>
-			<c:when test="${flag == true}">
+			<c:when test="${flag }">
 				<form action="/boards/deleteboard" method="post" style="display:inline;">
 		          <input type="hidden" name="bid" value="${board.bid }" />
 		          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />

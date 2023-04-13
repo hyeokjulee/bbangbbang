@@ -69,13 +69,10 @@ public class BoardController {
 				model.addAttribute("cnt", cnt);
 				
 				if (auth == null) {
-					model.addAttribute("flag", false);
 				} else if (auth.getName().equals(boardService.getBoardById(bid).getBwriter())) {
 					model.addAttribute("flag", true);
 		    	} else if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 					model.addAttribute("flag", true);
-		    	} else {
-		    		model.addAttribute("flag", false);
 		    	}
 				
 				// 폼을 띄우기 전에 조회수 하나 증가
