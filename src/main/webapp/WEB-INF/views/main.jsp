@@ -86,7 +86,7 @@
 										    </sec:authorize>
 											
 										    <sec:authorize access="isAuthenticated()">
-										    	<li class="btn-cta"><a href><span id="logout">로그아웃 </span></a></li>
+										    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
 										    </sec:authorize>
 											
 										    <sec:authorize access="!isAuthenticated()">
@@ -267,10 +267,9 @@
 											});
 										   */
 								<c:forEach items="${storeList}" var="store">
-									listData.push(["${store.saddr}","${store.sname}","${store.sid}","${store.stel}","${store.sphoto}"]);
+									listData.push(["${store.saddr}","${store.sname}","${store.sid}","${store.stel}",("${store.sphoto}"?"${store.sphoto}" : "/resources/images/NoImage.jpg")]);
 								</c:forEach>
 								/* console.log(listData) */
-
 								// 맵을 넣을 div
 								var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 									mapOption = {

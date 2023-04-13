@@ -173,6 +173,7 @@
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
 	
+	<!-- 
 <script>
 var loading = false;
 var page = document.querySelector('.page').value;
@@ -202,7 +203,7 @@ $(window).scroll(function() {
         }
     }
 });
-</script>
+</script> -->
 
 	
 </body>
