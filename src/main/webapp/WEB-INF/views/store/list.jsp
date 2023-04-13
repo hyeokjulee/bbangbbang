@@ -118,15 +118,13 @@
             <img src="${store.sphoto}" style="height:250px;" class="img-responsive" alt="${store.sname}"
       		onerror="this.onerror=null; this.src='/resources/images/NoImage.jpg';">
           </div>
-          <div class="panel-body">
+          <div class="panel-body" >
             <h5 class="card-title">${store.sname}</h5>
             <p class="card-text" style="height:50px;">${store.saddr}</p>
           </div>
-          <div class="panel-footer">
-            <div class="btn-group">
-              <a href="/store/info?sid=${store.sid }" class="btn btn-sm btn-outline-secondary">View</a>
-            </div>
-          </div>
+            <div class="panel-footer" style="display: flex; justify-content: center;">
+			  <a href="/store/info?sid=${store.sid }" class="btn btn-sm btn-outline-secondary">View</a>
+			</div>
         </div>
       </div>
     </c:forEach>

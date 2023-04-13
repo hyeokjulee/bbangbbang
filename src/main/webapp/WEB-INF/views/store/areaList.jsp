@@ -33,12 +33,9 @@
             <h5 class="card-title">${store.sname}</h5>
             <p class="card-text" style="height:50px;">${store.saddr}</p>
           </div>
-          <div class="panel-footer">
-            <div class="btn-group">
-              <a href="/store/info?sid=${store.sid}" class="btn btn-primary">View</a>
-              <input type="hidden" name="sid" value="${store.sid}">
-            </div>
-          </div>
+          	<div class="panel-footer" style="display: flex; justify-content: center;">
+			  <a href="/store/info?sid=${store.sid }" class="btn btn-sm btn-outline-secondary">View</a>
+			</div>
         </div>
       </div>
     </c:forEach>
