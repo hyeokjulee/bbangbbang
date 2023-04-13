@@ -30,7 +30,7 @@
 	           class="form-horizontal"
 	           method = "post">
 	<fieldset>
-				<sec:authentication property="principal" var="user" />
+	<sec:authentication property="principal" var="user" />
 	<form:input path="bwriter" type="hidden" value="${user.username}" class="form-control"/>
 	제목 : <form:input path="btitle" class="form-control"/>
 	<form:errors path="btitle" cssStyle="color:red"/><br>

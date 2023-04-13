@@ -3,17 +3,46 @@
 <%@ include file="/WEB-INF/header.jsp"%>
 
 <header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+
 <style>
+
+	.myform_star {
+		display: inline-block;
+		direction: rtl;
+		border:0;
+	}
+	.myform_star fieldset legend{
+		text-align: right;
+	}
+	.myform_star input[type=radio]{
+		display: none;
+	}
+	.myform_star label{
+		font-size: 3em;
+		color: transparent;
+		text-shadow: 0 0 0 #f0f0f0;
+	}
+	.myform_star label:hover{
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	.myform_star label:hover ~ label{
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	.myform_star input[type=radio]:checked ~ label{
+		text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	}
+	
 li {
-   list-style: none;
+	list-style: none;
 }
 
 #map {
-   width: 480;
-   height: 400;
-   margin: auto;
+	width: 480;
+	height: 400;
+	margin: auto;
 }
 </style>
+
 <div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
@@ -80,58 +109,71 @@ li {
    </div>
 
 	
-		<sec:authorize access="isAuthenticated()">
-	    	<!-- 리뷰 등록 구역 -->
-			<div class="card">
-				<h5 class="card-header">리뷰 등록</h5>
-				<div class="card-body">
-					<h5 class="card-title">리뷰 등록</h5>
-	
-					<div class="container">
-						<input type="hidden" class="sid" name="sid" value='${store.sid}'>
-						<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
-						<input type="hidden" class="uid" name="uid" value="${id}">
-						 <input type="text" class="form-data rcontent" placeholder="내용">
-						 
-							<input type="text" class="form-data rscore" placeholder="점수(숫자만 입력)">
+<sec:authorize access="isAuthenticated()">
+	<!-- 리뷰 등록 구역 -->
+	<div class="panel panel-default">
+		<div class="panel-heading">리뷰 등록</div>
+		<div class="panel-body">
 
+			<div class="container">
+				<input type="hidden" class="sid" name="sid" value='${store.sid}'>
+				<sec:authentication property="principal" var="user" />
+				<input type="hidden" name="rwriter" value="${user.username}">
+				
+<!--  						<input type="hidden" class="uid" name="uid" value="1">
+--> 
 
-							
-							
-						<button class="btn btn-primary" type="button"
-							onclick="insertAjax()">리뷰 등록하기</button>
-					</div>
-				</div>
+				<fieldset class="myform_star">
+					<input type="radio" class="rscore2" value="5" id="rate5"><label
+						for="rate5">★</label>
+					<input type="radio" class="rscore2" value="4" id="rate4"><label
+						for="rate4">★</label>
+					<input type="radio" class="rscore2" value="3" id="rate3"><label
+						for="rate3">★</label>
+					<input type="radio" class="rscore2" value="2" id="rate2"><label
+						for="rate2">★</label>
+					<input type="radio" class="rscore2" value="1" id="rate1"><label
+						for="rate1">★</label>
+				</fieldset> <br>
+
+				<input class="form-data rcontent form-control" row="3" value=""> <br>
+
+				<input type="text" class="form-data rscore">
+
+					
+				<button class="btn btn-primary pull-right" type="button" onclick="insertAjax()">리뷰 등록하기</button>
 			</div>
-	    </sec:authorize>
+		</div>
+	</div>
+</sec:authorize>
 
 		
 
 		<!-- 리뷰 게시물 -->
 
-		<c:forEach items="${reviewList}" var="r">
-			<div class="card">
-				<h5 class="card-header">${r.rscore}</h5>
-				<div class="card-body">
-					<h5 class="card-title">${r.rcontent}</h5>
-					<input type="hidden" name="rid" value="${r.rid}"> <br>
-					<br> <br>
+		
 
-					<div class="d-flex justify-content-end badge bg-light text-dark">${r.rregdate}</div>
-					<div class="d-flex justify-content-end badge bg-light text-dark">${r.rupdate}</div>
-
-					<c:choose>
-						<c:when test="${r.uid == id}">
-							<!-- 리뷰 부분 -->
-							<!-- // onclick 에 rid의 값을 updateModel(rid) 값을 넘겨주기 -->
-							<button type="button" class="btn btn-primary"
-								onclick="javascript:updateModel(${r.rid}, ${r.rscore}, '${r.rcontent}' )">수정모달</button>
-						</c:when>
-					</c:choose>   
-
-				</div>
-			</div>
-		</c:forEach>
+<c:forEach items="${reviewList}" var="r">
+    <div class="panel panel-default">
+        <div class="panel-heading">별점표시구역 : ${r.rscore}</div>
+        <div class="panel-body">
+            <p>${r.rcontent}</p>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <small>${r.rregdate}</small>
+                </div>
+                <div class="col-sm-6">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-primary"
+                        onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정모달</button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</c:forEach>
 
 		<div class="modal review_modal" tabindex="-1">
 			<div class="modal-dialog" id="updateModal">
@@ -148,6 +190,19 @@ li {
 			</div>
 		</div>
 </body>
+
+
+<script type="text/javascript">
+
+	const fieldset = document.querySelector(".myform_star");
+
+	fieldset.addEventListener("click", function() {
+		var selectedValue = document.querySelector('input[class="rscore2"]:checked').value;
+		console.log(selectedValue);
+		var rscore = $('div.container input.rscore').val(selectedValue);
+	});
+
+</script>
 
 <script type="text/javascript">
 
@@ -205,10 +260,10 @@ function updateModel(rid, rscore, rcontent) {
 	function insertAjax() {
 		var sid = $('div.container input.sid').val();
 		var uid = $('div.container input.uid').val();
-		var rcontent = $('div.container input.rcontent').val();
+		var rcontent = $('div.container input.rcontent').val() ;
 		var rscore = $('div.container input.rscore').val();
 
-		alert("rcontent : " + rcontent + ", rscore : " + rscore + ", uid : " + uid + ", sid : " + sid) ;
+		alert("rcontent : " + rcontent + ", rscore : " + rscore +  ", sid : " + sid) ;
 
 
 		$.ajax ({
@@ -345,8 +400,8 @@ function updateModel(rid, rscore, rcontent) {
 
 		var priceArr = price.split("',");
 
-		console.log(menu);
-		console.log(price);
+		//console.log(menu);
+		//console.log(price);
 
 		for (var i = 0; i < menuArr.length; i++) {
 			var li = document.createElement('li');
@@ -434,8 +489,6 @@ var menu_modal_target = document.getElementById('menu_modal_target');
 // menuArr[i], priceArr[i] 를 이용한다.
 // menuArr[i] 는 smenu 의 값이고, priceArr[i] 는 sprice 의 값이다.
 // menuArr[i] 는 왼쪽에, priceArr[i] 는 오른쪽에 띄운다.
-
-
 
 for (var i = 0; i < menuArr.length; i++) {
 	var li = document.createElement('li');
