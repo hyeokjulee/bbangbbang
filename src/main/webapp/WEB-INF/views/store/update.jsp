@@ -40,6 +40,9 @@
         <input name="saddr" class="form-control" value="${store.saddr }"/>
         가게 번호 :
         <input name="stel" class="form-control" value="${store.stel }" />
+        영업 시간 :
+        <input name="sopen" class="form-control" value="${store.sopen }" />
+        
         가게 사진 :
         <input name="sphotoFile" type="file" class="form-control"/>
         <!-- 여기는 따로 수정이 필요 -->
@@ -79,7 +82,7 @@
         for(var i=0; i<smenuList2.length; i++){
             var div = document.createElement("div");
             div.className = "row form-group";
-            div.innerHTML = "<div class='col-md-6'><input type='text'  class='form-control addsmenu' value="+smenuList2[i]+"></div><div class='col-md-6'><input type='text' name='sprice' class='form-control addsprice' value="+spriceList2[i]+"></div>";
+            div.innerHTML = "<div class='col-md-6'><input type='text' class='form-control addsmenu' value="+smenuList2[i]+"></div><div class='col-md-6'><input type='text' class='form-control addsprice' value="+spriceList2[i]+"></div><div class='col-md-12'><button type='button' class='btn btn-danger' onclick='deleteMenu(this)'>메뉴삭제</button></div>";
             menu.appendChild(div);
         }
 
@@ -92,10 +95,16 @@ function addMenu(){
     var menu = document.getElementById("menu");
     var div = document.createElement("div");
     div.className = "row form-group";
-    div.innerHTML = "<div class='col-md-6'><input type='text' class='form-control col-md-6 addsmenu' placeholder='메뉴 이름'></div><div class='col-md-6'><input type='text' class='form-control col-md-6 addsprice' placeholder='메뉴 가격'></div>";
+    div.innerHTML = "<div class='col-md-6'><input type='text' class='form-control col-md-6 addsmenu' placeholder='menu name'></div><div class='col-md-6'><input type='text' class='form-control col-md-6 addsprice' placeholder='menu price'></div><div class='col-md-12'><button type='button' class='btn btn-danger' onclick='deleteMenu(this)'>메뉴삭제</button></div>";
     menu.appendChild(div);
 }
-</script>  
+
+function deleteMenu(button){
+    var div = button.parentNode.parentNode;
+    div.parentNode.removeChild(div);
+}
+</script>
+ 
 
 <script>
     var formSubmitted = false;
@@ -122,7 +131,7 @@ function addMenu(){
     var append = document.getElementsByClassName("append")[0];
     append.innerHTML = "<input type='text' name='smenu' class='form-control' value="+values+">";
     var pappend = document.getElementsByClassName("pappend")[0];
-    pappend.innerHTML = "<input type='text' name='sprice' class='form-control' value='"+price_values.join(",")+"'>";
+    pappend.innerHTML = "<input type='text' name='sprice' class='form-control' value='"+price_values+"'>";
 
 }
 </script>
