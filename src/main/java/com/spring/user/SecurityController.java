@@ -28,16 +28,18 @@ public class SecurityController {
         if (error != null) {
             model.addAttribute("error", "아이디나 비밀번호가 올바르지 않습니다.");
         }
+        model.addAttribute("loginpage", true);
         return "login";
     }
- 
+
 	@GetMapping("/logout")
 	public String logoutMethod() {
 		return "logout";
 	}
 	
 	@GetMapping("/join")
-	public String joinMethod(@ModelAttribute User user) {
+	public String joinMethod(Model model, @ModelAttribute User user) {
+		model.addAttribute("joinpage", true);
 		return "join";
 	}
 	
