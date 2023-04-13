@@ -136,8 +136,14 @@ public class StoreController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String storeUpdateForm(@RequestParam("sid") String sid, Model model) {
 
+		System.out.println(sid);
+		
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
+		
+		//System.out.println(storeById.getSid());
+		//System.out.println(storeById.getSaddr());
+		//System.out.println(storeById.getSname());
 
 		return "/store/update";
 	}
@@ -172,7 +178,7 @@ public class StoreController {
 
 	
 	//경외------------------------------------------------------
-	@PostMapping("/searchInfo")
+	@GetMapping("/searchInfo")
 	public String searchInfo(@RequestParam("search") String search, Model model) {
 
 		List<Store> list = sqlsessionTemplate.selectList("search_list", search);
@@ -185,15 +191,15 @@ public class StoreController {
 	//경외------------------------------------------------------
 	
 	//경외------------------------------------------------------
-	@PostMapping("/areaList")
-    public String getAreaList(@RequestParam Map<String, Object> map , Model model) {
+	@GetMapping("/areaList")
+    public String getAreaList(@RequestParam Map<String, Object> map, Model model) {
         // MyBatis의 Mapper를 사용하여 데이터베이스에서 데이터를 조회
 
 		System.out.println(map.get("area1"));
 		System.out.println(map.get("area2"));
 		System.out.println(map.get("area3"));
 
-		 List<Store> areaList = storeService.getAreaList(map);
+		List<Store> areaList = storeService.getAreaList(map);
 		
         // 조회한 데이터를 Model에 담아 View로 전달
         model.addAttribute("areaList", areaList);

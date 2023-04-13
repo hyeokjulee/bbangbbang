@@ -27,7 +27,7 @@
         <div class="panel panel-default" >
           <div class="panel-heading">
             <img src="${store.sphoto}" style="height:250px;" class="img-responsive" alt="${store.sname}"
-              onerror="this.onerror=null; this.src='https://www.sejong.go.kr/images/prog/no_image.png';">
+     		 onerror="this.onerror=null; this.src='/resources/images/NoImage.jpg';">
           </div>
           <div class="panel-body">
             <h5 class="card-title">${store.sname}</h5>

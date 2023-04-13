@@ -30,10 +30,8 @@
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
-						<th>작성자</th>
 						<th>조회수</th>
 						<th>작성일</th>
-						<th>수정일</th>
 					</tr>
 					<c:forEach items="${noticeList}" var="notice">
 						<tr>
@@ -41,10 +39,8 @@
 							<td>
 							<a href="/notices/notice?nid=${notice.nid}">${notice.ntitle}</a>
 							</td>
-							<td>${notice.nwriter}</td>
 							<td>${notice.nview}</td>
 							<td>${notice.nregdate}</td>
-							<td>${notice.nupdate}</td>
 						</tr>
 					</c:forEach>
 				</table>

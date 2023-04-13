@@ -9,7 +9,7 @@ li {
 }
 
 #map {
-   width: 400;
+   width: 480;
    height: 400;
    margin: auto;
 }
@@ -32,40 +32,53 @@ li {
 	</header>
 	
 	<div class="gtco-section">
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12">
-					<h3>${store.sname}</h3>
-					<ul>
-						<li class="saddr">영업일 : ${store.sopen}</li>
-					</ul>
+  <div class="gtco-container">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>${store.sname}</h3><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 ">
+        <h4>메뉴</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="smenu">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-md-push-1 col-sm-6">
+      <h4>위치</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div id="map"></div>
+            <ul>
+              <li class="saddr">${store.saddr}</li>
+            </ul>
+          </div>
+        </div>
+      <h4>영업시간</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li class="sopen">${store.sopen}</li>
+            </ul>
+          </div>
+        </div>
+      <h4>전화번호</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul>
+              <li class="sopen">${store.stel}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+   </div>
 
-					<div class="col-md-6 animate-box">
-						<ul class="smenu col-6">
-							<li>메뉴</li>
-						</ul>
-
-					</div>
-
-					<div class="col-md-5 col-md-push-1 animate-box">
-
-						<div class="gtco-contact-info">
-							<div class="text-center">
-								<h2>Contact Information</h2>
-							</div>
-							<div id="map"></div>
-							<ul>
-								<li class="saddr">${store.saddr}</li>
-								<li class="stel"><a href="tel://1234567920">${store.stel}</a></li>
-							</ul>
-							<!-- 카카오지도 끝 -->
-						</div>
-						<!-- 카카오지도 -->
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 		<sec:authorize access="isAuthenticated()">
 	    	<!-- 리뷰 등록 구역 -->
@@ -337,7 +350,7 @@ function updateModel(rid, rscore, rcontent) {
 			if (i > 18) {
 				var li = document.createElement('li');
 				// 해당 버튼을 눌렀을 때, 모달을 띄우도록 처리
-				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>더보기</button>";
+				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>메뉴 더보기</button>";
 				smenu.appendChild(li);
 			}
 			// 18개 이상일경우 더보기 버튼 클릭시 나타나는 메뉴

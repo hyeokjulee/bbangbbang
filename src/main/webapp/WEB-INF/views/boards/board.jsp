@@ -39,37 +39,48 @@
         <div class="text-right">
        		   조회수 [ ${board.bview} ]
         </div>
+        
         <div class="text-right">작성일: ${board.bregdate}</div>
 
-         <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
-        <form action="/boards/deleteboard" method="post" style="display:inline;">
-          <input type="hidden" name="bid" value="${board.bid }" />
-          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />
-        </form>
-        <a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</a>
+         <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
+        <c:choose>
+			<c:when test="${flag }">
+				<form action="/boards/deleteboard" method="post" style="display:inline;">
+		          <input type="hidden" name="bid" value="${board.bid }" />
+		          <input type="submit" class="btn btn-danger" style="float: right; margin-right: 5px; " value="삭제" />
+		        </form>
+		        <a href="/boards/boardupdate?bid=${board.bid }" class="btn btn-primary" style="float: right; margin-right: 5px;">수정</a>
+			</c:when>
+		</c:choose>
+        
       </div>
     </div>
 
-    <!-- 답변 등록 -->
-    <sec:authentication property="principal" var="user" />
-    <input id="bid" type="hidden" name="bid" value="${board.bid}">
-
-    <div class="panel panel-default">
-      <div class="panel-heading">답변 등록</div>
-      <div class="panel-body">
-        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
-        <br>
-        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">답변 등록</button>
-      </div>
-    </div>
+    <sec:authorize access="isAuthenticated()">
+    	<!-- 답변 등록 -->
+	    <sec:authentication property="principal" var="user" />
+	    <input id="bid" type="hidden" name="bid" value="${board.bid}">
+	    
+	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}" class="form-control"/>
+	
+	    <div class="panel panel-default">
+	      <div class="panel-heading">댓글 등록</div>
+	      <div class="panel-body">
+	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
+	        <br>
+	        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">댓글 등록</button>
+	      </div>
+	    </div>
+    </sec:authorize>
+    
     
     
 	<!-- 답변 게시물 -->
 
 	<div class="panel panel-default">
-    <div class="panel-heading">답변 리스트</div>
+    <div class="panel-heading">댓글 리스트</div>
     <div class="panel-body">
-        <b>${cnt}개의 답변이 있습니다.</b>
+        <b>${cnt}개의 댓글이 있습니다.</b>
         <c:forEach items="${commentList}" var="c">
             <div class="panel panel-default">
                 <div class="panel-heading">${c.cwriter}</div>
@@ -89,13 +100,44 @@
                                     <input type="hidden" name="cid" value="${c.cid}" />
                                     <button type="submit" class="btn btn-danger btn-xs">삭제</button>
                                 </form> --%>
-						<form action="/boards/deletereply" method="post"   style="display:inline;">
-						 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						<input type="hidden" name="bid" value="${c.bid }" />
-						<input type="hidden" name="cid" value="${c.cid }" /> 
-						<input type="submit" class="btn btn-danger btn-sm" style="float: right; margin-right: 5px;" value="삭제" />
-						</form>
-                        <button type="button" class="btn btn-primary btn-sm" style="float: right; margin-right: 5px;" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
+                                
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+							<sec:authentication property="principal" var="user" />
+							<c:choose>
+								<c:when test="${c.cwriter == user.username}">
+									<form action="/boards/deletereply" method="post"   style="display:inline;">
+									 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+									<input type="hidden" name="bid" value="${c.bid }" />
+									<input type="hidden" name="cid" value="${c.cid }" /> 
+									<input type="submit" class="btn btn-danger btn-sm" style="float: right; margin-right: 5px;" value="삭제" />
+									</form>
+			                        <button type="button" class="btn btn-primary btn-sm" style="float: right; margin-right: 5px;" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
+								</c:when>
+								<c:otherwise>
+									<form action="/boards/deletereply" method="post"   style="display:inline;">
+									 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+									<input type="hidden" name="bid" value="${c.bid }" />
+									<input type="hidden" name="cid" value="${c.cid }" /> 
+									<input type="submit" class="btn btn-danger btn-sm" style="float: right; margin-right: 5px;" value="삭제" />
+									</form>
+								</c:otherwise>
+							</c:choose>   
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_USER')">
+						    <sec:authentication property="principal" var="user" />
+							<c:choose>
+								<c:when test="${c.cwriter == user.username}">
+									<form action="/boards/deletereply" method="post"   style="display:inline;">
+									 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+									<input type="hidden" name="bid" value="${c.bid }" />
+									<input type="hidden" name="cid" value="${c.cid }" /> 
+									<input type="submit" class="btn btn-danger btn-sm" style="float: right; margin-right: 5px;" value="삭제" />
+									</form>
+			                        <button type="button" class="btn btn-primary btn-sm" style="float: right; margin-right: 5px;" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
+								</c:when>
+							</c:choose>   
+						</sec:authorize>        
+                                
                             </div>
                         </div> 
                     </div>
@@ -179,8 +221,8 @@
 				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 			},
 			success : function(result) {
-				alert("등록 완료")
-			 window.location.reload() ;
+				alert("등록 완료");
+				window.location.reload();
 			},
 			error : function(request, status, error) {
 				alert(request.status + " " + request.responseText);

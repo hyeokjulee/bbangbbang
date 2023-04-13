@@ -1,10 +1,14 @@
 package com.spring.board;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,7 +57,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board")
-	public String requestBoardById(@RequestParam("bid") String bid, Model model) {
+	public String requestBoardById(@RequestParam String bid, Model model, Authentication auth) {
 		//주 게시물
 		Board boardById = boardService.getBoardById(bid);
 		model.addAttribute("board", boardById);
@@ -63,6 +67,13 @@ public class BoardController {
 				int cnt = list.size();
 				model.addAttribute("commentList",list);
 				model.addAttribute("cnt", cnt);
+				
+				if (auth == null) {
+				} else if (auth.getName().equals(boardService.getBoardById(bid).getBwriter())) {
+					model.addAttribute("flag", true);
+		    	} else if (auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+					model.addAttribute("flag", true);
+		    	}
 				
 				// 폼을 띄우기 전에 조회수 하나 증가
 				
@@ -75,6 +86,7 @@ public class BoardController {
 		
 		return "boards/board";
 	}
+	
 	@ResponseBody
 	@PostMapping("/replynew")
 	public void replynew(@RequestParam Map<String, Object> map) {
@@ -103,7 +115,12 @@ public class BoardController {
 	
 	 //게시물 수정 페이지로 이동
     @GetMapping("/boardupdate")
-    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam(value="bid") String bid, Model model) {
+    public String boardUpdateGET(@ModelAttribute("UpdateBoard") Board board, @RequestParam String bid, Model model, Authentication auth) {
+    	if (auth == null) {
+            return "login";
+        } else if (!auth.getName().equals(boardService.getBoardById(bid).getBwriter()) && !auth.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+        	return "redirect:/boards/board?bid=" + bid;
+    	}
     	
     	Board boardById = boardService.getBoardById(bid);
         model.addAttribute("board", boardById);

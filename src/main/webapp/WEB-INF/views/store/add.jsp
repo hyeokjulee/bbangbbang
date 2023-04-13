@@ -64,9 +64,10 @@
    function addMenu(){
       var menu = document.getElementById("menu");
       var div = document.createElement("div");
-      div.innerHTML = "메뉴 : <input type='text' name='smenu' class='form-control col-md-6' /> 가격 : <input type='text' name='sprice' class='form-control col-md-6' />";
+      div.className = "row form-group";
+      div.innerHTML = "<div class='col-md-6'><input type='text' name='smenu' class='form-control col-md-6' placeholder='메뉴 이름'/></div><div class='col-md-6'><input type='text' name='sprice' class='form-control col-md-6' placeholder='메뉴 가격' /></div>";
       menu.appendChild(div);
-   }
+  }
 </script>
 
 <script>
@@ -85,8 +86,6 @@
       }
       console.log(menus);
       console.log(prices);
-
-      
    }
 </script>
 
