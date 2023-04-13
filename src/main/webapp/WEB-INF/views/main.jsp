@@ -75,7 +75,7 @@
 										<ul>
 											<li><a href="/store/list">맛집리스트</a></li>
 											<li><a href="/boards/boardlist">자유게시판</a></li>
-											<li><a href="/notices/noticelist">사이트소개</a></li>
+											<li><a href="/notices/noticelist">공지사항</a></li>
 
 											<sec:authorize access="hasRole('ROLE_ADMIN')">
 												<li class="btn-cta"><a href="/admin/list"><span>회원목록</span></a></li>

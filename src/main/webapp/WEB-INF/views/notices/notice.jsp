@@ -10,7 +10,7 @@
 
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">사이트소개</h2>
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">공지사항</h2>
 						</div>
 						
 					</div>
@@ -81,8 +81,9 @@
 	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
 	  </form>
-	  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
   </sec:authorize>    
+  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
+    <a href="/notices/noticelist" class="btn btn-outline btn-default" style="float:right; margin-right: 5px;">이전으로</a>
  </div>
 </div>
 		
