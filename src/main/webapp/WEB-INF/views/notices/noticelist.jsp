@@ -24,10 +24,10 @@
 <section class="py-5 text-center container"></section><br><br><br><br>
 <body>
 
-	<div class="container">
+	<div class="container" >
 			<div style="padding-top: 50px">
 				<table class="table table-hover">
-					<tr>
+					<tr style="background-color: #f5f5f5;">
 						<th>No</th>
 						<th>제목</th>
 						<th>조회수</th>
