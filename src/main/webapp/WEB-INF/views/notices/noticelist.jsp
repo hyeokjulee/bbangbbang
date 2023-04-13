@@ -28,7 +28,7 @@
 			<div style="padding-top: 50px">
 				<table class="table table-hover">
 					<tr>
-						<th>번호</th>
+						<th>No</th>
 						<th>제목</th>
 						<th>조회수</th>
 						<th>작성일</th>
