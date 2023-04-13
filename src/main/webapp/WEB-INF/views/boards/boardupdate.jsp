@@ -36,7 +36,9 @@
 	<%-- <sec:authentication property="principal" var="user" /> --%>
 	<%-- <form:input path="bwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="btitle" class="form-control" value="${board.btitle}"/>
+	<form:errors path="btitle" cssStyle="color:red"/><br>
 	내용 : <form:input path="bcontent" class="form-control" rows="10" value="${board.bcontent}" style="height:300px; vertical-align: top;"/>
+	<form:errors path="bcontent" cssStyle="color:red"/>
  		 <form:input type="hidden" path="bid" id="bid" size="20" maxlength="20" value="${baord.bid}"/><br>
 	<button class="btn btn-secondary" style="float: right; margin-right: 5px;" onclick="history.back()">취소</button>
 	<input type="submit" class="btn btn-primary" style="float: right; margin-right: 5px;" value="수정">

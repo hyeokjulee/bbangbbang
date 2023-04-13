@@ -89,7 +89,9 @@
 					    </sec:authorize>
 						
 					    <sec:authorize access="isAuthenticated()">
-					    	<li class="btn-cta"><button id="logout"><span>로그아웃</span></button></li>
+					    	<li class="btn-cta"><a href>
+							  <span id="logout">로그아웃 </span></a>
+							</li>
 					    </sec:authorize>
 						
 					    <sec:authorize access="!isAuthenticated()">

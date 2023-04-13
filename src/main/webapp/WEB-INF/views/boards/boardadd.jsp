@@ -33,8 +33,11 @@
 				<sec:authentication property="principal" var="user" />
 	<form:input path="bwriter" type="hidden" value="${user.username}" class="form-control"/>
 	제목 : <form:input path="btitle" class="form-control"/>
+	<form:errors path="btitle" cssStyle="color:red"/><br>
 	내용 : <form:textarea path="bcontent" class="form-control" rows="10"/>
+	<form:errors path="bcontent" cssStyle="color:red"/>
 
+	<br>
 	<button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button>
 	<button type="submit" class="btn btn-primary" style="float: right; margin-right: 5px;">등록</button>
 	</fieldset>
