@@ -186,14 +186,14 @@ public class StoreController {
 	
 	//경외------------------------------------------------------
 	@GetMapping("/areaList")
-    public String getAreaList(@RequestParam Map<String, Object> map , Model model) {
+    public String getAreaList(@RequestParam Map<String, Object> map, Model model) {
         // MyBatis의 Mapper를 사용하여 데이터베이스에서 데이터를 조회
 
 		System.out.println(map.get("area1"));
 		System.out.println(map.get("area2"));
 		System.out.println(map.get("area3"));
 
-		 List<Store> areaList = storeService.getAreaList(map);
+		List<Store> areaList = storeService.getAreaList(map);
 		
         // 조회한 데이터를 Model에 담아 View로 전달
         model.addAttribute("areaList", areaList);
