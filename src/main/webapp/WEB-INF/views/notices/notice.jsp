@@ -69,7 +69,7 @@
 	<div class="row form-group" ></div>
 	
 	제목 : <input type="text" class="form-control" value="${notice.ntitle}" readonly/>
-	내용 : <textarea rows="10" cols="30" class="form-control" readonly>${notice.ncontent}"</textarea>
+	내용 : <textarea rows="10" cols="30" class="form-control" readonly>${notice.ncontent}</textarea>
 	<br>
 	
 <div>

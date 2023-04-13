@@ -59,6 +59,8 @@
     	<!-- 답변 등록 -->
 	    <sec:authentication property="principal" var="user" />
 	    <input id="bid" type="hidden" name="bid" value="${board.bid}">
+	    
+	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}" class="form-control"/>
 	
 	    <div class="panel panel-default">
 	      <div class="panel-heading">답변 등록</div>
@@ -169,7 +171,7 @@
 	function addreply() {
 		var bid = $("#bid").val();
 		var ccontent = $("#ccontent").val();
-		var cwriter = "임시값_수정해야함";
+		var cwriter = $("#cwriter").val();
 		
 		console.log(bid);
 		console.log(ccontent);
@@ -187,8 +189,8 @@
 				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 			},
 			success : function(result) {
-				alert("등록 완료")
-			 window.location.reload() ;
+				alert("등록 완료");
+				window.location.reload();
 			},
 			error : function(request, status, error) {
 				alert(request.status + " " + request.responseText);
