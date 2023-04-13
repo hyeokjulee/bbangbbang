@@ -20,7 +20,8 @@
 
 						<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
 						<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-
+						
+						<link rel="stylesheet" href="/resources/css/infowindow.css">
 						<!-- Animate.css -->
 						<link rel="stylesheet" href="/resources/css/animate.css">
 						<!-- Icomoon Icon Fonts-->
@@ -266,7 +267,7 @@
 											});
 										   */
 								<c:forEach items="${storeList}" var="store">
-									listData.push(["${store.saddr}","${store.sname}","${store.sid}"]);
+									listData.push(["${store.saddr}","${store.sname}","${store.sid}","${store.stel}"]);
 								</c:forEach>
 								/* console.log(listData) */
 
@@ -316,21 +317,54 @@
 												position: coords,
 												clickable: true
 											});
-
-											// 마커를 지도에 표시합니다.ㅎㅎ
+											
+											var content = '<div class="overlaybox">' +
+										    '    <div class="boxtitle">'+addr[1]+'</div>' +
+										    '    <div class="first" onclick="location.href=\'/store/info?sid='+ addr[2]+'\'">' +   
+										    '    </div>' +
+										    '    <ul>' +
+										    '        <li class="up" style="width: 227px;">' +
+										    '            <span class="title">'+(addr[3] ? addr[3] : "정보없음")+'</span>' +        
+										    '        </li>' +
+										    '        <li class="up" style="width: 227px;">' +    
+										    '            <span class="title">'+addr[0]+'<span>' +    
+										    '        </li>' +
+										    '    </ul>' +
+										    '</div>'
+										    
+										 
+							
+											// 마커를 지도에 표시합니다.
 											marker.setMap(map);
 
 											// 인포윈도우를 생성합니다
 											var infowindow = new kakao.maps.InfoWindow({
-												content: '<a href = "/store/info?sid='+ addr[2]+'"><div style="width:150px;text-align:center;padding:6px 0;">' + addr[1] + '</div></a>',
+												content: '<a href = "/store/info?sid='+ addr[2]+'"><div style="width:150px;text-align:center;padding:6px 0;">' + addr[1] + '</div></a>'
+												
+											});
+											
+											var overlay = new kakao.maps.CustomOverlay({
+											    position: coords,
+											    content: content,
+											    xAnchor: 0.42,
+											    yAnchor: 1.05
 											});
 
-											        // 마커에 클릭이벤트를 등록합니다
-												   kakao.maps.event.addListener(marker, 'click', function() {
-														 // 마커 위에 인포윈도우를 표시합니다
-														 infowindow.open(map, marker);  
-													   }); 
 
+									        // 마커에 클릭이벤트를 등록합니다
+										    kakao.maps.event.addListener(marker, 'click', function() {
+												 if (overlay.getMap()) {
+												        overlay.setMap(null);
+												    }
+												 // 커스텀 오버레이 표시
+												 else{overlay.setMap(map);}
+											   }); 
+									        
+									        /* kakao.maps.event.addListener(map, 'click', function() {
+												 // 마커 위에 인포윈도우를 표시합니다
+												 infowindow.close();  
+											   });        
+ */
 											/* kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 											kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 
