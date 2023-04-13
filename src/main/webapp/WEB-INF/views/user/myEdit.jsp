@@ -76,7 +76,7 @@
 						</div>
 					</form:form>	
 					<form action="/user/myDelete?username=${user.username}&${_csrf.parameterName}=${_csrf.token}" method="post">
-						<input type="submit" value="회원탈퇴하기" class="form-control" style="background-color:red; color:white;" onclick="return confirm('탈퇴하시겠습니까?')">
+						<input type="submit" value="회원탈퇴하기" class="form-control" style="background-color:gray; color:white;" onclick="return confirm('탈퇴하시겠습니까?')">
 					</form>	
 				</div>
 			</div>
