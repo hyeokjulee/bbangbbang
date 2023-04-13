@@ -60,7 +60,6 @@ public class SecurityController {
 		String encodedPassword = bcryptPasswordEncoder.encode(joinUser.getPassword());
 		userParam.setPassword(encodedPassword);
 		userParam.setUname(joinUser.getUname());
-		userParam.setUname(joinUser.getUname());
 		
 		userParam.setUsername(joinUser.getUsername());
 		userService.createUser(userParam);

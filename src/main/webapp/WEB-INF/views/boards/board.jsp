@@ -61,7 +61,7 @@
 	    <sec:authentication property="principal" var="user" />
 	    <input id="bid" type="hidden" name="bid" value="${board.bid}">
 	    
-	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}" class="form-control"/>
+	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}"/>
 	
 	    <div class="panel panel-default">
 	      <div class="panel-heading">댓글 등록</div>
@@ -205,6 +205,11 @@
 		var ccontent = $("#ccontent").val();
 		var cwriter = $("#cwriter").val();
 		
+		if (ccontent == "") {
+			alert("댓글을 입력해주세요.");
+			return;
+		}
+		
 		console.log(bid);
 		console.log(ccontent);
 		console.log(cwriter);
@@ -247,6 +252,11 @@
 	function updateAjax() {
 	    var cid = document.querySelector("#cid").value;
 	    var ccontent = document.querySelector("#cccontent").value;
+	    
+	    if (ccontent == "") {
+			alert("댓글을 입력해주세요.");
+			return;
+		}
 
 	    $.ajax({
 	        url: "/boards/updatereply",

@@ -11,6 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,13 +40,24 @@ public class BoardController {
 	}
 	
 	@PostMapping("/boardadd")
-	public String submitAddBoardForm(@ModelAttribute("NewBoard") Board board) {
-
-		boardService.setNewBoard(board);
+	public String submitAddBoardForm(@Validated @ModelAttribute("NewBoard") AddBoard addBoard, BindingResult result) {
+		if( result.hasErrors() ) { // 에러가 있는지 검사
+			List<ObjectError> list = result.getAllErrors(); // 에러를 List로 저장
+			for( ObjectError error : list ) {
+				System.out.println(error);
+			}
+			return "boards/boardadd";
+		}
 		
-		System.out.println(board.getBcontent());
-		System.out.println(board.getBtitle());
+		Board boardParam = new Board();
+		boardParam.setBcontent(addBoard.getBcontent());
+		boardParam.setBtitle(addBoard.getBtitle());
+		boardParam.setBwriter(addBoard.getBwriter());
 		
+		boardService.setNewBoard(boardParam);
+		
+//		System.out.println(boardParam.getBcontent());
+//		System.out.println(boardParam.getBtitle());
 		
 		return "redirect:/boards/boardlist";
 	}
@@ -129,18 +143,30 @@ public class BoardController {
     
     //게시물 수정
     @PostMapping("/boardupdate")
-	public String boardUpdatePOST(@RequestParam(value = "bid", required = false) String bid, @ModelAttribute("UpdateBoard") Board board) {
+	public String boardUpdatePOST(@Validated @ModelAttribute("UpdateBoard") AddBoard addBoard, BindingResult result) {
+    	if( result.hasErrors() ) { // 에러가 있는지 검사
+			List<ObjectError> list = result.getAllErrors(); // 에러를 List로 저장
+			for( ObjectError error : list ) {
+				System.out.println(error);
+			}
+			return "boards/boardupdate";
+		}
 		
-    	boardService.updateBoard(board);
+    	Board boardParam = new Board();
+    	boardParam.setBcontent(addBoard.getBcontent());
+    	boardParam.setBtitle(addBoard.getBtitle());
+    	boardParam.setBid(addBoard.getBid());
+    	
+    	boardService.updateBoard(boardParam);
 
 //    	Board boardById = boardService.getBoardById(bid);
 //         model.addAttribute("board", boardById);
 //         boardById.setBtitle(board.getBtitle());
 //         boardById.setBcontent(board.getBcontent());
          
-         System.out.println(board.getBcontent());
- 		System.out.println(board.getBtitle());
- 		System.out.println(board.getBid());
+//         System.out.println(boardParam.getBcontent());
+// 		System.out.println(boardParam.getBtitle());
+// 		System.out.println(boardParam.getBid());
          
          return "redirect:/boards/boardlist";
          

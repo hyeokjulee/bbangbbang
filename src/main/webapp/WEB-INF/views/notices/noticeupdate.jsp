@@ -35,8 +35,10 @@
 	<%--<sec:authentication property="principal" var="user" />  --%>
 	<%-- <form:input path="nwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="ntitle" class="form-control" value="${notice.ntitle}"/>
+	<form:errors path="ntitle" cssStyle="color:red"/><br>
 	내용 : <form:input path="ncontent" class="form-control" value="${notice.ncontent}" style="height:300px; vertical-align: top;"/>
-		 <form:input type="hidden" path="nid" id="nid" size="20" maxlength="20" value="${notice.nid}"/><br>
+	<form:errors path="ncontent" cssStyle="color:red"/>
+		 <form:input type="hidden" path="nid" id="nid" value="${notice.nid}"/><br>
 	<button class="btn btn-secondary" onclick="history.back()" style="float:right">취소</button>
 	<input type="submit" class="btn btn-primary" value="수정" style="float:right">
 	
