@@ -90,15 +90,19 @@ li {
 					<div class="container">
 						<input type="hidden" class="sid" name="sid" value='${store.sid}'>
 						<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
-						<input type="hidden" class="uid" name="uid" value="1"> <input
-							type="text" class="form-data rcontent"> <input type="text"
-							class="form-data rscore">
+						<input type="hidden" class="uid" name="uid" value="1">
+						 <input type="text" class="form-data rcontent">
+						 
+							<input type="text" class="form-data rscore">
+							
 						<button class="btn btn-primary" type="button"
 							onclick="insertAjax()">리뷰 등록하기</button>
 					</div>
 				</div>
 			</div>
 	    </sec:authorize>
+
+		
 
 		<!-- 리뷰 게시물 -->
 
@@ -340,7 +344,7 @@ function updateModel(rid, rscore, rcontent) {
 		for (var i = 0; i < menuArr.length; i++) {
 			var li = document.createElement('li');
 			li.innerHTML = "<div class='left'>"+menuArr[i].toString().replace("'", "").replace("'","")+"</div>" +
-							"<div class='right'>"+menuArr[i].toString().replace("'", "").replace("'","")+"</div>"
+							"<div class='right'>"+priceArr[i].toString().replace("'", "").replace("'","")+"</div>"
 			smenu.appendChild(li);
 
 			//li 가 18개가 넘을경우 더보기 버튼 생성

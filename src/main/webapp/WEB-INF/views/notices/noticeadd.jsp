@@ -35,7 +35,9 @@
 			<%--	<sec:authentication property="principal" var="user" />  --%>
 	<%-- <form:input path="nwriter" type="hidden" value="${user.username}" class="form-control"/> --%>
 	제목 : <form:input path="ntitle" class="form-control"/>
+	<form:errors path="ntitle" cssStyle="color:red"/><br>
 	내용 : <form:textarea path="ncontent" class="form-control" rows="10"/>
+	<form:errors path="ncontent" cssStyle="color:red"/>
 	
 
 	<!-- <input type="submit" class="btn btn-primary" value="등록"/> -->
