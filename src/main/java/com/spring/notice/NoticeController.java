@@ -7,6 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,14 +50,24 @@ public class NoticeController {
 
 	
 	@PostMapping("/noticeadd")
-	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice ) {
+	public String submitAddNoticeForm(@Validated @ModelAttribute("NewNotice") AddNotice addNotice, BindingResult result) {
+		if( result.hasErrors() ) { // 에러가 있는지 검사
+			List<ObjectError> list = result.getAllErrors(); // 에러를 List로 저장
+			for( ObjectError error : list ) {
+				System.out.println(error);
+			}
+			return "notices/noticeadd";
+		}
+		
+		Notice noticeParam = new Notice();
+		noticeParam.setNcontent(addNotice.getNcontent());
+		noticeParam.setNtitle(addNotice.getNtitle());
 
-		noticeService.setNewNotice(notice);
+		noticeService.setNewNotice(noticeParam);
 		
-		System.out.println(notice.getNcontent());
-		System.out.println(notice.getNtitle());
-		System.out.println(notice.getNid());
-		
+//		System.out.println(noticeParam.getNcontent());
+//		System.out.println(noticeParam.getNtitle());
+//		System.out.println(noticeParam.getNid());
 		
 		return "redirect:/notices/noticelist";
 	}
@@ -111,14 +124,25 @@ public class NoticeController {
     
     //소개글 수정
     @PostMapping("/noticeupdate")
-	public String submitUpdateNoticeForm(@RequestParam(value = "nid", required = false) String nid, @ModelAttribute("UpdateNotice") Notice notice ) {
-
-		noticeService.setUpdateNotice(notice);
+	public String submitUpdateNoticeForm(@Validated @ModelAttribute("UpdateNotice") AddNotice addNotice, BindingResult result) {
+    	if( result.hasErrors() ) { // 에러가 있는지 검사
+			List<ObjectError> list = result.getAllErrors(); // 에러를 List로 저장
+			for( ObjectError error : list ) {
+				System.out.println(error);
+			}
+			return "notices/noticeupdate";
+		}
 		
-		System.out.println(notice.getNcontent());
-		System.out.println(notice.getNtitle());
-		System.out.println(notice.getNid());
+		Notice noticeParam = new Notice();
+		noticeParam.setNcontent(addNotice.getNcontent());
+		noticeParam.setNtitle(addNotice.getNtitle());
+		noticeParam.setNid(addNotice.getNid());
+    	
+		noticeService.setUpdateNotice(noticeParam);
 		
+//		System.out.println(noticeParam.getNcontent());
+//		System.out.println(noticeParam.getNtitle());
+//		System.out.println(noticeParam.getNid());
 		
 		return "redirect:/notices/noticelist";
 	}
