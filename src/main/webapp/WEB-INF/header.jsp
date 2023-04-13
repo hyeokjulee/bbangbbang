@@ -95,8 +95,18 @@
 					    </sec:authorize>
 						
 					    <sec:authorize access="!isAuthenticated()">
-					    	<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
-					    	<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+					    	<c:choose>
+								<c:when test="${loginpage }">
+									<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+								</c:when>
+								<c:when test="${joinpage }">
+									<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+								</c:when>
+								<c:otherwise>
+									<li class="btn-cta"><a href="/login"><span>로그인</span></a><li class="btn-cta">
+					    			<li class="btn-cta"><a href="/join"><span>회원가입</span></a><li class="btn-cta">
+								</c:otherwise>
+							</c:choose>
 					    </sec:authorize>
 					</ul>
 				</div>

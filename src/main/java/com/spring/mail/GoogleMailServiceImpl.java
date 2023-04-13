@@ -20,7 +20,7 @@ public class GoogleMailServiceImpl implements MailService {
 
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-			messageHelper.setFrom("dlhjwwe@gmail.com", "고객센터");
+			messageHelper.setFrom("dlhjwwe@gmail.com", "서울에서배빵빵");
 			messageHelper.setTo(to);
 			messageHelper.setSubject(subject);
 			messageHelper.setText(body);
