@@ -40,9 +40,11 @@
          가게 이름 :
          <form:input path="sname" class="form-control" />
          가게 주소 :
-         <form:input path="saddr" class="form-control" />
+         <form:input path="saddr" class="form-control" placeholder="지번번호로 입력해주세요"/>
          가게 번호 :
-         <form:input path="stel" class="form-control" />
+         <form:input path="stel" class="form-control" placeholder="010-1111-2345"/>
+         영업 시간 :
+         <form:input path="sopen" class="form-control" placeholder="매일_오전 11시 30분 - 오후 7시" />
          가게 사진 :
          <form:input path="sphotoFile" type="file" class="form-control" />
          <!-- 여기는 따로 수정이 필요 -->
@@ -65,9 +67,14 @@
       var menu = document.getElementById("menu");
       var div = document.createElement("div");
       div.className = "row form-group";
-      div.innerHTML = "<div class='col-md-6'><input type='text' name='smenu' class='form-control col-md-6' placeholder='메뉴 이름'/></div><div class='col-md-6'><input type='text' name='sprice' class='form-control col-md-6' placeholder='메뉴 가격' /></div>";
+      div.innerHTML = "<div class='col-md-6'><input type='text' name='smenu' class='form-control col-md-6' placeholder='메뉴 이름'/></div><div class='col-md-6'><input type='text' name='sprice' class='form-control col-md-6' placeholder='메뉴 가격' /></div><div class='col-md-12'><button type='button' class='btn btn-danger' onclick='deleteMenu(this)'>메뉴삭제</button></div>";
       menu.appendChild(div);
   }
+
+	function deleteMenu(button){
+	    var div = button.parentNode.parentNode;
+	    div.parentNode.removeChild(div);
+	}
 </script>
 
 <script>
