@@ -63,18 +63,16 @@
 </head>
 <body>
 <div class="container">
-  
-  <div style="float:right">[${notice.nregdate}]</div>
+<!-- 주 게시물 -->
+    <div class="text-right">작성일: ${notice.nregdate}  | 조회수 [ ${notice.nview} ]</div>
 
-	<div class="row form-group" ></div>
-	
-	제목 : <input type="text" class="form-control" value="${notice.ntitle}" readonly/>
-	내용 : <textarea rows="10" cols="30" class="form-control" readonly>${notice.ncontent}</textarea>
-	<br>
-	
-<div>
-     조회수 [ ${notice.nview} ] 
-
+    <div class="panel panel-default">
+      <div class="panel-heading">${notice.ntitle}</div>
+      <div class="panel-body">
+        <h5>${notice.ncontent}</h5>
+        <br><br><br>
+        </div>
+       
   <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
   
   <sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -84,11 +82,9 @@
 	  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
 	  </form>
 	  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
-  </sec:authorize>
-		    
+  </sec:authorize>    
+ </div>
 </div>
-	</div>
-
 		
 	
 

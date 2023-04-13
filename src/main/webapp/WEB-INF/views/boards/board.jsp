@@ -31,16 +31,14 @@
   <div class="container">
 
     <!-- 주 게시물 -->
+    <div class="text-right">작성일: ${board.bregdate}  | 조회수 [ ${board.bview} ]</div>
+
     <div class="panel panel-default">
       <div class="panel-heading">${board.btitle}</div>
       <div class="panel-body">
         <h5>${board.bcontent}</h5>
         <br><br><br>
-        <div class="text-right">
-       		   조회수 [ ${board.bview} ]
-        </div>
         
-        <div class="text-right">작성일: ${board.bregdate}</div>
 
          <!-- <button type="button" class="btn btn-secondary" style="float:right; margin-right: 5px;" onclick="history.back()">취소</button> -->
         <c:choose>
@@ -63,36 +61,31 @@
 	    
 	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}"/>
 	
-	    <div class="panel panel-default">
-	      <div class="panel-heading">댓글 등록</div>
+	    <div class="panel panel-default"> 
+	    	<div class="panel-body"><b>댓글</b></div>
 	      <div class="panel-body">
 	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
 	        <br>
 	        <button class="btn btn-primary pull-right" type="button" onclick="addreply()">댓글 등록</button>
 	      </div>
-	    </div>
+	    
     </sec:authorize>
     
     
     
 	<!-- 답변 게시물 -->
 
-	<div class="panel panel-default">
-    <div class="panel-heading">댓글 리스트</div>
-    <div class="panel-body">
-        <b>${cnt}개의 댓글이 있습니다.</b>
+	
+        <%-- <b>${cnt}개의 댓글이 있습니다.</b> --%>
         <c:forEach items="${commentList}" var="c">
             <div class="panel panel-default">
-                <div class="panel-heading">${c.cwriter}</div>
+                <div class="panel-body" style="background-color: #fee7c5">아이디 : ${c.cwriter}</div>
                 <div class="panel-body">
                     <p>${c.ccontent}</p>
                 </div>
-                <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <small>${c.cregdate}</small>
-                        </div>
-                         <div class="col-sm-6">
+                <div class="row">
+                <div class="panel-body  text-right" >
+                            <div style="padding-right: 20px;"><small>등록일 : ${c.cregdate}</small></div><br>
                             <div class="btn-group pull-right">
                                 <%-- <button type="button" class="btn btn-primary btn-xs" onclick="javascript:updateModal(${c.cid},'${c.ccontent}')">수정</button>
                                 <form action="/boards/deletereply" method="post">
@@ -136,11 +129,9 @@
 			                        <button type="button" class="btn btn-primary btn-sm" style="float: right; margin-right: 5px;" onclick="javascript:updateModal(${c.cid},'${c.ccontent}' )">수정</button>
 								</c:when>
 							</c:choose>   
-						</sec:authorize>        
-                                
-                            </div>
-                        </div> 
-                    </div>
+						</sec:authorize>      
+					</div>  
+					</div>
                 </div>
             </div>
         </c:forEach>
