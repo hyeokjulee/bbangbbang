@@ -161,7 +161,7 @@
 	function addreply() {
 		var bid = $("#bid").val();
 		var ccontent = $("#ccontent").val();
-		var cwriter = "임시값_수정해야함";
+		var cwriter = $("#cwriter").val();
 		
 		console.log(bid);
 		console.log(ccontent);

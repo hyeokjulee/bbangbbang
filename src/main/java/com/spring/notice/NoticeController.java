@@ -29,6 +29,23 @@ public class NoticeController {
 		return "notices/noticeadd";
 	}
 	
+//	관리자만 등록가능하게 	
+//	@PostMapping("/noticeadd")
+//	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice, Principal principal) {
+//	    String username = principal.getName();
+//	    if (!username.equals("admin")) {
+//	        return "redirect:/notices/noticelist";
+//	    }
+//	    noticeService.setNewNotice(notice);
+//
+//	    System.out.println(notice.getNcontent());
+//	    System.out.println(notice.getNtitle());
+//	    System.out.println(notice.getNid());
+//
+//	    return "redirect:/notices/noticelist";
+//	}
+
+	
 	@PostMapping("/noticeadd")
 	public String submitAddNoticeForm(@ModelAttribute("NewNotice") Notice notice ) {
 
