@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bbang.review.Review;
 import com.bbang.review.ReviewService;
+import com.spring.user.User;
+import com.spring.user.UserService;
 
 @Controller
 @RequestMapping("/store")
@@ -28,6 +31,8 @@ public class StoreController {
 
 	@Autowired // DI
 	private StoreService storeService;
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	ReviewService reviewService;
@@ -81,7 +86,12 @@ public class StoreController {
 	}
 
 	@GetMapping("/info")
-	public String storeInfo(@RequestParam("sid") String sid, Model model) {
+	public String storeInfo(@RequestParam("sid") String sid, Model model, Authentication auth) {
+		if (auth != null) {
+			String username = auth.getName();
+			User user = userService.getUser(username);
+			model.addAttribute("id", user.getUid());
+		}
 
 		Store storeById = storeService.getStoreById(sid);
 		model.addAttribute("store", storeById);
