@@ -114,7 +114,7 @@
 												<h1 class="cursive-font">All in good taste!</h1>
 
 
-												<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="post">
+												<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="get">
 													<div class="input-group" style="margin-top: 50px;">
 														<input type="text" placeholder="지역 또는 검색어를 입력해주세요"
 															class="form-control" name="search"
@@ -377,17 +377,16 @@
 										<div class="gtco-widget">
 											<h3>Get Social</h3>
 											<ul class="gtco-social-icons">
-												<li><a href="#"><i class="icon-twitter"></i></a></li>
-												<li><a href="#"><i class="icon-facebook"></i></a></li>
-												<li><a href="#"><i class="icon-linkedin"></i></a></li>
-												<li><a href="#"><i class="icon-dribbble"></i></a></li>
+												<li><a ><i class="icon-twitter"></i></a></li>
+												<li><a ><i class="icon-facebook"></i></a></li>
+												<li><a><i class="icon-linkedin"></i></a></li>
+												<li><a><i class="icon-dribbble"></i></a></li>
 											</ul>
 										</div>
 									</div>
 
 									<div class="col-md-12 text-center copyright">
-										Made by <i class="fa fa-love"></i><a
-											href="https://bootstrapthemes.co">최현식,이혁주,정소영,박성준,심경외</a>
+										Made by <i class="fa fa-love"></i><a>최현식,이혁주,정소영,박성준,심경외</a>
 									</div>
 
 								</div>
@@ -432,8 +431,8 @@
 						
 							function areaGangNam() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -460,8 +459,8 @@
 							
 							function areaWest() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -488,8 +487,8 @@
 							
 							 function areaGangBuk() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
@@ -516,8 +515,8 @@
 							 
 							 function areaGangDong() {
 								var form = document.createElement("form");
-								form.action = "/store/areaList?${_csrf.parameterName}=${_csrf.token}";
-								form.method = "POST";
+								form.action = "/store/areaList";
+								form.method = "GET";
 								
 								var hiddenField = document.createElement("input");
 								hiddenField.type = "hidden";
