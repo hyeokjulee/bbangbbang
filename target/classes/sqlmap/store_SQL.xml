@@ -64,7 +64,7 @@
 			FROM store 
 			WHERE sid > 0
 			ORDER BY sid
-			LIMIT 0, 500
+			LIMIT 0, 300
 		 ]]>
 	</select>
 	
