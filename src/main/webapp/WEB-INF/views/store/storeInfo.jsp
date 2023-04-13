@@ -120,8 +120,8 @@ li {
 				<sec:authentication property="principal" var="user" />
 				<input type="hidden" name="rwriter" value="${user.username}">
 				
-<!--  						<input type="hidden" class="uid" name="uid" value="1">
---> 
+				<input type="hidden" class="uid" name="uid" value="${id}">
+
 
 				<fieldset class="myform_star">
 					<input type="radio" class="rscore2" value="5" id="rate5"><label
@@ -138,8 +138,7 @@ li {
 
 				<input class="form-data rcontent form-control" row="3" value=""> <br>
 
-				<input type="text" class="form-data rscore">
-
+				<input type="hidden" class="form-data rscore">
 					
 				<button class="btn btn-primary pull-right" type="button" onclick="insertAjax()">리뷰 등록하기</button>
 			</div>
@@ -180,8 +179,6 @@ li {
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="modal-title">모달_타이틀_</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
 					</div>
 					<div class="modal-body" id="modal-body">
 						모달_바디_부분_자동으로_정보를_가져와서_바꿀_예정</div>
@@ -214,15 +211,47 @@ function updateModel(rid, rscore, rcontent) {
 	modal_title.innerHTML = "리뷰 수정";
 
 	var modal_body = document.getElementById("modal-body");
-	modal_body.innerHTML =  "<input id='rid' value= '" + rid + "' >" +
-							"<input id='rscore' value= '" + rscore + "' >" +
-							"<input id='rcontent' value= '" + rcontent + "' >" ;
+	modal_body.innerHTML =  "<input id='rid' type='hidden' value= '" + rid + "' ><br>"  +
+	
+    	"<fieldset class='myform_star modal_review'>"+
+        "<input type='radio' class='rscore3' value='5' id='rate5_2'><label for='rate5_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='4' id='rate4_2'><label for='rate4_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='3' id='rate3_2'><label for='rate3_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='2' id='rate2_2'><label for='rate2_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='1' id='rate1_2'><label for='rate1_2'>★</label> </fieldset> "+
+
+							"<input class='rscore_star' type='hidden' value= '" + rscore + "' ><br>"  +
+
+
+							"<input id='rcontent' class='form-control' value= '" + rcontent + "' >" ;
 	
 	var modal_footer = document.getElementById("modal-footer");
 	modal_footer.innerHTML = "<button type='button' class='btn btn-primary' onclick='javascript:updateAjax()'>수정하기</button>"
 		+ "<button type='button' class='btn btn-primary' onclick='javascript:deleteAjax()'>삭제하기</button>"
 		+ "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>닫기</button>" ; 
+
+		updateModa_star();
 }
+
+</script>
+
+<script>
+
+	function updateModa_star(){
+		
+	var fieldset2 = document.querySelector(".modal_review");	
+	fieldset2.addEventListener("click", function() {
+		var selectedValu = document.querySelector('input[class="rscore3"]:checked').value;
+		console.log(selectedValu);
+		var rscore3 = $('input.rscore_star').val(selectedValu);
+	});
+
+	}
+
+
+
+</script>
+<script>
 
 
 	// rid 값을 받아서 수정하기 버튼을 누르면 수정페이지로 이동
@@ -230,7 +259,7 @@ function updateModel(rid, rscore, rcontent) {
 	// 그렇게하면 var 변수 = document.getElementById("id값") 으로 값을 가져올 수 있다. 
 	function updateAjax() {
 		var rid = document.querySelector("#rid").value;
-		var rscore = document.querySelector("#rscore").value;
+		var rscore = document.querySelector(".rscore_star").value;
 		var rcontent = document.querySelector("#rcontent").value;
 
 		alert("rid : " + rid + ", rcontent : " + rcontent + ", rscore : " + rscore) ;
