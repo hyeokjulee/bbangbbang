@@ -10,30 +10,28 @@
 					<div class="row row-mt-8em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
 							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">검색한 배빵빵</h2>
-							
-							<!-- 검색창 띄우기 -->
-							<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="get">
-									<div class="input-group" style="margin-top: 40px; margin-left: auto; margin-right: auto; text-align: center;">
-									<div class="col-md-12">
-										<input type="text" placeholder="지역 또는 검색어를 입력해주세요"
-												class="form-control" name="search"
-												style="background-color: white; height: 40px; width:500px"> 
-										<span class="input-group-btn">
-										<div class="row form-group">
-										<input type="submit" value="검색" class="form-control" class="white-color"style="color: white; background-color: orange; height: 40px; width: 100px">
-									</div>
-									</div>
-								</span>
-							</div>
-							</form>
-							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-	<section class="py-5 text-center container"></section><br><br><br><br>
+<section class="py-5 text-center container"></section><br>
+						<!-- 검색창 띄우기 -->
+							<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="get">
+									<div class="input-group" style="margin-top: 40px; margin-left: auto; margin-right: auto; text-align: center;">
+									<div class="col-md-12">
+										<input type="text" placeholder="지역 또는 검색어를 입력해주세요"
+												class="form-control" name="search"
+												style="background-color: white; height: 50px; width:700px"> 
+										<span class="input-group-btn">
+										<div class="row form-group">
+										<input type="submit" value="검색" class="form-control" class="white-color"style="color: white; background-color: orange; height: 50px; width: 100px">
+									</div>
+									</div>
+								</span>
+							</div>
+						</form><br>
 <body>
 <div class="container">
   <div class="row" id="store-list">
