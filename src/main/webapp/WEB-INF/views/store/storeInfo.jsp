@@ -44,13 +44,12 @@ li {
         <div class="panel panel-default">
           <div class="panel-body">
             <ul class="smenu">
-              
             </ul>
           </div>
         </div>
       </div>
       <div class="col-md-5 col-md-push-1 col-sm-6">
-      <h4>오시는 길</h4>
+      <h4>위치</h4>
         <div class="panel panel-default">
           <div class="panel-body">
             <div id="map"></div>
@@ -351,7 +350,7 @@ function updateModel(rid, rscore, rcontent) {
 			if (i > 18) {
 				var li = document.createElement('li');
 				// 해당 버튼을 눌렀을 때, 모달을 띄우도록 처리
-				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>더보기</button>";
+				li.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal''>메뉴 더보기</button>";
 				smenu.appendChild(li);
 			}
 			// 18개 이상일경우 더보기 버튼 클릭시 나타나는 메뉴
