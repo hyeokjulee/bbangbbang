@@ -1,15 +1,25 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원목록</title>
-	<!-- bootstrap CSS only -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<!-- jQuery CDN -->
-	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-</head>
+
+<%@ include file="/WEB-INF/header.jsp"%>
+
+<header id="gtco-header-sub" class="gtco-cover-sub2 gtco-cover-md" data-stellar-background-ratio="0.5">
+<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+
+					<div class="row row-mt-8em">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h2 class="white-color" style="font-size: 60px; font-weight: bold;">회원 목록</h2>
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</header>
+	<section class="py-5 text-center container"></section><br><br><br><br>
 <body>
 	<div class="container mt-3">
 	<h3 class="my-3">전체 회원 리스트</h3>
@@ -81,5 +91,6 @@
 		listFunction();
 	}
 	</script>
-</body>
-</html>
+<section class="py-5 text-center container"></section><br><br><br><br>
+
+<%@ include file="/WEB-INF/footer.jsp"%>
