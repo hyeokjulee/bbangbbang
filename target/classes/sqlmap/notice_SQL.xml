@@ -6,9 +6,9 @@
 		useGeneratedKeys="true" keyProperty="nid">
 		<![CDATA[
 			INSERT INTO notice
-			(ntitle, ncontent, nwriter)
+			(ntitle, ncontent)
 			values
-			(#{ntitle}, #{ncontent}, #{nwriter})
+			(#{ntitle}, #{ncontent})
 		]]>
 	</insert>
 	
