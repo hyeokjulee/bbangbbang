@@ -90,10 +90,10 @@ li {
 					<div class="container">
 						<input type="hidden" class="sid" name="sid" value='${store.sid}'>
 						<!-- <input type="hidden" name="mid" value="${member.mid}"> -->
-						<input type="hidden" class="uid" name="uid" value="1">
-						 <input type="text" class="form-data rcontent">
+						<input type="hidden" class="uid" name="uid" value="${id}">
+						 <input type="text" class="form-data rcontent" placeholder="내용">
 						 
-							<input type="text" class="form-data rscore">
+							<input type="text" class="form-data rscore" placeholder="점수(숫자만 입력)">
 
 
 							
@@ -120,10 +120,14 @@ li {
 					<div class="d-flex justify-content-end badge bg-light text-dark">${r.rregdate}</div>
 					<div class="d-flex justify-content-end badge bg-light text-dark">${r.rupdate}</div>
 
-					<!-- 리뷰 부분 -->
-					<!-- // onclick 에 rid의 값을 updateModel(rid) 값을 넘겨주기 -->
-					<button type="button" class="btn btn-primary"
-						onclick="javascript:updateModel(${r.rid}, ${r.rscore}, '${r.rcontent}' )">수정모달</button>
+					<c:choose>
+						<c:when test="${r.uid == id}">
+							<!-- 리뷰 부분 -->
+							<!-- // onclick 에 rid의 값을 updateModel(rid) 값을 넘겨주기 -->
+							<button type="button" class="btn btn-primary"
+								onclick="javascript:updateModel(${r.rid}, ${r.rscore}, '${r.rcontent}' )">수정모달</button>
+						</c:when>
+					</c:choose>   
 
 				</div>
 			</div>
