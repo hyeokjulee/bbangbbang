@@ -35,7 +35,7 @@
 
 	<div class="gtco-loader"></div>
 	
-		<!-- <div id="page"> -->
+		<div id="page">
 
 	<!-- <div class="page-inner"> -->
 	<nav class="gtco-nav" role="navigation">
