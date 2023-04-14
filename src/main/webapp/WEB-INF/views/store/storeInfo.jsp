@@ -292,6 +292,10 @@ function updateModel(rid, rscore, rcontent) {
 		var uid = $('div.container input.uid').val();
 		var rcontent = $('div.container input.rcontent').val() ;
 		var rscore = $('div.container input.rscore').val();
+		
+		if (!(1<=rscore&&rscore<=5)) {
+			rscore = 0;
+		}
 
 		alert("rcontent : " + rcontent + ", rscore : " + rscore +  ", sid : " + sid) ;
 
