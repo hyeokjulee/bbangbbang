@@ -218,7 +218,7 @@
 				xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 			},
 			success : function(result) {
-				alert("등록 완료");
+			//	alert("등록 완료");
 				window.location.reload();
 			},
 			error : function(request, status, error) {
