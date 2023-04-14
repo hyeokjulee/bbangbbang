@@ -1,3 +1,4 @@
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/header.jsp"%>
@@ -66,6 +67,8 @@
 	}
 	
 	function deleteUser(email) {
+		var currentUserName = '<%= SecurityContextHolder.getContext().getAuthentication().getName() %>';
+		
 		if (confirm('삭제하시겠습니까?')) {
 			$.ajax({
 				type:"post",
@@ -75,6 +78,10 @@
 				success : function(data) {
 					if (data == 1 ) {
 						alert("회원 [" + email +"] 님을 회원 목록에서 제거하였습니다")
+						var message = '<c:out value="${message}" />'
+						if (currentUserName == email) {
+							logout();
+						}
 						listFunction();
 					} else {
 						alert("처리에 문제가 생겼습니다.")
@@ -85,6 +92,17 @@
 					}
 			})
 		}
+	}
+
+	function logout() {
+		$.ajax({
+			type:"post",
+			url:"/logout",
+			headers: {'${_csrf.headerName}': '${_csrf.token}'},
+			success : function(data) {
+				window.location.href = '/login';
+			}
+		})
 	}
 	
 	window.onload = function() {
