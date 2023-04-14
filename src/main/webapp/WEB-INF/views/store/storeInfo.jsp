@@ -154,7 +154,7 @@ li {
 
 <c:forEach items="${reviewList}" var="r">
     <div class="panel panel-default">
-        <div class="panel-heading">별점표시구역 : ${r.rscore}</div>
+        <div class="panel-heading rscore_x_star">${r.rscore}</div>
         <div class="panel-body">
             <p>${r.rcontent}</p>
         </div>
@@ -202,6 +202,27 @@ li {
 	});
 
 </script>
+
+<script>
+
+	var starImg = '<Image src="/resources/images/star_over.png" width="20" height="20" />';
+
+	// star 대신 starImg 를 넣도록 수정하기
+
+	var rscore_x_star = document.getElementsByClassName("rscore_x_star");
+	for (var i = 0; i < rscore_x_star.length; i++) {
+		var rscore = rscore_x_star[i].innerHTML;
+		//rscore 의 값 만큼 starImg를 출력하기
+		var star = "";
+		for (var j = 0; j < rscore; j++) {
+			star += starImg;
+		}
+		rscore_x_star[i].innerHTML = star;
+		
+	}
+
+</script>
+
 
 <script type="text/javascript">
 
