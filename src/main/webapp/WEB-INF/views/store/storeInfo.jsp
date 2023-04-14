@@ -112,8 +112,8 @@ li {
 <sec:authorize access="isAuthenticated()">
 	<!-- 리뷰 등록 구역 -->
 	<div class="panel panel-default">
-		<div class="panel-heading">리뷰 등록</div>
-		<div class="panel-body">
+	    	<div class="panel-body"><b>리뷰 등록</b></div>
+	      <div class="panel-body">
 
 			<div class="container">
 				<input type="hidden" class="sid" name="sid" value='${store.sid}'>
@@ -143,7 +143,7 @@ li {
 				<button class="btn btn-primary pull-right" type="button" onclick="insertAjax()">리뷰 등록하기</button>
 			</div>
 		</div>
-	</div>
+
 </sec:authorize>
 
 		
@@ -158,7 +158,7 @@ li {
         <div class="panel-body">
             <p>${r.rcontent}</p>
         </div>
-        <div class="panel-footer">
+        <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <small>${r.rregdate}</small>
@@ -166,7 +166,7 @@ li {
                 <div class="col-sm-6">
                     <div class="btn-group pull-right">
 					<c:if test="${r.uid == id}">
-                        <button type="button" class="btn btn-primary"  onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정모달</button>
+                        <button type="button" class="btn btn-primary"  onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정</button>
 					</c:if>
                     </div>
                 </div> 
@@ -188,21 +188,9 @@ li {
 				</div>
 			</div>
 		</div>
+		
+			</div>
 </body>
-
-
-<script type="text/javascript">
-
-	const fieldset = document.querySelector(".myform_star");
-
-	fieldset.addEventListener("click", function() {
-		var selectedValue = document.querySelector('input[class="rscore2"]:checked').value;
-		console.log(selectedValue);
-		var rscore = $('div.container input.rscore').val(selectedValue);
-	});
-
-</script>
-
 <script>
 
 	var starImg = '<Image src="/resources/images/star_over.png" width="20" height="20" />';
@@ -229,6 +217,17 @@ li {
 
 </script>
 
+<script type="text/javascript">
+
+	const fieldset = document.querySelector(".myform_star");
+
+	fieldset.addEventListener("click", function() {
+		var selectedValue = document.querySelector('input[class="rscore2"]:checked').value;
+		console.log(selectedValue);
+		var rscore = $('div.container input.rscore').val(selectedValue);
+	});
+
+</script>
 
 <script type="text/javascript">
 

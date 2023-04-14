@@ -61,7 +61,7 @@
 	    
 	    <input name="cwriter" id="cwriter" type="hidden" value="${user.username}"/>
 	
-	    <div class="panel panel-default"> 
+	    <div class="panel panel-default">
 	    	<div class="panel-body"><b>댓글</b></div>
 	      <div class="panel-body">
 	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control" style="resize:none;"></textarea>
@@ -159,6 +159,7 @@
     </div>
 </div>
 </div>
+
 </body>
 
 <script>
