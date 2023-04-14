@@ -104,7 +104,7 @@
 									<input type="hidden" name="cid" value="${c.cid }" /> 
 									<input type="submit" class="btn btn-outline btn-danger" style="float: right; margin-right: 5px;" value="삭제" />
 									</form>
-			                        <a href="/boards/boardupdate?bid=${board.bid}" class="btn btn-xs btn-outline btn-primary" style="float: right; margin-right: 5px;">수정</a>
+			                        <a onclick="javascript:updateModal(${c.cid},'${c.ccontent }')" class="btn btn-xs btn-outline btn-primary" style="float: right; margin-right: 5px;">수정</a>
 								</c:when>
 								<c:otherwise>
 									<form action="/boards/deletereply" method="post"   style="display:inline;">
@@ -126,7 +126,7 @@
 									<input type="hidden" name="cid" value="${c.cid }" /> 
 									<input type="submit" class="btn btn-outline btn-danger" style="float: right; margin-right: 5px;" value="삭제" />
 									</form>
-			                        <a href="/boards/boardupdate?bid=${board.bid}" class="btn btn-xs btn-outline btn-primary" style="float: right; margin-right: 5px;">수정</a>
+			                        <a onclick="javascript:updateModal(${c.cid},'${c.ccontent }')" class="btn btn-xs btn-outline btn-primary" style="float: right; margin-right: 5px;">수정</a>
 								</c:when>
 							</c:choose>   
 						</sec:authorize>      
