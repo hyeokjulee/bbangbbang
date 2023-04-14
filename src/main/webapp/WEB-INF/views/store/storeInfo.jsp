@@ -124,15 +124,15 @@ li {
 
 
 				<fieldset class="myform_star">
-					<input type="radio" class="rscore2" value="5" id="rate5"><label
+					<input type="radio" class="rscore2" value="5" id="rate5" name="rate"><label
 						for="rate5">★</label>
-					<input type="radio" class="rscore2" value="4" id="rate4"><label
+					<input type="radio" class="rscore2" value="4" id="rate4" name="rate"><label
 						for="rate4">★</label>
-					<input type="radio" class="rscore2" value="3" id="rate3"><label
+					<input type="radio" class="rscore2" value="3" id="rate3" name="rate"><label
 						for="rate3">★</label>
-					<input type="radio" class="rscore2" value="2" id="rate2"><label
+					<input type="radio" class="rscore2" value="2" id="rate2" name="rate"><label
 						for="rate2">★</label>
-					<input type="radio" class="rscore2" value="1" id="rate1"><label
+					<input type="radio" class="rscore2" value="1" id="rate1" name="rate"><label
 						for="rate1">★</label>
 				</fieldset> <br>
 
@@ -215,11 +215,11 @@ function updateModel(rid, rscore, rcontent) {
 	modal_body.innerHTML =  "<input id='rid' type='hidden' value= '" + rid + "' ><br>"  +
 	
     	"<fieldset class='myform_star modal_review'>"+
-        "<input type='radio' class='rscore3' value='5' id='rate5_2'><label for='rate5_2'>★</label>"+
-        "<input type='radio' class='rscore3' value='4' id='rate4_2'><label for='rate4_2'>★</label>"+
-        "<input type='radio' class='rscore3' value='3' id='rate3_2'><label for='rate3_2'>★</label>"+
-        "<input type='radio' class='rscore3' value='2' id='rate2_2'><label for='rate2_2'>★</label>"+
-        "<input type='radio' class='rscore3' value='1' id='rate1_2'><label for='rate1_2'>★</label> </fieldset> "+
+        "<input type='radio' class='rscore3' value='5' id='rate5_2' name='rate2'><label for='rate5_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='4' id='rate4_2' name='rate2'><label for='rate4_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='3' id='rate3_2' name='rate2'><label for='rate3_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='2' id='rate2_2' name='rate2'><label for='rate2_2'>★</label>"+
+        "<input type='radio' class='rscore3' value='1' id='rate1_2' name='rate2'><label for='rate1_2'>★</label> </fieldset> "+
 
 							"<input class='rscore_star' type='hidden' value= '" + rscore + "' ><br>"  +
 
