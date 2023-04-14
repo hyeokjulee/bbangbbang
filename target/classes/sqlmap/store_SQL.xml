@@ -55,6 +55,7 @@
 			FROM store 
 			WHERE sid > 0
 			ORDER BY sid
+			LIMIT 0, 100
 		 ]]>
 	</select>
 	
