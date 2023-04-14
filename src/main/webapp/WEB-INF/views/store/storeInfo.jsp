@@ -158,7 +158,7 @@ li {
         <div class="panel-body">
             <p>${r.rcontent}</p>
         </div>
-        <div class="panel-footer">
+        <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <small>${r.rregdate}</small>
