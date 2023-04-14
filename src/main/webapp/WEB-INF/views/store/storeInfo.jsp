@@ -263,7 +263,7 @@ function updateModel(rid, rscore, rcontent) {
 		var rscore = document.querySelector(".rscore_star").value;
 		var rcontent = document.querySelector("#rcontent").value;
 
-		alert("rid : " + rid + ", rcontent : " + rcontent + ", rscore : " + rscore) ;
+		//alert("rid : " + rid + ", rcontent : " + rcontent + ", rscore : " + rscore) ;
 
 		$.ajax ({
 			url : "/review/update",
@@ -297,7 +297,7 @@ function updateModel(rid, rscore, rcontent) {
 			rscore = 0;
 		}
 
-		alert("rcontent : " + rcontent + ", rscore : " + rscore +  ", sid : " + sid) ;
+	//	alert("rcontent : " + rcontent + ", rscore : " + rscore +  ", sid : " + sid) ;
 
 
 		$.ajax ({
@@ -327,7 +327,7 @@ function updateModel(rid, rscore, rcontent) {
 	//rid 값을 받아서 삭제하기 버튼을 누르면 삭제페이지로 rid 값을 보내준다.
 	function deleteAjax() {
 		var rid = document.querySelector("#rid").value;	
-		alert(rid) ;
+	//	alert(rid) ;
 		$.ajax ({
 			url : "/review/delete",
 			type : "POST",
