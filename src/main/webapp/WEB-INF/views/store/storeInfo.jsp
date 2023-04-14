@@ -112,8 +112,8 @@ li {
 <sec:authorize access="isAuthenticated()">
 	<!-- 리뷰 등록 구역 -->
 	<div class="panel panel-default">
-		<div class="panel-heading">리뷰 등록</div>
-		<div class="panel-body">
+	    	<div class="panel-body"><b>리뷰 등록</b></div>
+	      <div class="panel-body">
 
 			<div class="container">
 				<input type="hidden" class="sid" name="sid" value='${store.sid}'>
@@ -143,7 +143,7 @@ li {
 				<button class="btn btn-primary pull-right" type="button" onclick="insertAjax()">리뷰 등록하기</button>
 			</div>
 		</div>
-	</div>
+
 </sec:authorize>
 
 		
@@ -188,6 +188,8 @@ li {
 				</div>
 			</div>
 		</div>
+		
+			</div>
 </body>
 
 
