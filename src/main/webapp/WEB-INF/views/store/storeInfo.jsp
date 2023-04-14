@@ -229,7 +229,7 @@ function updateModel(rid, rscore, rcontent) {
 	var modal_footer = document.getElementById("modal-footer");
 	modal_footer.innerHTML = "<button type='button' class='btn btn-primary' onclick='javascript:updateAjax()'>수정하기</button>"
 		+ "<button type='button' class='btn btn-primary' onclick='javascript:deleteAjax()'>삭제하기</button>"
-		+ "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>닫기</button>" ; 
+		+ "<button type='button' class='btn btn-secondary' data-dismiss='modal'>닫기</button>" ; 
 
 		updateModa_star();
 }
@@ -292,6 +292,10 @@ function updateModel(rid, rscore, rcontent) {
 		var uid = $('div.container input.uid').val();
 		var rcontent = $('div.container input.rcontent').val() ;
 		var rscore = $('div.container input.rscore').val();
+		
+		if (!(1<=rscore&&rscore<=5)) {
+			rscore = 0;
+		}
 
 	//	alert("rcontent : " + rcontent + ", rscore : " + rscore +  ", sid : " + sid) ;
 
