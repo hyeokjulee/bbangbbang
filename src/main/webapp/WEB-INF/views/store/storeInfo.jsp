@@ -60,54 +60,54 @@ li {
 		</div>
 	</header>
 	
-	<div class="gtco-section">
-  <div class="gtco-container">
-    <div class="row">
-      <div class="col-md-12">
-        <h3>${store.sname}</h3><br>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-sm-6 ">
-        <h4>메뉴</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul class="smenu">
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-5 col-md-push-1 col-sm-6">
-      <h4>위치</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div id="map"></div>
-            <ul>
-              <li class="saddr">${store.saddr}</li>
-            </ul>
-          </div>
-        </div>
-      <h4>영업시간</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-              <li class="sopen">${store.sopen}</li>
-            </ul>
-          </div>
-        </div>
-      <h4>전화번호</h4>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <ul>
-              <li class="sopen">${store.stel}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-   </div>
+<div class="gtco-section">
+	<div class="gtco-container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3>${store.sname}</h3>
+				<br>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 col-sm-6 ">
+				<h4>메뉴</h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<ul class="smenu">
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 col-md-push-1 col-sm-6">
+				<h4>위치</h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div id="map"></div>
+						<ul>
+							<li class="saddr">${store.saddr}</li>
+						</ul>
+					</div>
+				</div>
+				<h4>영업시간</h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<ul>
+							<li class="sopen">${store.sopen}</li>
+						</ul>
+					</div>
+				</div>
+				<h4>전화번호</h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<ul>
+							<li class="sopen">${store.stel}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 
+<br><br><br><br><br>
 	
 <sec:authorize access="isAuthenticated()">
 	<!-- 리뷰 등록 구역 -->
@@ -174,7 +174,8 @@ li {
         </div>
     </div>
 </c:forEach>
-
+	</div>
+</div>
 		<div class="modal review_modal" tabindex="-1">
 			<div class="modal-dialog" id="updateModal">
 				<div class="modal-content">
