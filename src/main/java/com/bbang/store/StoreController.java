@@ -2,6 +2,7 @@ package com.bbang.store;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -97,6 +98,11 @@ public class StoreController {
 		model.addAttribute("store", storeById);
 
 		List<Review> reviewById = sqlsessionTemplate.selectList("review.review_list_by_sid", sid);
+		
+		for (Review review : reviewById) {
+			review.setWriter(userService.getUserByuid(review.getUid()).getUname()); // 작성자 띄우기
+		}
+		
 		model.addAttribute("reviewList", reviewById);
 
 		return "/store/storeInfo";

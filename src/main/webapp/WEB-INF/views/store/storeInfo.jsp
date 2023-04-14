@@ -156,6 +156,8 @@ li {
     <div class="panel panel-default">
         <div class="panel-heading rscore_x_star">${r.rscore}</div>
         <div class="panel-body">
+        	<p class="pull-right">작성자 : ${r.writer}</p>
+        	<br>
             <p>${r.rcontent}</p>
         </div>
         <div class="panel-body">
