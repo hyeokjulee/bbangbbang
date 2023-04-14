@@ -233,8 +233,6 @@ public class BoardController {
         System.out.println("cid : " + map.get("cid"));
         System.out.println("ccontent : " +  map.get("ccontent"));
         
-         boardService.updateReply(map);
+        boardService.updateReply(map);
     }
-
-    
 }
