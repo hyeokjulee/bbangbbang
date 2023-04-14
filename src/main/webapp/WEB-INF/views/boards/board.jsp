@@ -64,7 +64,7 @@
 	    <div class="panel panel-default"> 
 	    	<div class="panel-body"><b>댓글</b></div>
 	      <div class="panel-body">
-	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control"></textarea>
+	        <textarea name="ccontent" id="ccontent" rows="3" class="form-control" style="resize:none;"></textarea>
 	        <br>
 	        <button class="btn btn-outline btn-primary pull-right" type="button" onclick="addreply()">댓글 등록</button>
 	      </div>
