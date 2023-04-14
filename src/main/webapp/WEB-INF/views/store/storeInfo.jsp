@@ -166,7 +166,7 @@ li {
                 <div class="col-sm-6">
                     <div class="btn-group pull-right">
 					<c:if test="${r.uid == id}">
-                        <button type="button" class="btn btn-primary"  onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정모달</button>
+                        <button type="button" class="btn btn-primary"  onclick="javascript:updateModel('${r.rid}', '${r.rscore}', '${r.rcontent}' )">수정</button>
 					</c:if>
                     </div>
                 </div> 
@@ -191,20 +191,6 @@ li {
 		
 			</div>
 </body>
-
-
-<script type="text/javascript">
-
-	const fieldset = document.querySelector(".myform_star");
-
-	fieldset.addEventListener("click", function() {
-		var selectedValue = document.querySelector('input[class="rscore2"]:checked').value;
-		console.log(selectedValue);
-		var rscore = $('div.container input.rscore').val(selectedValue);
-	});
-
-</script>
-
 <script>
 
 	var starImg = '<Image src="/resources/images/star_over.png" width="20" height="20" />';
@@ -225,6 +211,17 @@ li {
 
 </script>
 
+<script type="text/javascript">
+
+	const fieldset = document.querySelector(".myform_star");
+
+	fieldset.addEventListener("click", function() {
+		var selectedValue = document.querySelector('input[class="rscore2"]:checked').value;
+		console.log(selectedValue);
+		var rscore = $('div.container input.rscore').val(selectedValue);
+	});
+
+</script>
 
 <script type="text/javascript">
 
