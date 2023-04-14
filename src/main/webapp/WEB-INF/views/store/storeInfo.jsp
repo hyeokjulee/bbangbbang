@@ -206,8 +206,10 @@ li {
 <script>
 
 	var starImg = '<Image src="/resources/images/star_over.png" width="20" height="20" />';
+	var starImg_blank = '<Image src="/resources/images/star_blank.png" width="20" height="20" />';
 
 	// star 대신 starImg 를 넣도록 수정하기
+	// 값 -5 = 를 k 에 저장하고 값만큼 수정하고 k에 저장된 값을 다시 rscore_x_star에 넣기
 
 	var rscore_x_star = document.getElementsByClassName("rscore_x_star");
 	for (var i = 0; i < rscore_x_star.length; i++) {
@@ -217,7 +219,11 @@ li {
 		for (var j = 0; j < rscore; j++) {
 			star += starImg;
 		}
+		for (var k = 0; k < 5 - rscore; k++) {
+			star += starImg_blank;
+		}
 		rscore_x_star[i].innerHTML = star;
+		
 		
 	}
 
