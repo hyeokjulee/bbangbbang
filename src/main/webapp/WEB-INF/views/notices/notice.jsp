@@ -79,11 +79,11 @@
 	  <form action="/notices/deletenotice" method="post" style="display:inline;">
 	    <input type="hidden" name="nid" value="${notice.nid }"/>
 	    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-	  <input type="submit" class="btn btn-danger" style="float:right" value="삭제"/>
+	  <input type="submit" class="btn btn-danger btn-outline" style="float:right" value="삭제"/>
+  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary btn-outline" style="float:right; margin-right: 5px;">수정</a>
+    <a href="/notices/noticelist" class="btn btn-outline btn-default" style="float:right; margin-right: 5px;">이전으로</a>
 	  </form>
   </sec:authorize>    
-  <a href="/notices/noticeupdate?nid=${notice.nid}" class="btn btn-primary" style="float:right; margin-right: 5px;">수정</a>
-    <a href="/notices/noticelist" class="btn btn-outline btn-default" style="float:right; margin-right: 5px;">이전으로</a>
  </div>
 </div>
 		
