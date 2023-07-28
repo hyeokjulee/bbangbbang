@@ -1,4 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
+
+	<insert id="insert" parameterType="com.spring.notice.Notice"
+		useGeneratedKeys="true" keyProperty="nid">
+		<![CDATA[
+			INSERT INTO notice
+			(ntitle, ncontent)
+			values
+			(#{ntitle}, #{ncontent})
+		]]>
+	</insert>
+	
+	<select id="select_list" resultType="com.spring.notice.Notice">
+		<![CDATA[
+			SELECT * 
+			FROM notice 
+			ORDER BY nid 
+			DESC
+		]]>
+	</select>
+	
+	
+	<select id="select_detail" parameterType="String"
+		resultType="com.spring.notice.Notice">
+		<![CDATA[
+			SELECT * FROM notice WHERE nid = #{nid}
+		]]>
+	</select>
+	
+	<update id="update_view" parameterType="hashMap">
+			<![CDATA[
+				UPDATE notice SET
+				nview = nview + 1
+				WHERE nid = #{nid}
+			]]>
+	</update>
+	
+	<update id="update" parameterType="com.spring.notice.Notice">
+			<![CDATA[
+				UPDATE notice SET
+				ntitle = #{ntitle}, ncontent = #{ncontent}
+				WHERE nid = #{nid}
+			]]>
+	</update>
+	
+	<delete id="delete" parameterType="String">
+			<![CDATA[
+				DELETE FROM notice
+				WHERE nid = #{nid}
+			]]>
+	</delete>
 </mapper>

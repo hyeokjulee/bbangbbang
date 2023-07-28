@@ -3,16 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/webflow-config http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven enable-matrix-variables="true"/>
+	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -23,6 +21,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<context:component-scan base-package="simple.spring.*" />
+	<context:component-scan base-package="com.bbang.*" />
 	<context:component-scan base-package="com.spring.*" />
 	
 	<beans:bean id="multipartResolver"
@@ -30,7 +30,11 @@
 		<beans:property name="maxUploadSize" value="10240000"/>	
 	</beans:bean>
 	
-	
+		<!-- 업로드 패스 설정 -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg
+		value="C:\develop\bbang\src\main\webapp\resources" />
+	</beans:bean>
 		    <!--value="C:\develop\spring\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CarShop\resource" />-->
 	<!-- 일반 파일 업로드 경로 -->
 	<!-- <resources mapping="\images\**" location="\resources\images\" /> -->
@@ -56,17 +60,10 @@
     <beans:bean id="dataSource"
     class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-    <beans:property name="url" value="jdbc:mysql://localhost:3306/bbang?serverTimezone=UTC"/>
-   	<beans:property name="username" value="asd"/>
-   	<beans:property name="password" value="1111"/>
+    <beans:property name="url" value="jdbc:mysql://bestguby.cafe24.com:3306/bestguby?allowMultiQueries=true&amp;autoReconnect=true"/>
+   	<beans:property name="username" value="bestguby"/>
+   	<beans:property name="password" value="sy5146!3040!"/>
     
    	
     </beans:bean>
 </beans:beans>
-
-
-
-
-
-
-
