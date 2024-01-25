@@ -8,13 +8,11 @@
 							<div class="gtco-container">
 								<div class="row">
 									<div class="col-md-12 col-md-offset-0 text-left">
-
 										<div class="row row-mt-15em">
 											<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
 												<span class="intro-text-small">서울 모든 디저트를 <a
 														href="http://gettemplates.co" target="_blank">맛보다!</a></span>
 												<h1 class="cursive-font">All in good taste!</h1>
-
 
 												<form action="/store/searchInfo?${_csrf.parameterName}=${_csrf.token}" method="get">
 													<div class="input-group" style="margin-top: 50px;">
@@ -32,28 +30,20 @@
 														</span>
 													</div>
 												</form>
-
-
 											</div>
 										</div>
-										<div class="col-md-4 col-md-push-1 animate-box"
-											data-animate-effect="fadeInRight"></div>
+										<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+										</div>
 									</div>
-
-
 								</div>
 							</div>
 						</header>
 
-
-
 						<div class="gtco-section">
 							<div class="gtco-container">
-
 								<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 									<h2 class="primary-color" style="font-size: 30px; font-weight: bold;">지역별 배빵빵</h2>
 								</div>
-
 
 								<!-- <script src="/resources/js/area.js"></script> -->
 
@@ -131,15 +121,12 @@
 							</div>
 						</div>
 
-
 						<!-- 카카오지도 -->
 						<div id="gtco-features">
-
 							<div id="map" style="width: 80%; height: 450px; margin: auto;"></div>
-
 							<div id="map"></div>
 							<script type="text/javascript"
-								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2dce92aec2508609fa2293615add6c011&libraries=services"></script>
+								src="//dapi.kakao.com/v2/maps/sdk.js?appkey=*****************&libraries=services"></script>
 							<script>
 							$('#logout').click(function(){   //logout 버튼을 클릭하였을 때
 								$.ajax({
@@ -148,9 +135,7 @@
 								});
 								location.reload();
 							});
-							
 								var listData = [];
-
 								/* 		$(document).ready(function() {
 											  $.ajax({
 													type: "GET",
@@ -191,9 +176,7 @@
 
 										// 지도 중심좌표를 접속위치로 변경합니다
 										map.setCenter(new kakao.maps.LatLng(lat, lon));
-
 									});
-
 								}
 
 								// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
@@ -232,9 +215,7 @@
 										    '        </li>' +
 										    '    </ul>' +
 										    '</div>'
-										    
-										 
-							
+
 											// 마커를 지도에 표시합니다.
 											marker.setMap(map);
 
@@ -245,7 +226,6 @@
 											    yAnchor: 1.05
 											});
 
-
 									        // 마커에 클릭이벤트를 등록합니다
 										    kakao.maps.event.addListener(marker, 'click', function() {
 												 if (overlay.getMap()) {
@@ -253,7 +233,7 @@
 												    }
 												 // 커스텀 오버레이 표시
 												 else{overlay.setMap(map);}
-											   }); 
+											   });
 									        
 									        /* kakao.maps.event.addListener(map, 'click', function() {
 												 // 마커 위에 인포윈도우를 표시합니다
@@ -276,7 +256,6 @@
 													infowindow.close();
 												};
 											} */
-
 										}
 									});
 								});
@@ -284,9 +263,7 @@
 						</div>
 						<!-- 카카오지도 끝 -->
 
- 
 						<script>
-						
 							function areaGangNam() {
 								var form = document.createElement("form");
 								form.action = "/store/areaList";
@@ -398,10 +375,6 @@
 								document.body.appendChild(form);
 								form.submit();
 							}
-					
-							
-							
 						</script>
-
 
 <%@ include file="/WEB-INF/footer.jsp"%>

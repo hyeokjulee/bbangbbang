@@ -11,7 +11,6 @@
 <body>
 
 <h3>카카오 로그인을 이용하시려면 id 를 카카오 이메일 주소로 입력하세요</h3>
-	
 	<form:form modelAttribute="NewUser" 
 			   action="./joinkakao?${_csrf.parameterName}=${_csrf.token}"
 	           class="form-horizontal"
@@ -22,12 +21,7 @@
 	name : <form:input path="uname" class="form-control"/>
 	mail : <form:input path="uemail" class="form-control"/>
 	<input type="submit" class="btn btn-primary" value="등록"/>
-	
-	
 	</fieldset>
 	</form:form>
-
-
-
 </body>
 </html>

@@ -1,15 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<footer id="gtco-footer" role="contentinfo"
 		style="background-image: url(/resources/images/main.jpg)"
 		data-stellar-background-ratio="0.4">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row row-pb-md">
-
-
 				<div class="col-md-12 text-center">
 					<div class="gtco-widget">
 						<h3>서울에서 배빵빵</h3>
@@ -26,14 +21,9 @@
 				</div>
 
 				<div class="col-md-12 text-center copyright">
-					Made by <i class="fa fa-love"></i><a
-						href="https://bootstrapthemes.co">최현식,이혁주,정소영,박성준,심경외</a>
+					Made by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">최현식,이혁주,정소영,박성준,심경외</a>
 				</div>
-
 			</div>
-
-
-
 		</div>
 	</footer>
 	<!-- </div> -->
@@ -48,8 +38,10 @@
 	<script src="/resources/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="/resources/js/jquery.easing.1.3.js"></script>
+
 	<!-- Bootstrap -->
 	<script src="/resources/js/bootstrap.min.js"></script>
+
 	<!-- Waypoints -->
 	<script src="/resources/js/jquery.waypoints.min.js"></script>
 	<!-- Carousel -->
@@ -67,7 +59,6 @@
 	<script src="/resources/js/moment.min.js"></script>
 	<script src="/resources/js/bootstrap-datetimepicker.min.js"></script>
 
-
 	<!-- Main -->
 	<script src="/resources/js/main.js"></script>
 	
@@ -80,6 +71,5 @@
 			location.reload();
 		});
 	</script>
-
 </body>
 </html>

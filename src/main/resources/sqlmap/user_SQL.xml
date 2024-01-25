@@ -3,10 +3,8 @@
 <mapper namespace="user">
 	<insert id="insert" parameterType="com.spring.user.User">
 		<![CDATA[
-			INSERT INTO user
-			(username, password, enabled, authority, uname)
-			VALUES
-			(#{username}, #{password}, 1, "ROLE_USER", #{uname})
+			INSERT INTO user (username, password, enabled, authority, uname)
+			VALUES (#{username}, #{password}, 1, "ROLE_USER", #{uname})
 		]]>
 	</insert>
 	

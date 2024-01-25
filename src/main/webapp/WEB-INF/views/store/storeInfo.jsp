@@ -382,7 +382,7 @@ function updateModel(rid, rscore, rcontent) {
 
 
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=53ca7ba233962018a7a8996d89d2622a&libraries=services"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=*********************&libraries=services"></script>
 <script>
 		var listData = [ [ "${store.saddr}" ] ];
 
