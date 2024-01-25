@@ -25,45 +25,35 @@
 	<context:component-scan base-package="com.bbang.*" />
 	<context:component-scan base-package="com.spring.*" />
 	
-	<beans:bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10240000"/>	
 	</beans:bean>
 	
 		<!-- 업로드 패스 설정 -->
 	<beans:bean class="java.lang.String" id="uploadPath">
-		<beans:constructor-arg
-		value="C:\develop\bbang\src\main\webapp\resources" />
+		<beans:constructor-arg value="C:\develop\bbang\src\main\webapp\resources" />
 	</beans:bean>
 		    <!--value="C:\develop\spring\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CarShop\resource" />-->
 	<!-- 일반 파일 업로드 경로 -->
 	<!-- <resources mapping="\images\**" location="\resources\images\" /> -->
 	
 	
-	
-	
-	
-	
-	<beans:bean id="tilesViewResolver"
-	             class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <beans:property name="viewClass" 
-                 value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+
+	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
         <beans:property name="order" value="1"/>
     </beans:bean>
 	
 	
-	<beans:bean id="tilesConfigurer" 
-                class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <beans:property name="definitions" value="/WEB-INF/spring/tiles-define.xml"/>
     </beans:bean>
     
-    <beans:bean id="dataSource"
-    class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-    <beans:property name="url" value="jdbc:mysql://bestguby.cafe24.com:3306/bestguby?allowMultiQueries=true&amp;autoReconnect=true"/>
-   	<beans:property name="username" value="bestguby"/>
-   	<beans:property name="password" value="sy5146!3040!"/>
-    
-   	
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+		<beans:property name="url"
+						value="jdbc:mysql://localhost:3306/bbang?serverTimezone=UTC&amp;allowMultiQueries=true&amp;autoReconnect=true"/>
+		<beans:property name="username" value="root"/>
+		<beans:property name="password" value=""/>
     </beans:bean>
 </beans:beans>

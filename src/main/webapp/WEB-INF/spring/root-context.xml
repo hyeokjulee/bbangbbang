@@ -4,30 +4,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-		
-		<!-- mysql 연결 설정 -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp2.BasicDataSource"
-		destroy-method="close">
-		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver" />
+
+	<!-- mysql 연결 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://bestguby.cafe24.com:3306/bestguby?allowMultiQueries=true&amp;autoReconnect=true" />
-		<property name="username" value="bestguby" />
-		<property name="password" value="sy5146!3040!" />
+				  value="jdbc:mysql://localhost:3306/bbang?serverTimezone=UTC&amp;allowMultiQueries=true&amp;autoReconnect=true" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
 
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations"
-			value="classpath:/sqlmap/**/*_SQL.xml" />
+		<property name="mapperLocations" value="classpath:/sqlmap/**/*_SQL.xml" />
 	</bean>
-	<bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
-	
-	
 </beans>

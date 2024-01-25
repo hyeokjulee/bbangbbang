@@ -6,7 +6,4 @@ import lombok.Data;
 public class Board {
 	private int bid;
 	private String bpid, btitle, bcontent, bwriter, bregdate, bupdate, bview;
-	
-	
-	
 }

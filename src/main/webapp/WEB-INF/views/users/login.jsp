@@ -181,10 +181,5 @@ function kakaoProcess(nickname, email, gender) {
 			<p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
 		</form>
 	</main>
-
-
-
-
-
 </body>
 </html>

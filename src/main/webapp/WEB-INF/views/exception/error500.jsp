@@ -5,7 +5,6 @@
 
 <%@ include file="/WEB-INF/header.jsp"%>
 
-<img id="404error" src="/resources/images/500.jpeg" style="width:100%" >
-
+<img src="/resources/images/500.jpeg" style="width:100%" >
 
 <%@ include file="/WEB-INF/footer.jsp"%>

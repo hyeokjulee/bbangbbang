@@ -28,8 +28,6 @@
 		]]>
 	</select>
 
-
-
 	<select id="select_reply" parameterType="String"
 		resultType="com.spring.board.Comment">
 		<![CDATA[
@@ -65,7 +63,6 @@
 			]]>
 	</delete>
 
-
 	<update id="update" parameterType="com.spring.board.Board">
 			<![CDATA[
 				UPDATE board SET
@@ -87,6 +84,5 @@
         	 SET ccontent = #{ccontent}
        		 WHERE cid = #{cid} 
 		]]>
-
 	</update>
 </mapper>

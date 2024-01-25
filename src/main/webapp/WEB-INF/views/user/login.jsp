@@ -73,7 +73,6 @@
 					</ul>	
 				</div>
 			</div>
-			
 		</div>
 	</nav>
 	
@@ -87,9 +86,7 @@
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
 							<h2 class="white-color" style="font-size: 80px; font-weight: bold;">Login</h2>
 						</div>
-						
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -120,50 +117,40 @@
 								<input type="submit" value="회원가입" class="form-control" style="background-color:orange; color:white;">
 							</div>
 						</div>
-						
-						
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					</form>		
-				
+
+				        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					</form>
 				</div>
 			</div>
 <section class="py-5 text-center container"></section><br><br><br>
 
 	<footer id="gtco-footer" role="contentinfo" style="background-image: url(/resources/images/main.jpg)" data-stellar-background-ratio="0.4">
 		<div class="overlay"></div>
-		<div class="gtco-container">
-			<div class="row row-pb-md">
+            <div class="gtco-container">
+                <div class="row row-pb-md">
+                    <div class="col-md-12 text-center">
+                        <div class="gtco-widget">
+                            <h3>서울에서 배빵빵</h3>
+                        </div>
+                        <div class="gtco-widget">
+                            <h3>Get Social</h3>
+                            <ul class="gtco-social-icons">
+                                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                                <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-				
-
-				
-				<div class="col-md-12 text-center">
-					<div class="gtco-widget">
-						<h3>서울에서 배빵빵</h3>
-					</div>
-					<div class="gtco-widget">
-						<h3>Get Social</h3>
-						<ul class="gtco-social-icons">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-12 text-center copyright">
-				Made by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">최현식,이혁주,정소영,박성준,심경외</a>
-				</div>
-
-			</div>
-
-			
-
-		</div>
+                    <div class="col-md-12 text-center copyright">
+                    Made by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">최현식,이혁주,정소영,박성준,심경외</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
 	</footer>
-	<!-- </div> -->
-
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>

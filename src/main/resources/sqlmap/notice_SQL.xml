@@ -20,8 +20,7 @@
 			DESC
 		]]>
 	</select>
-	
-	
+
 	<select id="select_detail" parameterType="String"
 		resultType="com.spring.notice.Notice">
 		<![CDATA[
