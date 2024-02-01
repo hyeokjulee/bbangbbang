@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<footer id="gtco-footer" role="contentinfo"
-		style="background-image: url(/resources/images/main.jpg)"
-		data-stellar-background-ratio="0.4">
+	style="background-image: url(/resources/images/main.jpg)"
+	data-stellar-background-ratio="0.4">
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row row-pb-md">

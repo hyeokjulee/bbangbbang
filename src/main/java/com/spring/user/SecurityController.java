@@ -67,8 +67,8 @@ public class SecurityController {
 		userService.createUser(userParam);
 		
 		String to = userParam.getUsername();
-		String subject = userParam.getUname() + " 님 회원 가입을 환영합니다.";
-		String body = "저희 사이트에 회원으로 가입하셔서 감사드립니다. ";
+		String subject = userParam.getUname() + "님 회원 가입을 축하합니다.";
+		String body = "저희 사이트에 가입해주셔서 감사합니다. ";
 		
 		mailService.sendMail(to, subject, body);
 		
