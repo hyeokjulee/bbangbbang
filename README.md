@@ -6,15 +6,14 @@
 
 ## 2. Tech Stack
 
-- Backend : Java 8, Spring Framework 5.3, MyBatis 3.5
-- DBMS : MariaDB 10.0
-- Build tool : Maven
-- Template engine : JSP 2.3
-- IDE : Eclipse
-- Web scraping : Python(with Visual Studio Code)
-- Deployment : Tomcat 8.5, CentOS 7
-- Collaboration tool : Zoom, Notion, Google Workspace
-- Git branching strategy : GitLab Flow
+- 백엔드 : Java 8, Spring Framework 5.3, MyBatis 3.5
+- 빌드 도구 : Maven
+- 템플릿 엔진 : JSP 2.3
+- 프론트엔드 : JavaScript, HTML, CSS
+- 깃 브랜치 전략 : GitLab Flow
+- 협업 도구 : Zoom, Notion, Google Workspace
+- 웹 스크래핑 : Python (in Visual Studio Code)
+- 배포 : Tomcat 8.5, MariaDB 10.0 (on CentOS 7)
 
 <br><br>
 
