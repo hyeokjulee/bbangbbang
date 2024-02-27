@@ -10,10 +10,11 @@
 - Build tool : Maven
 - Template engine : JSP 2.3
 - Frontend : JavaScript, HTML, CSS
+- RDBMS : MariaDB 10.0
 - Git branch strategy : GitLab Flow
 - Collaboration tool : Zoom, Notion, Google Workspace
 - Web scraping : Python (in Visual Studio Code)
-- Deployment : Tomcat 8.5, MariaDB 10.0 (on CentOS 7)
+- Deployment : Tomcat 8.5 (on CentOS 7)
 
 <br><br>
 
