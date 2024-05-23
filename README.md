@@ -1,27 +1,27 @@
 ## 1. 소개
-
-디저트 카페의 평점, 리뷰를 찾아보거나 리뷰할 수 있는 웹 애플리케이션입니다.
+백엔드 프로젝트 - 디저트 카페 리뷰 및 정보 제공 플랫폼
+- 디저트 카페의 평점, 리뷰를 찾아보거나 리뷰할 수 있는 웹 애플리케이션입니다.
 
 <br><br>
 
-## 2. 기술
+## 2. 개발 및 운영 환경
 
-- 개발 : Java 8, Spring Framework 5.3, MyBatis 3.5, JSP 2.3, Maven
-- 운영 : Cafe24, CentOS 7, Tomcat 8.5, MariaDB 10.0
+- 백엔드 : Java 8, Spring Framework 5.3, MyBatis 3.5, Maven
+- 인프라 : CentOS 7, Tomcat 8.5, MySQL
 - 외부 서비스 연동 : Gmail SMTP Server, Kakao Map API
-- 스크래핑 : Python
+- 크롤링 : Python
 - 깃 브랜치 전략 : GitLab Flow
   - 인원별로 역할 분담을 하여 각자 구현해야 할 기능이 구분되어 있기 때문에 기능별로 브랜치를 나누는 대신에 인원별로 브랜치를 나누었습니다. 브랜치를 합쳐야 할 경우에는 먼저 테스트할 브랜치로 머지하여 그 안에서 테스트 후 문제가 없다면 최종적으로 마스터 브랜치로 머지하는 식으로 진행하였습니다.
 
 <br><br>
 
-## 3. DB
+## 3. 데이터 모델링 / DB 및 ERD 설계
 
 <img width="480" src="ERD.png">
 
 <br><br>
 
-## 4. 설명
+## 4. 상세 내용
 
 ### 사용자
 
